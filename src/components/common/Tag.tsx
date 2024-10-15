@@ -4,18 +4,18 @@ interface TagProps {
 }
 
 const baseTagStyle = "h-[33px] px-2 py-[3px] rounded-[999px] justify-center items-center gap-1.5 inline-flex";
-const baseTextStyle = "text-lg font-medium font-['Pretendard'] leading-[27px]";
+const baseTextStyle = "text-lg font-medium font-pretendard leading-[27px]";
 
 const tagStyles = {
-  hot: `${baseTagStyle} bg-[#f9dada]`,
-  best: `${baseTagStyle} bg-[#dbe3dc]`,
-  new: `${baseTagStyle} bg-[#fcefda]`
+  hot: `${baseTagStyle} bg-dDayRed`,
+  new: `${baseTagStyle} bg-dDayYellow`,
+  best: `${baseTagStyle} bg-dDayGreen`
 };
 
 const textStyles = {
-  hot: `${baseTextStyle} text-[#e24444]`,
-  best: `${baseTextStyle} text-[#4a734e]`,
-  new: `${baseTextStyle} text-[#f2ad48]`
+  hot: `${baseTextStyle} text-dDayTextRed`,
+  new: `${baseTextStyle} text-dDayTextYellow`,
+  best: `${baseTextStyle} text-dDayTextGreen`
 };
 
 export default function Tag({ type, label }: TagProps) {

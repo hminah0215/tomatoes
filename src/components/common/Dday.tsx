@@ -1,30 +1,30 @@
 interface DdayProps {
   type: 'active' | 'completed' | 'upcoming';
-  day: string;
+  day?: string;
   color?: 'red' | 'yellow' | 'green';
 }
 
 const baseTagStyle = "h-[33px] px-2 py-[3px] rounded-[999px] justify-center items-center gap-1.5 inline-flex";
-const baseTextStyle = "text-lg font-medium font-['Pretendard'] leading-[27px]";
+const baseTextStyle = "text-lg font-medium font-pretendard leading-[27px]";
 
 const tagStyles = {
   active: {
-    red: `${baseTagStyle} bg-[#f9dada]`,
-    yellow: `${baseTagStyle} bg-[#fcefda]`,
-    green: `${baseTagStyle} bg-[#dbe3dc]`,
+    red: `${baseTagStyle} bg-dDayRed`,
+    yellow: `${baseTagStyle} bg-dDayYellow`,
+    green: `${baseTagStyle} bg-dDayGreen`,
   },
-  completed: `${baseTagStyle} bg-[#D3D3D3]`,
-  upcoming: `${baseTagStyle} bg-[#dbe3dc]`
+  completed: `${baseTagStyle} bg-dDayGray`,
+  upcoming: `${baseTagStyle} bg-dDayGreen`
 };
 
 const textStyles = {
   active: {
-    red: `${baseTextStyle} text-[#e24444]`,
-    yellow: `${baseTextStyle} text-[#f2ad48]`,
-    green: `${baseTextStyle} text-[#4a734e]`,
+    red: `${baseTextStyle} text-dDayTextRed`,
+    yellow: `${baseTextStyle} text-dDayTextYellow`,
+    green: `${baseTextStyle} text-dDayTextGreen`,
   },
-  completed: `${baseTextStyle} text-[#7A7A7A]`,
-  upcoming: `${baseTextStyle} text-[#4a734e]`
+  completed: `${baseTextStyle} text-dDayTextGray`,
+  upcoming: `${baseTextStyle} text-dDayTextGreen`
 };
 
 export default function Dday({ type, day, color }: DdayProps) {
