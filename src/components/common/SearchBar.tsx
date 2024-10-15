@@ -24,7 +24,7 @@ export default function SearchBar({ placeholder }: { placeholder: string }) {
     <>
       <form onSubmit={onKeywordSearchHandler}>
         {/* 토마토 이미지 */}
-        <div className="flex justify-center items-center w-[264px] h-10 px-2 py-1.5 rounded-[100px] border-2 border-searchBorder gap-[11px]">
+        <div className="flex justify-center items-center w-[264px] h-10 px-2 py-1.5 rounded-[100px] border-2 border-point-red-500 gap-[11px]">
           <div className="flex justify-center items-center">
             <Image
               src="/assets/common/PC_search_t.svg"
