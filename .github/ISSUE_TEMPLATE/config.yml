@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bug Report
+    url: https://github.com/hminah0215/tomatoes/issues/new?template=버그-템플릿.md
+    about: 버그 작업과 관련된 이슈 템플릿입니다
+  - name: Feature Request
+    url: https://github.com/hminah0215/tomatoes/issues/new?template=기능-추가-템플릿.md
+    about: 기능 추가, 수정, 디자인 등 각종 작업 이슈 템플릿입니다
