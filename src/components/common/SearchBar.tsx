@@ -40,12 +40,12 @@ export default function SearchBar({ placeholder }: { placeholder: string }) {
               value={keyword}
               onChange={onKeywordChangeHandler}
               placeholder={placeholder}
-              className="w-full pr-2 text-[#4e4e4e] text-sm bg-transparent outline-none"
+              className="w-full pr-2 text-sub-gray-400 text-sm bg-transparent outline-none"
               autoFocus
             />
             {/* 버튼 */}
             <button type="submit">
-              <FaSearch className="text-searchBorder text-2xl" />
+              <FaSearch className="text-point-red-500 text-2xl" />
             </button>
           </div>
         </div>
