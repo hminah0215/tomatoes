@@ -23,10 +23,7 @@ const config: Config = {
         dDayTextGreen: '#4A734E',
         dDayTextGray: '#7A7A7A',
         searchBorder: '#E24444',
-      },
-      fontFamily: {
-        pretendard: ['Pretendard', 'sans-serif'],
-      },
+      }
     },
   },
   plugins: [],

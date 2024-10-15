@@ -4,7 +4,7 @@ interface TagProps {
 }
 
 const baseTagStyle = "h-[33px] px-2 py-[3px] rounded-[999px] justify-center items-center gap-1.5 inline-flex";
-const baseTextStyle = "text-lg font-medium font-pretendard leading-[27px]";
+const baseTextStyle = "text-base font-medium font-pretendard leading-[27px]";
 
 const tagStyles = {
   hot: `${baseTagStyle} bg-dDayRed`,
