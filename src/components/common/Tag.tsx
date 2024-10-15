@@ -3,16 +3,19 @@ interface TagProps {
   label: string;
 }
 
+const baseTagStyle = "h-[33px] px-2 py-[3px] rounded-[999px] justify-center items-center gap-1.5 inline-flex";
+const baseTextStyle = "text-lg font-medium font-['Pretendard'] leading-[27px]";
+
 const tagStyles = {
-  hot: "h-[33px] px-2 py-[3px] bg-[#f9dada] rounded-[999px] justify-center items-center gap-1.5 inline-flex",
-  best: "h-[33px] px-2 py-[3px] bg-[#dbe3dc] rounded-[999px] justify-center items-center gap-1.5 inline-flex",
-  new: "h-[33px] px-2 py-[3px] bg-[#fcefda] rounded-[999px] justify-center items-center gap-1.5 inline-flex"
+  hot: `${baseTagStyle} bg-[#f9dada]`,
+  best: `${baseTagStyle} bg-[#dbe3dc]`,
+  new: `${baseTagStyle} bg-[#fcefda]`
 };
 
 const textStyles = {
-  hot: "text-[#e24444] text-lg font-medium font-['Pretendard'] leading-[27px]",
-  best: "text-[#4a734e] text-lg font-medium font-['Pretendard'] leading-[27px]",
-  new: "text-[#f2ad48] text-lg font-medium font-['Pretendard'] leading-[27px]"
+  hot: `${baseTextStyle} text-[#e24444]`,
+  best: `${baseTextStyle} text-[#4a734e]`,
+  new: `${baseTextStyle} text-[#f2ad48]`
 };
 
 export default function Tag({ type, label }: TagProps) {
