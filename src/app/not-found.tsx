@@ -1,7 +1,16 @@
+'use client';
+
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function NotFound() {
+  const goBack = () => {
+    if (typeof window !== 'undefined' && window.history.length > 1) {
+      window.history.back(); // 이전 페이지가 있으면 돌아가기
+    } else {
+      window.location.href = '/'; // 없으면 홈으로 이동
+    }
+  };
+
   return (
     <div
       className="
@@ -31,12 +40,13 @@ export default function NotFound() {
         요청하신 페이지를 찾을 수 없습니다.
       </p>
 
-      {/* 돌아가기 버튼, Link는 고정 경로로 이동할때쓰니까 이전으로 가려면 흠 */}
-      <Link href="/" passHref>
-        <div className="mt-8 flex h-[43px] w-[168px] cursor-pointer items-center justify-center rounded-md bg-point-red-500 px-[36px] py-[12px] text-xl font-medium text-white md:px-[24px] md:py-[10px] md:text-base">
-          돌아가기
-        </div>
-      </Link>
+      {/* 돌아가기 버튼 */}
+      <div
+        className="mt-8 flex h-[43px] w-[168px] cursor-pointer items-center justify-center rounded-md bg-point-red-500 px-[36px] py-[12px] text-xl font-medium text-white md:px-[24px] md:py-[10px] md:text-base"
+        onClick={goBack}
+      >
+        돌아가기
+      </div>
     </div>
   );
 }
