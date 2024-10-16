@@ -31,7 +31,7 @@ export default function NotFound() {
         요청하신 페이지를 찾을 수 없습니다.
       </p>
 
-      {/* 돌아가기 버튼 */}
+      {/* 돌아가기 버튼, Link는 고정 경로로 이동할때쓰니까 이전으로 가려면 흠 */}
       <Link href="/" passHref>
         <div className="mt-8 flex h-[43px] w-[168px] cursor-pointer items-center justify-center rounded-md bg-point-red-500 px-[36px] py-[12px] text-xl font-medium text-white md:px-[24px] md:py-[10px] md:text-base">
           돌아가기
