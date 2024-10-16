@@ -9,11 +9,11 @@ export default function NoResult() {
       <button className="absolute top-12 left-12">
         <AiOutlineClose className="w-11 h-11" />
       </button>
-      <div className="absolute mt-28 px-12 flex flex-col items-start justify-start w-full ">
+      <div className="absolute mt-28 px-12 flex flex-col items-start justify-start w-full">
         <img 
           src="/assets/noResult/PC_header_t.svg"
           alt="Header"
-          className="h-[60.80px] mb-4"
+          className="h-[50px] mb-4 md:h-[50px] lg:h-[55px]"
         />
         <p>
           <span className="text-point-red-500">{`'${keyword}'`}</span> 에 대한 검색 결과 총 {`${count} 건`}
@@ -24,9 +24,9 @@ export default function NoResult() {
           <img 
             src="/assets/noResult/PC_logo_t.svg"
             alt="Logo"
-            className="relative w-[225px] h-[189px] mt-28"
+            className="relative mt-28 w-[150px] h-[120px] md:w-[200px] md:h-[160px] lg:w-[225px] lg:h-[189px]"
           />
-          <p className="text-[30px] font-semibold font-pretendard leading-[60px] mt-4 mb-4">
+          <p className="text-[22px] font-semibold font-pretendard leading-[60px] mt-4 mb-4 md:text-[25px] lg:text-[30px]">
             검색 결과가 없습니다.<br/>
           </p>
           <p className="text-center">
