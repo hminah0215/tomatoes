@@ -9,22 +9,22 @@ const baseTextStyle = "font-medium font-pretendard leading-[27px] text-center";
 
 const tagStyles = {
   active: {
-    red: `${baseTagStyle} bg-dDayRed`,
-    yellow: `${baseTagStyle} bg-dDayYellow`,
-    green: `${baseTagStyle} bg-dDayGreen`,
+    red: `${baseTagStyle} bg-point-red-100`,
+    yellow: `${baseTagStyle} bg-sub-yellow-100`,
+    green: `${baseTagStyle} bg-point-green-100`,
   },
-  completed: `${baseTagStyle} bg-dDayGray`,
-  upcoming: `${baseTagStyle} bg-dDayGreen`
+  completed: `${baseTagStyle} bg-sub-gray-100`,
+  upcoming: `${baseTagStyle} bg-point-green-100`
 };
 
 const textStyles = {
   active: {
-    red: `${baseTextStyle} text-dDayTextRed`,
-    yellow: `${baseTextStyle} text-dDayTextYellow`,
-    green: `${baseTextStyle} text-dDayTextGreen`,
+    red: `${baseTextStyle} text-point-red-500`,
+    yellow: `${baseTextStyle} text-sub-yellow-500`,
+    green: `${baseTextStyle} text-point-green-500`,
   },
-  completed: `${baseTextStyle} text-dDayTextGray`,
-  upcoming: `${baseTextStyle} text-dDayTextGreen`
+  completed: `${baseTextStyle} text-sub-gray-400`,
+  upcoming: `${baseTextStyle} text-point-green-500`
 };
 
 export default function Dday({ type, day, color }: DdayProps) {

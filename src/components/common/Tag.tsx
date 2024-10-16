@@ -7,15 +7,15 @@ const baseTagStyle = "h-[33px] px-2 py-[3px] rounded-[999px] justify-center item
 const baseTextStyle = "text-base font-medium font-pretendard leading-[27px]";
 
 const tagStyles = {
-  hot: `${baseTagStyle} bg-dDayRed`,
-  new: `${baseTagStyle} bg-dDayYellow`,
-  best: `${baseTagStyle} bg-dDayGreen`
+  hot: `${baseTagStyle} bg-point-red-100`,
+  new: `${baseTagStyle} bg-sub-yellow-100`,
+  best: `${baseTagStyle} bg-point-green-100`
 };
 
 const textStyles = {
-  hot: `${baseTextStyle} text-dDayTextRed`,
-  new: `${baseTextStyle} text-dDayTextYellow`,
-  best: `${baseTextStyle} text-dDayTextGreen`
+  hot: `${baseTextStyle} text-point-red-500`,
+  new: `${baseTextStyle} text-sub-yellow-500`,
+  best: `${baseTextStyle} text-point-green-500`
 };
 
 export default function Tag({ type, label }: TagProps) {
