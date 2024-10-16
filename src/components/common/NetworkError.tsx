@@ -1,11 +1,10 @@
 'use client';
-
 import Image from 'next/image';
 
 export default function NetworkError() {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <div className="relative w-[92px] h-[90.49px] mb-[30.51px]">
+      <div className="relative mb-[30.51px]">
         {/* 토마토 이미지 */}
         <Image
           src="/assets/common/PC_net_err_t.svg"
@@ -20,7 +19,7 @@ export default function NetworkError() {
           alt="Wifi Icon"
           width={42.5}
           height={32.5}
-          className="absolute top-[-15px] right-[-20px]"
+          className="absolute top-[-35px] right-[-40px]"
           unoptimized={true}
         />
       </div>
