@@ -2,8 +2,16 @@
 import Image from 'next/image';
 
 export default function NetworkError() {
+  const onReloadHandler = () => {
+    if (navigator.onLine) {
+      window.location.reload();
+    } else {
+      alert('인터넷 연결을 확인해 주세요');
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="relative mb-[30.51px]">
         {/* 토마토 이미지 */}
         <Image
@@ -11,7 +19,6 @@ export default function NetworkError() {
           alt="Tomato Icon"
           width={92}
           height={90.49}
-          unoptimized={true}
         />
         {/* 와이파이 이미지 */}
         <Image
@@ -20,7 +27,6 @@ export default function NetworkError() {
           width={42.5}
           height={32.5}
           className="absolute top-[-35px] right-[-40px]"
-          unoptimized={true}
         />
       </div>
       <p className="text-sub-gray-500 text-2xl font-semibold mb-[14px]">
@@ -31,7 +37,7 @@ export default function NetworkError() {
       </p>
       <button
         className="w-[168px] h-[46px] px-4 py-2 bg-point-red-500 rounded-md text-white text-xl font-medium"
-        onClick={() => window.location.reload()}
+        onClick={onReloadHandler}
       >
         다시 시도
       </button>
