@@ -1,11 +1,13 @@
+import Image from 'next/image';
+
 interface DdayProps {
   type: 'active' | 'completed' | 'upcoming';
   day?: string;
   color?: 'red' | 'yellow' | 'green';
 }
 
-const baseTagStyle = "h-[33px] px-2 py-[3px] rounded-[999px] justify-center items-center gap-1.5 inline-flex flex-wrap min-w-[85px] max-w-[120px] text-sm sm:text-sm md:text-base";
-const baseTextStyle = "font-medium font-pretendard leading-[27px] text-center";
+const baseTagStyle = "w-[66px] h-[30px] md:w-[75px] md:h-[33px] p-1 rounded-[999px] justify-center items-center gap-1.5 inline-flex text-sm sm:text-sm md:text-base";
+const baseTextStyle = "text-xs md:text-base font-medium leading-[20px]";
 
 const tagStyles = {
   active: {
@@ -31,40 +33,40 @@ export default function Dday({ type, day, color }: DdayProps) {
   if (type === "active" && color) {
     return (
       <div className={tagStyles.active[color]}>
-        <img 
+        <Image
           src={`/assets/common/Plain_${color}_t.svg`} 
           alt="Icon" 
-          className={`min-w-[24px] min-h-[24px]`}
+          className={`w-[20px] h-[21px] min-w-[16px] min-h-[17px]`}
         />
-        <span className={textStyles.active[color]}>
+        <p className={textStyles.active[color]}>
           D-{day}
-        </span>
+        </p>
       </div>
     );
   } else if (type === "completed") {
     return (
       <div className={tagStyles['completed']}>
-        <img 
+        <Image 
           src="/assets/common/Plain_gray_t.svg" 
           alt="Icon" 
-          className={`min-w-[24px] min-h-[24px]`}
+          className={`w-[20px] h-[21px] min-w-[16px] min-h-[17px]`}
         />
-        <span className={textStyles['completed']}>
+        <p className={textStyles['completed']}>
           마감
-        </span>
+        </p>
       </div>
     );
   } else {  // upcoming
     return (
       <div className={tagStyles['upcoming']}>
-        <img 
+        <Image 
           src="/assets/common/Plain_green_t.svg" 
           alt="Icon" 
-          className={`min-w-[24px] min-h-[24px]`}
+          className={`w-[20px] h-[21px] min-w-[16px] min-h-[17px]`}
         />
-        <span className={textStyles['upcoming']}>
+        <p className={textStyles['upcoming']}>
           예정
-        </span>
+        </p>
       </div>
     );
   }
