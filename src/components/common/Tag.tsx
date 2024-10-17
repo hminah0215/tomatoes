@@ -3,8 +3,8 @@ interface TagProps {
   label: string;
 }
 
-const baseTagStyle = "h-[33px] px-2 py-[3px] rounded-[999px] justify-center items-center gap-1.5 inline-flex";
-const baseTextStyle = "text-base font-medium font-pretendard leading-[27px]";
+const baseTagStyle = "w-[43px] h-[24px] md:w-[53px] md:h-[33px] px-2 py-[3px] rounded-[999px] justify-center items-center gap-1.5 inline-flex";
+const baseTextStyle = "text-xs md:text-base font-medium font-pretendard leading-[20px] md:leading-[27px]";
 
 const tagStyles = {
   hot: `${baseTagStyle} bg-point-red-100`,
