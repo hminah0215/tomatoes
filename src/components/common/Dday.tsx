@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface DdayProps {
   type: 'active' | 'completed' | 'upcoming';
   day?: string;
@@ -31,7 +33,7 @@ export default function Dday({ type, day, color }: DdayProps) {
   if (type === "active" && color) {
     return (
       <div className={tagStyles.active[color]}>
-        <img 
+        <Image
           src={`/assets/common/Plain_${color}_t.svg`} 
           alt="Icon" 
           className={`w-[20px] h-[21px] min-w-[16px] min-h-[17px]`}
@@ -44,7 +46,7 @@ export default function Dday({ type, day, color }: DdayProps) {
   } else if (type === "completed") {
     return (
       <div className={tagStyles['completed']}>
-        <img 
+        <Image 
           src="/assets/common/Plain_gray_t.svg" 
           alt="Icon" 
           className={`w-[20px] h-[21px] min-w-[16px] min-h-[17px]`}
@@ -57,7 +59,7 @@ export default function Dday({ type, day, color }: DdayProps) {
   } else {  // upcoming
     return (
       <div className={tagStyles['upcoming']}>
-        <img 
+        <Image 
           src="/assets/common/Plain_green_t.svg" 
           alt="Icon" 
           className={`w-[20px] h-[21px] min-w-[16px] min-h-[17px]`}

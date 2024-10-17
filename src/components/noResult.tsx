@@ -1,7 +1,8 @@
 import { AiOutlineClose } from 'react-icons/ai';
+import Image from 'next/image';
 
 export default function NoResult() {
-  let keyword = "토마토들"; // 사용자가 입력한 키워드, 추후 수정 예정
+  const keyword = "토마토들"; // 사용자가 입력한 키워드, 추후 수정 예정
 
   return (
     <div className="relative w-full h-screen flex flex-col items-center">
@@ -9,7 +10,7 @@ export default function NoResult() {
         <AiOutlineClose className="w-11 h-11" />
       </button>
       <div className="absolute mt-28 px-12 flex flex-col items-start justify-start w-full">
-        <img 
+        <Image 
           src="/assets/noResult/PC_header_t.svg"
           alt="Header"
           className="h-[50px] mb-4 md:h-[50px] lg:h-[55px]"
@@ -20,7 +21,7 @@ export default function NoResult() {
       </div>
       <div className="flex flex-col items-center justify-center h-full">
         <div className="flex flex-col items-center">
-          <img 
+          <Image
             src="/assets/noResult/PC_logo_t.svg"
             alt="Logo"
             className="relative mt-28 w-[150px] h-[120px] md:w-[200px] md:h-[160px] lg:w-[225px] lg:h-[189px]"
