@@ -2,6 +2,7 @@ import Dday from '@/components/common/Dday';
 import Tag from '@/components/common/Tag';
 import ContestBanner from '@/components/ui/homePage/ContestBanner';
 import Pagination from '@/components/ui/pagination/Pagination';
+import Image from 'next/image';
 
 export default function Home() {
   const dummyActivities: Activity[] = Array.from({ length: 80 }, (_, i) => ({
@@ -16,10 +17,48 @@ export default function Home() {
 
   return (
     <>
-      {/* 스와이프 공고 컴포넌트 자리 */}
+      {/* 메인 공고 컴포넌트 */}
       <p>스와이프 공고</p>
       <ContestBanner />
+
+      {/* BEST PICK */}
+      <section className="mt-20">
+        <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px] text-point-red-500">BEST PICK</p>
+        <Pagination contents={dummyActivities} />
+      </section>
+
+      {/* 토마토들 추천 활동 */}
+      <section className="flex items-center mt-10">
+        <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">
+          토마토들 <span className="text-point-red-500">추천 활동</span>
+        </p>
+        <Image
+          src={`/assets/homePage/PC_recommendationMark_t.svg`}
+          alt="banner"
+          width={80}
+          height={82}
+          className="ml-2"
+        />   
+      </section>
       <Pagination contents={dummyActivities} />
+
+      {/* 공모전 */}
+      <section className="mt-10">
+        <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">공모전</p>
+        <p>공모전 스와이프</p>
+      </section>
+
+      {/* 대외활동 */}
+      <section className="mt-10">
+        <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">대외활동</p>
+        <p>대외활동 스와이프</p>
+      </section>
+
+      {/* 매거진 */}
+      <section className="mt-10">
+        <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">매거진</p>
+        <p>매거진 파트</p>
+      </section>
     </>
   );
 }

@@ -45,3 +45,10 @@
     @apply bg-sub-yellow-100 text-sub-gray-400;
   }
 }
+
+@font-face {
+  font-family: 'Recipekorea';
+  src: url('/fonts/Recipekorea.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
