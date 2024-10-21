@@ -2,6 +2,7 @@ import Dday from '@/components/common/Dday';
 import Tag from '@/components/common/Tag';
 import ContestBanner from '@/components/ui/homePage/ContestBanner';
 import Pagination from '@/components/ui/pagination/Pagination';
+import PaginationForHome from '@/components/ui/pagination/PaginationForHome';
 import Image from 'next/image';
 
 export default function Home() {
@@ -22,13 +23,13 @@ export default function Home() {
       <ContestBanner />
 
       {/* BEST PICK */}
-      <section className="mt-20">
-        <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px] text-point-red-500">BEST PICK</p>
-        <Pagination contents={dummyActivities} />
+      <section>
+        <p className="mt-20 ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px] text-point-red-500">BEST PICK</p>
+        <PaginationForHome contents={dummyActivities} />
       </section>
 
       {/* 토마토들 추천 활동 */}
-      <section className="flex items-center mt-10">
+      <section className="flex items-center ml-8">
         <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">
           토마토들 <span className="text-point-red-500">추천 활동</span>
         </p>
@@ -40,7 +41,7 @@ export default function Home() {
           className="ml-2"
         />   
       </section>
-      <Pagination contents={dummyActivities} />
+      <PaginationForHome contents={dummyActivities} />
 
       {/* 공모전 */}
       <section className="mt-10">
