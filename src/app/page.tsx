@@ -1,5 +1,6 @@
 import Dday from '@/components/common/Dday';
 import Tag from '@/components/common/Tag';
+import ContestBanner from '@/components/ui/homePage/ContestBanner';
 import Pagination from '@/components/ui/pagination/Pagination';
 
 export default function Home() {
@@ -15,7 +16,9 @@ export default function Home() {
 
   return (
     <>
-      {/* 스와이프 공고 */}
+      {/* 스와이프 공고 컴포넌트 자리 */}
+      <p>스와이프 공고</p>
+      <ContestBanner />
       <Pagination contents={dummyActivities} />
     </>
   );
