@@ -19,14 +19,14 @@ export default function SideBar({
   ];
 
   return (
-    <div className="space-y-6">
+    <div>
       {/* 제목 */}
-      <div className="w-[204px] text-sub-gray-500 text-[32px] font-normal font-recipe">
+      <div className="w-[154px] h-[48px] text-sub-gray-500 text-2xl font-normal font-recipe md:w-[204px] md:text-[32px]">
         공고등록/문의
       </div>
 
       {/* 구분선 */}
-      <div className="w-[200px] h-[3px] bg-sub-gray-500 rounded-full mb-[24px]" />
+      <div className="w-[318px] h-px bg-sub-gray-300 mt-4 mb-6 md:w-[200px] md:h-[3px] md:bg-sub-gray-500 rounded-full md:mt-[24px] md:mb-[64px] md:block" />
 
       {/* 메뉴 */}
       <div className="space-y-[32px] w-[187px] h-[323px] hidden md:block">
