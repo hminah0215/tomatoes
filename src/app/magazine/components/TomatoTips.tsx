@@ -12,9 +12,17 @@ interface Tip {
   author: string;
 }
 
-const TomatoTips = () => {
-  const [tips, setTips] = useState<Tip[]>([]);
+// Props 인터페이스 정의
+interface TomatoTipsProps {
+  pageSize?: number; // 페이지당 아이템 수
+  showPagination?: boolean; // 페이지네이션 표시 여부
+}
 
+const TomatoTips = ({
+  pageSize, // 기본값 15
+  showPagination = true,
+}: TomatoTipsProps) => {
+  const [tips, setTips] = useState<Tip[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [tipsPerPage, setTipsPerPage] = useState(15); // 기본값 15
 
@@ -22,9 +30,9 @@ const TomatoTips = () => {
     '/assets/magazine/PC_tips_thumbnail_1.svg',
     '/assets/magazine/PC_tips_thumbnail_2.svg',
     '/assets/magazine/PC_tips_thumbnail_3.svg',
-    '/assets/magazine/MO_tips_thumbnail_1.svg', // 모바일 이미지 경로
-    '/assets/magazine/MO_tips_thumbnail_2.svg', // 모바일 이미지 경로
-    '/assets/magazine/MO_tips_thumbnail_3.svg', // 모바일 이미지 경로
+    '/assets/magazine/MO_tips_thumbnail_1.svg',
+    '/assets/magazine/MO_tips_thumbnail_2.svg',
+    '/assets/magazine/MO_tips_thumbnail_3.svg',
   ];
 
   useEffect(() => {
@@ -32,8 +40,8 @@ const TomatoTips = () => {
       const { data } = await supabase
         .from('tomato_tips')
         .select('title, author, created_at')
-        .order('created_at', { ascending: false }) // 최신 글이 위로 오도록 정렬
-        .order('id', { ascending: true }); // id로 정렬하여 id가 작은 것이 위로 (같은날 작성된거면 id순으로)
+        .order('created_at', { ascending: false })
+        .order('id', { ascending: true });
 
       if (data) {
         const tipsWithImages = data.map((tip, index) => ({
@@ -67,32 +75,32 @@ const TomatoTips = () => {
   }, []);
 
   // 현재 페이지에 해당하는 팁 아이템만 필터링
-  const startIndex = (currentPage - 1) * tipsPerPage;
-  const currentTips = tips.slice(startIndex, startIndex + tipsPerPage);
-
-  const totalPages = Math.ceil(tips.length / tipsPerPage);
+  const startIndex = (currentPage - 1) * (pageSize || tipsPerPage);
+  const currentTips = tips.slice(
+    startIndex,
+    startIndex + (pageSize || tipsPerPage)
+  ); // pageSize가 없을 경우 tipsPerPage 사용
+  const totalPages = Math.ceil(tips.length / (pageSize || tipsPerPage)); // pageSize가 없을 경우 tipsPerPage 사용
 
   return (
     <>
-      <div className="flex flex-wrap justify-center md:justify-start items-start gap-0 md:gap-6 mx-auto my-[50px] max-w-[1266px]">
+      <div className="flex flex-wrap justify-center md:justify-start items-start gap-4 mx-auto my-[50px] max-w-[1266px]">
         {currentTips.map((tip, index) => (
           <div
-            className="flex-col justify-start items-start gap-4 inline-flex md:w-[401px] w-[319px]"
+            className="flex-col justify-start items-start gap-4 inline-flex w-full md:w-[calc(33.33%-16px)] flex-shrink-0" // 한 줄에 1개 또는 3개
             key={index}
           >
-            <div className="w-full h-[230px] md:h-[290px] relative bg-main-beige rounded-[20px]">
-              {/* PC 이미지 */}
+            <div className="w-full h-[230px] md:h-[290px] relative bg-main-beige rounded-[20px] overflow-hidden">
               <Image
-                className="absolute hidden md:block"
-                src={`/assets/magazine/PC_tips_thumbnail_${(index % 3) + 1}.svg`}
+                className="absolute hidden md:block object-cover"
+                src={`/assets/magazine/PC_tips_thumbnail_${(index % 3) + 1}.svg`} // PC 이미지
                 alt={tip.title}
                 width={401}
                 height={290}
               />
-              {/* 모바일 이미지 */}
               <Image
-                className="absolute block md:hidden"
-                src={`/assets/magazine/MO_tips_thumbnail_${(index % 3) + 1}.svg`}
+                className="absolute block md:hidden object-cover"
+                src={`/assets/magazine/MO_tips_thumbnail_${(index % 3) + 1}.svg`} // 모바일 이미지
                 alt={tip.title}
                 width={319}
                 height={230}
@@ -106,7 +114,6 @@ const TomatoTips = () => {
                 </div>
               </div>
               <div className="justify-start items-start gap-3 inline-flex">
-                {/* 원래는pc에서 w-69px인데 닉네임도 ... 처리하면 너무 지저분해서 임의로 늘림 120px도 넘는 닉네임이 있다면 ... 으로 보여라 나도 모르겠다 */}
                 <div className="hidden md:block w-[120px] h-[30px] text-sub-gray-300 text-sm md:text-xl font-medium overflow-hidden whitespace-nowrap text-ellipsis">
                   {tip.author}
                 </div>
@@ -115,14 +122,16 @@ const TomatoTips = () => {
           </div>
         ))}
       </div>
-      {/* 페이지 네이션 컴포넌트 추가 */}
-      <div className="mb-[72px] md:mb-[120px] md:w-[439px] md:h-[32px] mx-auto">
-        <PaginationControl
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
-      </div>
+      {/* 페이지네이션 */}
+      {showPagination && (
+        <div className="mb-[72px] md:mb-[120px] md:w-[439px] md:h-[32px] mx-auto">
+          <PaginationControl
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </div>
+      )}
     </>
   );
 };
