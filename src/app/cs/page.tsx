@@ -29,7 +29,7 @@ export default function CsPage() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col px-7 py-8 md:px-0 md:py-0 md:flex-row">
       <div className="md:mr-[64px] md:ml-[84px] md:mt-[104px]">
         <SideBar
           activeContent={activeContent}
