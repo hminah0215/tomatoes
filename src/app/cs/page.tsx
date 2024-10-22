@@ -30,12 +30,10 @@ export default function CsPage() {
 
   return (
     <div className="flex">
-      {/* Sidebar는 고정 */}
       <SideBar
         activeContent={activeContent}
         setActiveContent={setActiveContent}
       />
-      {/* 선택한 콘텐츠가 표시되는 메인 영역 */}
       <div className="flex">{renderContent()}</div>
     </div>
   );
