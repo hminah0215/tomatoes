@@ -110,13 +110,20 @@ export default function BusinessIntro() {
           <div className="w-[320px] md:w-[999px] h-[1px] bg-sub-gray-200 mt-[30px] mb-[32px] md:mt-[90px] md:mb-[80px]" />
 
           <section className="mb-[80px] flex flex-col md:flex-row">
-            <div className="w-full md:w-1/3">
-              <h2 className="text-sub-gray-500 text-[24px] font-semibold mb-4 md:text-[32px] md:mb-2">
+            <div className="flex items-center w-full mb-4 md:w-1/3 md:mb-2">
+              <Image
+                src="/assets/homePage/PC_recommendationMark_t.svg"
+                alt="Mark"
+                width={45}
+                height={45}
+                className="relative md:-top-[20px]"
+                style={{ transform: 'rotate(20deg)' }}
+              />
+              <h2 className="ml-[7px] text-sub-gray-500 text-[24px] font-semibold md:text-[32px]">
                 디자인산업{' '}
-                <span className="inline md:block text-point-red-500">
-                  경쟁력
-                </span>{' '}
-                강화
+                <span className="inline md:block">
+                  <span className="text-point-red-500">경쟁력</span> 강화
+                </span>
               </h2>
             </div>
             <div className="w-[320px] md:w-2/3">
