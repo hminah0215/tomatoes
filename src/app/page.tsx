@@ -1,4 +1,5 @@
 import ContestBanner from '@/components/ui/homePage/ContestBanner';
+import MainSlider from '@/components/ui/homePage/MainSlider';
 import PaginationForHome from '@/components/ui/pagination/PaginationForHome';
 import Image from 'next/image';
 
@@ -16,7 +17,7 @@ export default function Home() {
   return (
     <>
       {/* 메인 공고 컴포넌트 */}
-      <p>스와이프 공고</p>
+      <MainSlider />
       <ContestBanner />
 
       {/* BEST PICK */}
