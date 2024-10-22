@@ -8,15 +8,17 @@ export default function MainSlider() {
   const contents = [
     {
       imageUrl: '/assets/homePage/Poster1.png',
-      title: '2024 두드림 페스티벌 자원 봉사자 모집',
+      title: (<>2024 두드림 페스티벌<br/>자원 봉사자 모집</>),  // hard coding
       receptionPeriod: `10월 ${Math.floor(Math.random() * 10) + 1}일(월) ~ 10월 ${Math.floor(Math.random() * 20) + 10}일(금)`,
       category: '대외활동',
+      bgColor: '#eb6265'
     },
     {
       imageUrl: '/assets/homePage/Poster2.png',
-      title: '한국체육산업개발(주) 인스타툰 홍보웹툰 공모전',
+      title: (<>한국체육산업개발(주)<br/>인스타툰 홍보웹툰 공모전</>),  // hard coding
       receptionPeriod: `10월 ${Math.floor(Math.random() * 10) + 1}일(월) ~ 10월 ${Math.floor(Math.random() * 20) + 10}일(금)`,
       category: '공모전',
+      bgColor: '#000000'
     }
   ];
 
@@ -39,7 +41,10 @@ export default function MainSlider() {
   };
 
   return (
-    <div className="relative w-full h-[527px] bg-[#eb6265] overflow-hidden">
+    <div 
+      className="relative w-full h-[527px] overflow-hidden" 
+      style={{ backgroundColor: contents[currentIndex].bgColor }}
+    >
       <div
         className="w-full h-full flex transition-transform ease-out duration-700"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -47,16 +52,16 @@ export default function MainSlider() {
         {contents.map((content, index) => (
           <div key={index} className="relative min-w-full flex items-center justify-center">
             <div className="ml-20 pl-10 z-10 text-white">
-              <h1 className="text-3xl font-bold mb-4">{content.title}</h1>
+              <h1 className="text-2xl md:text-3xl font-bold mb-4 break-words">{content.title}</h1>
               <div className="mb-6">
-                <p className="text-lg">기간 | {content.receptionPeriod}</p>
-                <p className="text-lg">분야 | {content.category}</p>
-                <p className="text-lg">대상 | 일반인, 대학생, 청소년</p>
+                <p className="text-base md:text-lg">기간 | {content.receptionPeriod}</p>
+                <p className="text-base md:text-lg">분야 | {content.category}</p>
+                <p className="text-base md:text-lg">대상 | 일반인, 대학생, 청소년</p>
               </div>
               <BannerLink url={'/contest'} />
             </div>
 
-            <div className="right-0 w-[55%] h-full mr-10 relative scale-125">
+            <div className="right-0 w-[55%] h-full mr-10 relative scale-125 md:min-w-[500px]">
               <Image
                 src={content.imageUrl}
                 alt={`slide-${index}`}
