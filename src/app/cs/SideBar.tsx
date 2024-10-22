@@ -1,9 +1,10 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function SideBar() {
   return (
     <>
-      <div className="flex">
+      <div className="flex min-h-screen">
         {/* 사이드바 */}
         <div className="space-y-6 mr-[64px] ml-[84px] mt-[104px]">
           {/* 공고등록/문의 타이틀 */}
@@ -15,7 +16,7 @@ export default function SideBar() {
           <div className="w-[200px] h-[3px] bg-sub-gray-500 rounded-full mb-[24px]" />
 
           {/* 메뉴 리스트 */}
-          <div className="space-y-[32px]">
+          <div className="space-y-[32px] w-[187px] h-[323px]">
             {/* 토마토 리포트 */}
             <div className="text-sub-gray-200 text-2xl font-semibold">
               <Link href="/cs/tomato-report">토마토 리포트</Link>
@@ -23,6 +24,12 @@ export default function SideBar() {
 
             {/* 사업소개 */}
             <div className="text-point-red-500 text-2xl font-semibold">
+              <Image
+                src="/assets/cs/PC_sidebar_t.svg"
+                alt="Tomato Icon"
+                width={15}
+                height={42}
+              />
               <Link href="/cs/business-intro">사업소개</Link>
             </div>
 
@@ -38,7 +45,7 @@ export default function SideBar() {
 
             {/* 책임한계와 법적고지 */}
             <div className="text-sub-gray-200 text-2xl font-semibold">
-              <Link href="/cs/legal-notice">책임한계와 법적고지</Link>
+              <Link href="/cs/legal-notice">책임한계와법적고지</Link>
             </div>
           </div>
         </div>
