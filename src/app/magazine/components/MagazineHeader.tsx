@@ -53,7 +53,7 @@ const MagazineHeader = () => {
   }, [selectedMenu]);
 
   return (
-    <div className="w-full py-4 relative">
+    <div className="w-full max-w-[1264px] mx-auto py-4 relative">
       {/* 모바일 레이아웃 */}
       <div className="block md:hidden w-full">
         {/* 상단 바 */}
@@ -126,13 +126,13 @@ const MagazineHeader = () => {
 
       {/* PC 레이아웃 */}
       <div className="hidden md:block">
-        <div className="h-[60px] text-black text-[32px] font-normal font-['Recipekorea'] mb-[18px] mt-[75px] ml-[88px] ">
+        <div className="h-[60px] text-black text-[32px] font-normal font-['Recipekorea'] mb-[18px] mt-[75px]  ">
           매거진
         </div>
 
-        <div className="relative mt-2 pl-[83px] pr-[83px] w-full">
+        <div className="relative mt-2 w-full">
           {/* 회색 선 */}
-          <div className="absolute w-[calc(100%-166px)] h-[2px] bg-sub-gray-100 top-[54px]"></div>
+          <div className="absolute w-full h-[2px] bg-sub-gray-100 top-[54px]"></div>
 
           <div className="flex justify-start items-start gap-[77px] relative z-10">
             {/* 토마토 Pick 메뉴 */}
@@ -180,19 +180,19 @@ const MagazineHeader = () => {
           <div
             className={`absolute h-[2px] bg-black ${
               selectedMenu === '토마토Pick'
-                ? 'left-[83px] w-[114px] top-[54px]' // 83px 추가
+                ? 'left-0 w-[114px] top-[54px]'
                 : selectedMenu === '토마토Tip'
-                  ? 'left-[274px] w-[104px] top-[54px]' // 191 + 83 = 274
+                  ? 'left-[191px] w-[104px] top-[54px]'
                   : selectedMenu === '수상작갤러리'
-                    ? 'left-[455px] w-[140px] top-[54px]' // 372 + 83 = 455
+                    ? 'left-[372px] w-[140px] top-[54px]'
                     : selectedMenu === '토마토리포트'
-                      ? 'left-[672px] w-[140px] top-[54px]' // 589 + 83 = 672
+                      ? 'left-[589px] w-[140px] top-[54px]'
                       : 'hidden'
             }`}
           ></div>
 
           {/* 메거진 검색바 컴포넌트 추가 */}
-          <div className="absolute right-0 top-0 flex items-center pr-5 mr-[83px] ">
+          <div className="absolute right-0 top-0 flex items-center pr-5 mr-[9px] mb-[10px] ">
             <MagazineSearchBar placeholder="필요한 글을 검색해서 찾아보세요." />
           </div>
         </div>
