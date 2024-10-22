@@ -47,7 +47,7 @@ export default function BusinessIntro() {
         </div>
 
         {/* 본문 텍스트 */}
-        <div className="container w-[1000px] mx-auto">
+        <div className="container w-[1000px]">
           <section className="mt-[72px] mb-[80px] flex">
             <div className="w-1/3">
               <h2 className="text-[28px] font-bold text-sub-gray-500 mb-2">

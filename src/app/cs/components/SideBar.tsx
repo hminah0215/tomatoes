@@ -19,9 +19,9 @@ export default function SideBar({
   ];
 
   return (
-    <div className="space-y-6 mr-[64px] ml-[84px] mt-[104px]">
+    <div className="space-y-6">
       {/* 제목 */}
-      <div className="text-sub-gray-500 text-[32px] font-normal font-recipe">
+      <div className="w-[204px] text-sub-gray-500 text-[32px] font-normal font-recipe">
         공고등록/문의
       </div>
 
@@ -29,7 +29,7 @@ export default function SideBar({
       <div className="w-[200px] h-[3px] bg-sub-gray-500 rounded-full mb-[24px]" />
 
       {/* 메뉴 */}
-      <div className="space-y-[32px] w-[187px] h-[323px]">
+      <div className="space-y-[32px] w-[187px] h-[323px] hidden md:block">
         {menuItems.map((item) => {
           const isActive = activeContent === item.key;
           return (
