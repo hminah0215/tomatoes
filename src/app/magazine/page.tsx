@@ -1,7 +1,17 @@
-export default function page() {
+// src/app/magazine/page.tsx
+
+import MagazineHeader from './components/MagazineHeader';
+import CurrentHighlights from './components/CurrentHighlights';
+import MagazineList from './components/MagazineList';
+
+const MagazinePage = () => {
   return (
-    <>
-      <h1>page</h1>
-    </>
+    <div className="relative bg-white">
+      <MagazineHeader />
+      <CurrentHighlights />
+      <MagazineList />
+    </div>
   );
-}
+};
+
+export default MagazinePage;
