@@ -36,7 +36,7 @@ export default function CsPage() {
         setActiveContent={setActiveContent}
       />
       {/* 선택한 콘텐츠가 표시되는 메인 영역 */}
-      <div className="flex-1">{renderContent()}</div>
+      <div className="flex">{renderContent()}</div>
     </div>
   );
 }
