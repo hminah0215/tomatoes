@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import json
+import os
 
 # 크롤링할 기본 URL
 base_url = "https://community.linkareer.com/honeytips?word=&field=&page={}"
@@ -74,9 +75,10 @@ for page in range(1, total_pages + 1):
     else:
         print(f"Failed to fetch page {page}, status code: {response.status_code}")
 
-# JSON 파일로 저장
-output_file_path = 'scripts/tomatoTip_data.json'  
+# JSON 파일로 저장할 경로 설정
+output_file_path = os.path.join(os.path.dirname(__file__), 'tomatoTip_data.json')
+
 with open(output_file_path, 'w', encoding='utf-8') as f:
     json.dump(tomatoTip_data, f, ensure_ascii=False, indent=4)
-
+    
 print(f"총 {len(tomatoTip_data)}개의 게시글을 가져왔습니다.")
