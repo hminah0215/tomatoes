@@ -27,6 +27,9 @@ const config: Config = {
         'sub-gray-400': '#4E4E4E',
         'sub-gray-500': '#222222',
       },
+      fontFamily: {
+        recipe: ['Recipekorea', 'Pretendard', 'sans-serif']
+      }
     },
   },
   plugins: [],

@@ -51,7 +51,7 @@ export default function GridItem({ activity }: { activity: Activity }) {
 
       <div className="mt-2 md:mt-4">
         {/* 제목 */}
-        <h2 className="text-base md:text-2xl font-semibold md:font-semibold line-clamp-2 h-12 md:h-[78px]">
+        <h2 className="text-base md:text-xl font-semibold md:font-semibold line-clamp-2 h-12 md:h-[78px]">
           {title}
         </h2>
 
@@ -63,9 +63,9 @@ export default function GridItem({ activity }: { activity: Activity }) {
         )}
 
         {/* D-Day 및 조회수 또는 접수 기간 */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <Dday type="active" day={dDay} color="red" />
-          <p className="text-xs md:text-base lg:text-lg xl:text-xl font-normal md:font-medium text-sub-gray-300">
+          <p className="text-xs sm:text-sm md:text-md lg:text-base xl:text-base font-normal md:font-medium text-sub-gray-300">
             {isSpecialRoute ? (
               `조회 ${formatViewCount(viewCount)}회`
             ) : (
