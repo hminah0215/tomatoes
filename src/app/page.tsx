@@ -1,7 +1,4 @@
-import Dday from '@/components/common/Dday';
-import Tag from '@/components/common/Tag';
 import ContestBanner from '@/components/ui/homePage/ContestBanner';
-import Pagination from '@/components/ui/pagination/Pagination';
 import PaginationForHome from '@/components/ui/pagination/PaginationForHome';
 import Image from 'next/image';
 
