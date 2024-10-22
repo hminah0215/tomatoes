@@ -86,7 +86,7 @@ export default function Footer() {
               </div>
             </div>
             <div className="flex flex-col justify-start items-start gap-6">
-              <div>광고등록/문의</div>
+              <div>공고등록/문의</div>
               <div className="h-[120px] flex flex-col justify-start items-start gap-6">
                 <Link href="/cs" className="font-semibold">
                   사업소개
