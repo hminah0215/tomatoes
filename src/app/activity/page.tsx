@@ -1,9 +1,10 @@
-import GridView from '@/components/ui/grid/GridView';
+import Pagination from '@/components/ui/pagination/Pagination';
+import CategoryPanel from './components/CategoryPanel';
 
 export default function page() {
   const dummyActivities: Activity[] = [
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '2024 대외활동 모집',
       organization: '청년연합회',
       dDay: '10',
@@ -12,7 +13,7 @@ export default function page() {
       viewCount: 1390,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '창의력 공모전',
       organization: '창의력 협회',
       dDay: '5',
@@ -21,7 +22,7 @@ export default function page() {
       viewCount: 5230,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '프로그래밍 교육 강연',
       organization: 'IT 아카데미',
       dDay: '2',
@@ -30,7 +31,7 @@ export default function page() {
       viewCount: 2250,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '디자인 공모전',
       organization: '디자인 협회',
       dDay: '15',
@@ -39,7 +40,7 @@ export default function page() {
       viewCount: 3200,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '국제 청년 프로그램 모집',
       organization: '국제 청년 회의',
       dDay: '3',
@@ -48,7 +49,7 @@ export default function page() {
       viewCount: 1800,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '청소년 창의력 대회',
       organization: '창의력 연구소',
       dDay: '7',
@@ -57,7 +58,7 @@ export default function page() {
       viewCount: 2750,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '국내 IT 컨퍼런스',
       organization: 'IT 컨퍼런스 협회',
       dDay: '1',
@@ -66,7 +67,7 @@ export default function page() {
       viewCount: 4500,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '대외활동 참여 프로그램',
       organization: '대외활동 위원회',
       dDay: '9',
@@ -75,7 +76,7 @@ export default function page() {
       viewCount: 2100,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '국제 디자인 공모전',
       organization: '국제 디자인 협회',
       dDay: '8',
@@ -84,7 +85,7 @@ export default function page() {
       viewCount: 3950,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '창의력 퀴즈 대회',
       organization: '퀴즈 협회',
       dDay: '4',
@@ -93,7 +94,7 @@ export default function page() {
       viewCount: 1500,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '프로그래밍 교육 과정',
       organization: '소프트웨어 아카데미',
       dDay: '11',
@@ -102,7 +103,7 @@ export default function page() {
       viewCount: 2750,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '국내 청소년 프로그램',
       organization: '청소년 위원회',
       dDay: '12',
@@ -111,7 +112,7 @@ export default function page() {
       viewCount: 2600,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '전국 디자인 공모전',
       organization: '전국 디자인 협회',
       dDay: '13',
@@ -120,7 +121,7 @@ export default function page() {
       viewCount: 3400,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '프로그래밍 교육 세미나',
       organization: '개발자 커뮤니티',
       dDay: '6',
@@ -129,7 +130,7 @@ export default function page() {
       viewCount: 1400,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '대외활동 리더십 캠프',
       organization: '국제 리더십 협회',
       dDay: '14',
@@ -138,7 +139,7 @@ export default function page() {
       viewCount: 1700,
     },
     {
-      imageUrl: '/test_image.png',
+      imageUrl: '/assets/test_image.png',
       title: '국제 교육 강연',
       organization: '글로벌 교육 위원회',
       dDay: '5',
@@ -150,8 +151,8 @@ export default function page() {
 
   return (
     <>
-      <h1>page</h1>
-      <GridView activities={dummyActivities} />
+      <CategoryPanel />
+      <Pagination contents={dummyActivities} />
     </>
   );
 }
