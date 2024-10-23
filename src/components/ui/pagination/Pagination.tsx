@@ -30,7 +30,7 @@ function Pagination({ contents = [] }: { contents: Activities }) {
   };
 
   return (
-    <section className="flex flex-col gap-4 md:gap-6">
+    <section className="flex flex-col gap-4 md:gap-6 mx-[88px]">
       <span className="text-sm md:text-xl md:font-medium text-sub-gray-200">
         검색결과 {contents.length}건
       </span>

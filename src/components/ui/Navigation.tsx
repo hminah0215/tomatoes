@@ -17,7 +17,6 @@ export default function Navigation() {
     { name: '매거진', route: '/magazine', hasNewContent: true },
     { name: '공모전', route: '/contest', hasNewContent: false },
     { name: '대외활동', route: '/activity', hasNewContent: false },
-    { name: '교육・강연', route: '/talk', hasNewContent: false },
   ];
 
   return (
@@ -43,7 +42,7 @@ export default function Navigation() {
         width={36}
         height={38}
         alt=""
-        className="block md:hidden absolute right-8 bottom-12 z-[-1]"
+        className="block md:hidden absolute right-6 bottom-[46px] z-[-1]"
         aria-disabled="true"
       />
     </nav>

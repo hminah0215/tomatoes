@@ -17,9 +17,9 @@ export default function GridView({ activities }: GridViewProps) {
       className={
         isSpecialRoute
           ? // 공모전, 대외활동, 교육강연 페이지: PC 4x4, 모바일 2x8
-            'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4'
+            'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full'
           : // 그 외의 페이지: PC 4x2, 모바일 2x4
-            'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4'
+            'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full'
       }
     >
       {activities.map((activity, index) => (
