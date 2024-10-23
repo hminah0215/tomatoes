@@ -1,8 +1,9 @@
-import CardSlider from '@/components/ui/homePage/ContestCardSlider';
 import ContestBanner from '@/components/ui/homePage/ContestBanner';
 import MainSlider from '@/components/ui/homePage/MainSlider';
 import PaginationForHome from '@/components/ui/pagination/PaginationForHome';
 import Image from 'next/image';
+import ContestCardSlider from '@/components/ui/homePage/ContestCardSlider';
+import ActivityCardSlider from '@/components/ui/homePage/ActivityCardSlider';
 
 export default function Home() {
   const dummyActivities: Activity[] = Array.from({ length: 80 }, (_, i) => ({
@@ -45,13 +46,13 @@ export default function Home() {
       {/* 공모전 */}
       <section className="mt-10">
         <p className="ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">공모전</p>
-        <CardSlider />
+        <ContestCardSlider />
       </section>
 
       {/* 대외활동 */}
       <section className="mt-10">
-        <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">대외활동</p>
-        <p>대외활동 스와이프</p>
+        <p className="ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">대외활동</p>
+        <ActivityCardSlider />
       </section>
 
       {/* 매거진 */}

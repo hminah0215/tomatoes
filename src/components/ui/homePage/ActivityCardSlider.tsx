@@ -39,7 +39,7 @@ function Card({ title, period, imageUrl, dDay }: CardProps) {
   );
 }
 
-function ContestCardSlider() {
+function ActivityCardSlider() {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -65,19 +65,35 @@ function ContestCardSlider() {
 
   const cards: CardProps[] = [
     {
-      title: '2024 영광 방문의 해 맞이 숏-폼 공모전',
+      title: '경북 K-스토리 페스티벌: K-스토리, 경북을 담다.',
       period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Contest1.png',
+      imageUrl: '/assets/homePage/Activity_1.png',
       dDay: {
-        type: 'active',
-        day: '20',
-        color: 'red',  
+        type: 'upcoming'
       }
     },
     {
-      title: 'EBS 온라인클래스 교육콘텐츠 공모전, \'온라인 클래스\'',
+      title: 'CLEAN HEART: 대학생 서포터즈 모집',
       period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Contest2.png',
+      imageUrl: '/assets/homePage/Activity_2.png',
+      dDay: {
+        type: 'active',
+        day: '5',
+        color: 'red',
+      }
+    },
+    {
+      title: '굿네이버스 경남사업본부와 ‘우리함께지구하자’',
+      period: '24.09.02 ~ 24.09.15',
+      imageUrl: '/assets/homePage/Activity_3.png',
+      dDay: {
+        type: 'completed'
+      }
+    },
+    {
+      title: 'CLEAN HEART: 대학생 서포터즈 모집',
+      period: '24.09.02 ~ 24.09.15',
+      imageUrl: '/assets/homePage/Activity_2.png',
       dDay: {
         type: 'active',
         day: '10',
@@ -85,9 +101,9 @@ function ContestCardSlider() {
       }
     },
     {
-      title: '한국체육산업개발(주) 홍보 웹툰 공모전',
+      title: '굿네이버스 경남사업본부와 ‘우리함께지구하자’',
       period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Main_Poster2.png',
+      imageUrl: '/assets/homePage/Activity_3.png',
       dDay: {
         type: 'active',
         day: '5',
@@ -95,29 +111,9 @@ function ContestCardSlider() {
       }
     },
     {
-      title: 'EBS 온라인클래스 교육콘텐츠 공모전, \'온라인 클래스\'',
+      title: '경북 K-스토리 페스티벌: K-스토리, 경북을 담다.',
       period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Contest2.png',
-      dDay: {
-        type: 'active',
-        day: '10',
-        color: 'yellow',
-      }
-    },
-    {
-      title: '한국체육산업개발(주) 홍보 웹툰 공모전',
-      period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Main_Poster2.png',
-      dDay: {
-        type: 'active',
-        day: '5',
-        color: 'green',
-      }
-    },
-    {
-      title: '2024 영광 방문의 해 맞이 숏-폼 공모전',
-      period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Contest1.png',
+      imageUrl: '/assets/homePage/Activity_1.png',
       dDay: {
         type: 'active',
         day: '20',
@@ -186,4 +182,4 @@ function ContestCardSlider() {
   );
 }
 
-export default ContestCardSlider;
+export default ActivityCardSlider;
