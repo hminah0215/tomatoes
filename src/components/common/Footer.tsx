@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="flex flex-col items-center gap-4 md:hidden px-8 py-8">
         {/* 모바일 Footer 전용 버튼 */}
         <div className="relative w-[100px] h-8 bg-white rounded-[5px] shadow flex items-center">
-          <Link href="/about" className="absolute inset-0 flex items-center">
+          <Link href="/intro" className="absolute inset-0 flex items-center">
             <span className="text-[10px] font-medium pl-[9px]">
               토마토들 소개 →
             </span>
