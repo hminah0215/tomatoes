@@ -9,14 +9,14 @@ export default function MainSlider() {
     {
       imageUrl: '/assets/homePage/Poster1.png',
       title: (<>2024 두드림 페스티벌<br/>자원 봉사자 모집</>),  // hard coding
-      receptionPeriod: `10월 ${Math.floor(Math.random() * 10) + 1}일(월) ~ 10월 ${Math.floor(Math.random() * 20) + 10}일(금)`,
+      period: `10월 3일(월) ~ 10월 27일(금)`, // hydration error로 인한 hard coding
       category: '대외활동',
       bgColor: '#eb6265'
     },
     {
       imageUrl: '/assets/homePage/Poster2.png',
       title: (<>한국체육산업개발(주)<br/>인스타툰 홍보웹툰 공모전</>),  // hard coding
-      receptionPeriod: `10월 ${Math.floor(Math.random() * 10) + 1}일(월) ~ 10월 ${Math.floor(Math.random() * 20) + 10}일(금)`,
+      period: `10월 18일(월) ~ 10월 31일(금)`,  // hydration error로 인한 hard coding
       category: '공모전',
       bgColor: '#000000'
     }
@@ -54,7 +54,7 @@ export default function MainSlider() {
             <div className="ml-20 pl-10 z-10 text-white">
               <h1 className="text-2xl md:text-3xl font-bold mb-4 break-words">{content.title}</h1>
               <div className="mb-6">
-                <p className="text-base md:text-lg">기간 | {content.receptionPeriod}</p>
+                <p className="text-base md:text-lg">기간 | {content.period}</p>
                 <p className="text-base md:text-lg">분야 | {content.category}</p>
                 <p className="text-base md:text-lg">대상 | 일반인, 대학생, 청소년</p>
               </div>
