@@ -10,7 +10,7 @@ export default function IntroPage() {
         height={294}
         className="md:w-[1440px] md:h-[586px]"
       />
-      <div className="grid gird-cols-1 w-[375px] md:grid-cols-3 md:w-[1264px] rounded-md gap-4 mx-[88px] my-[120px]">
+      <div className="grid gird-cols-1 md:grid-cols-3 max-w-[1264px] w-full rounded-md gap-4 mx-auto my-[120px]">
         <Image
           src="/assets/intro/PC_grid_t (1).svg"
           alt="Tomato Grid"
