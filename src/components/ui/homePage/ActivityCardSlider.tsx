@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai";
+import { AiOutlineLeftCircle, AiOutlineRightCircle, AiOutlineRight } from "react-icons/ai";
 import Image from 'next/image';
 import Dday from '@/components/common/Dday';
 
