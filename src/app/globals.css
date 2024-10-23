@@ -2,26 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+@layer components {
+  .header-navigation-container {
+    @apply flex flex-1 items-center fixed md:static bottom-[30px] left-1/2 transform -translate-x-1/2 md:transform-none;
+  }
+
+  .header-navigation-list {
+    @apply flex gap-6 lg:gap-10 bg-white h-full px-8 md:px-0 py-4 md:py-0 whitespace-nowrap shadow md:shadow-none border md:border-none border-sub-gray-100 rounded-full md:rounded-none items-center;
+  }
+
+  .header-nav-item {
+    @apply relative text-sm md:text-base lg:text-2xl font-medium lg:font-semibold box-border border-b-0 md:border-b-2;
+  }
+
+  .header-active {
+    @apply text-sub-gray-500 border-point-green-500;
+  }
+
+  .header-inactive {
+    @apply text-sub-gray-200 border-transparent;
+  }
+
+  .header-has-new-content {
+    @apply absolute top-1 -right-2 inline-block w-[5px] h-[5px] bg-point-red-500 rounded-full;
+  }
+
+  .header-link-item {
+    @apply whitespace-nowrap text-base lg:text-xl font-medium lg:font-semibold rounded-full py-2 px-3;
+  }
+
+  .header-active-link {
+    @apply bg-sub-yellow-500 text-sub-gray-500;
+  }
+
+  .header-inactive-link {
+    @apply bg-sub-yellow-100 text-sub-gray-400;
+  }
+}
+
+@font-face {
+  font-family: 'Recipekorea';
+  src: url('/fonts/Recipekorea.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
