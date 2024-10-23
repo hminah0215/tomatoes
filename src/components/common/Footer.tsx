@@ -68,7 +68,7 @@ export default function Footer() {
             <div className="flex flex-col justify-start items-start gap-6">
               <div>TOMATO.DLE</div>
               <div className="h-[216px] flex flex-col justify-start items-start gap-6">
-                <Link href="/" className="font-semibold">
+                <Link href="/intro" className="font-semibold">
                   토마토들 소개
                 </Link>
                 <Link href="/magazine" className="font-semibold">
