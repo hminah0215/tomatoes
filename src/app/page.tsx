@@ -1,3 +1,4 @@
+import CardSlider from '@/components/ui/homePage/ContestCardSlider';
 import ContestBanner from '@/components/ui/homePage/ContestBanner';
 import MainSlider from '@/components/ui/homePage/MainSlider';
 import PaginationForHome from '@/components/ui/pagination/PaginationForHome';
@@ -43,8 +44,8 @@ export default function Home() {
 
       {/* 공모전 */}
       <section className="mt-10">
-        <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">공모전</p>
-        <p>공모전 스와이프</p>
+        <p className="ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">공모전</p>
+        <CardSlider />
       </section>
 
       {/* 대외활동 */}

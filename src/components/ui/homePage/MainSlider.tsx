@@ -7,14 +7,14 @@ import BannerLink from '@/components/common/BannerLink';
 export default function MainSlider() {
   const contents = [
     {
-      imageUrl: '/assets/homePage/Poster1.png',
+      imageUrl: '/assets/homePage/Main_Poster1.png',
       title: (<>2024 두드림 페스티벌<br/>자원 봉사자 모집</>),  // hard coding
       period: `10월 3일(월) ~ 10월 27일(금)`, // hydration error로 인한 hard coding
       category: '대외활동',
       bgColor: '#eb6265'
     },
     {
-      imageUrl: '/assets/homePage/Poster2.png',
+      imageUrl: '/assets/homePage/Main_Poster2.png',
       title: (<>한국체육산업개발(주)<br/>인스타툰 홍보웹툰 공모전</>),  // hard coding
       period: `10월 18일(월) ~ 10월 31일(금)`,  // hydration error로 인한 hard coding
       category: '공모전',
