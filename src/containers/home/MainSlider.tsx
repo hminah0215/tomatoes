@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
-import BannerLink from '@/components/common/BannerLink';
+import BannerLink from './BannerLink';
 
 export default function MainSlider() {
   const contents = [

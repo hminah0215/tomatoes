@@ -1,4 +1,4 @@
-import Navigation from './Navigation';
+import Navigation from './navigation/Navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
