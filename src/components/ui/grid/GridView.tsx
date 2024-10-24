@@ -10,7 +10,7 @@ export default function GridView({ activities }: GridViewProps) {
   const pathname = usePathname();
 
   // 공모전, 대외활동, 교육강연 페이지 여부 확인
-  const isSpecialRoute = ['/activity', '/contest', '/talk'].includes(pathname);
+  const isSpecialRoute = ['/activity', '/contest'].includes(pathname);
 
   return (
     <div

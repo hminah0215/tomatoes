@@ -10,9 +10,7 @@ function Pagination({ contents = [] }: { contents: Activities }) {
   const pathname = usePathname();
 
   // 경로에 따라 한 페이지당 아이템 개수를 설정
-  const itemsPerPage = ['/activity', '/contest', '/talk'].includes(pathname)
-    ? 16
-    : 8;
+  const itemsPerPage = ['/activity', '/contest'].includes(pathname) ? 16 : 8;
 
   const totalItems = contents.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);

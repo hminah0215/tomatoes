@@ -80,9 +80,6 @@ export default function Footer() {
                 <Link href="/activity" className="font-semibold">
                   대외활동
                 </Link>
-                <Link href="/talk" className="font-semibold">
-                  교육•강연
-                </Link>
               </div>
             </div>
             <div className="flex flex-col items-start justify-start gap-6">

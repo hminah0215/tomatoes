@@ -27,7 +27,7 @@ export default function GridItem({ activity }: { activity: Activity }) {
 
   // 현재 경로 확인
   const pathname = usePathname();
-  const isSpecialRoute = ['/activity', '/contest', '/talk'].includes(pathname);
+  const isSpecialRoute = ['/activity', '/contest'].includes(pathname);
 
   return (
     <div className="relative aspect-square max-w-[300px]">
