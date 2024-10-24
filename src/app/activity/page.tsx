@@ -1,5 +1,5 @@
 import Pagination from '@/components/ui/pagination/Pagination';
-import CategoryPanel from './components/CategoryPanel';
+import CategoryPanel from '@/containers/activity/CategoryPanel';
 
 export default function page() {
   const dummyActivities: Activity[] = [
