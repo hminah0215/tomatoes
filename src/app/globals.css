@@ -8,44 +8,6 @@
   }
 }
 
-@layer components {
-  .header-navigation-container {
-    @apply fixed bottom-[30px] left-1/2 flex flex-1 -translate-x-1/2 transform items-center md:static md:transform-none;
-  }
-
-  .header-navigation-list {
-    @apply flex h-full items-center gap-6 whitespace-nowrap rounded-full border border-sub-gray-100 bg-white px-8 py-4 shadow md:rounded-none md:border-none md:px-0 md:py-0 md:shadow-none lg:gap-10;
-  }
-
-  .header-nav-item {
-    @apply relative box-border border-b-0 text-sm font-medium md:border-b-2 md:text-base lg:text-2xl lg:font-semibold;
-  }
-
-  .header-active {
-    @apply border-point-green-500 text-sub-gray-500;
-  }
-
-  .header-inactive {
-    @apply border-transparent text-sub-gray-200;
-  }
-
-  .header-has-new-content {
-    @apply absolute -right-2 top-1 inline-block h-[5px] w-[5px] rounded-full bg-point-red-500;
-  }
-
-  .header-link-item {
-    @apply whitespace-nowrap rounded-full px-3 py-2 text-base font-medium lg:text-xl lg:font-semibold;
-  }
-
-  .header-active-link {
-    @apply bg-sub-yellow-500 text-sub-gray-500;
-  }
-
-  .header-inactive-link {
-    @apply bg-sub-yellow-100 text-sub-gray-400;
-  }
-}
-
 @font-face {
   font-family: 'Recipekorea';
   src: url('/fonts/Recipekorea.ttf') format('truetype');
