@@ -6,8 +6,9 @@ interface DdayProps {
   color?: 'red' | 'yellow' | 'green';
 }
 
-const baseTagStyle = "w-[68px] h-[33px] md:w-[95px] md:h-[33px] p-1 rounded-[999px] justify-center items-center gap-1.5 inline-flex";
-const baseTextStyle = "text-xs lg:text-base font-medium leading-[20px]";
+const baseTagStyle =
+  'w-[68px] h-[33px] md:w-[95px] md:h-[33px] p-1 rounded-[999px] justify-center items-center gap-1.5 inline-flex';
+const baseTextStyle = 'text-xs lg:text-base font-medium leading-[20px]';
 
 const tagStyles = {
   active: {
@@ -16,7 +17,7 @@ const tagStyles = {
     green: `${baseTagStyle} bg-point-green-100`,
   },
   completed: `${baseTagStyle} bg-sub-gray-100`,
-  upcoming: `${baseTagStyle} bg-point-green-100`
+  upcoming: `${baseTagStyle} bg-point-green-100`,
 };
 
 const textStyles = {
@@ -26,53 +27,48 @@ const textStyles = {
     green: `${baseTextStyle} text-point-green-500`,
   },
   completed: `${baseTextStyle} text-sub-gray-400`,
-  upcoming: `${baseTextStyle} text-point-green-500`
+  upcoming: `${baseTextStyle} text-point-green-500`,
 };
 
 export default function Dday({ type, day, color }: DdayProps) {
-  if (type === "active" && color) {
+  if (type === 'active' && color) {
     return (
       <div className={tagStyles.active[color]}>
         <Image
-          src={`/assets/common/Plain_${color}_t.svg`} 
-          alt="Icon" 
+          src={`/assets/common/Plain_${color}_t.svg`}
+          alt="Icon"
           width={20}
           height={21}
-          className={`min-w-[16px] min-h-[17px]`}
+          className={`min-h-[17px] min-w-[16px]`}
         />
-        <p className={textStyles.active[color]}>
-          D-{day}
-        </p>
+        <p className={textStyles.active[color]}>D-{day}</p>
       </div>
     );
-  } else if (type === "completed") {
+  } else if (type === 'completed') {
     return (
       <div className={tagStyles['completed']}>
-        <Image 
-          src="/assets/common/Plain_gray_t.svg" 
-          alt="Icon" 
+        <Image
+          src="/assets/common/Plain_gray_t.svg"
+          alt="Icon"
           width={20}
           height={21}
-          className={`min-w-[16px] min-h-[17px]`}
+          className={`min-h-[17px] min-w-[16px]`}
         />
-        <p className={textStyles['completed']}>
-          마감
-        </p>
+        <p className={textStyles['completed']}>마감</p>
       </div>
     );
-  } else {  // upcoming
+  } else {
+    // upcoming
     return (
       <div className={tagStyles['upcoming']}>
-        <Image 
-          src="/assets/common/Plain_green_t.svg" 
-          alt="Icon" 
+        <Image
+          src="/assets/common/Plain_green_t.svg"
+          alt="Icon"
           width={20}
           height={21}
-          className={`min-w-[16px] min-h-[17px]`}
+          className={`min-h-[17px] min-w-[16px]`}
         />
-        <p className={textStyles['upcoming']}>
-          예정
-        </p>
+        <p className={textStyles['upcoming']}>예정</p>
       </div>
     );
   }

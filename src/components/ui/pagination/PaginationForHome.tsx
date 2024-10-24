@@ -10,7 +10,7 @@ function PaginationForHome({ contents = [] }: { contents: Activities }) {
     function handleResize() {
       // PC - 8개, MO - 6개로 수정
       if (window.innerWidth >= 768) {
-        setItemsPerPage(8); 
+        setItemsPerPage(8);
       } else {
         setItemsPerPage(6);
       }
@@ -25,7 +25,7 @@ function PaginationForHome({ contents = [] }: { contents: Activities }) {
   }, []);
 
   return (
-    <section className="flex flex-col gap-4 md:gap-6 mx-8 my-5 mb-20">
+    <section className="mx-8 my-5 mb-20 flex flex-col gap-4 md:gap-6">
       <GridView activities={currentItems} />
     </section>
   );

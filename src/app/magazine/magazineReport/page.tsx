@@ -1,4 +1,4 @@
-import MagazineReport from '@/app/magazine/components/MagazineReport';
+import MagazineReport from '@/containers/magazine/MagazineReport';
 
 export default function page() {
   return (

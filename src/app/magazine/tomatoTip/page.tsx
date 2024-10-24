@@ -1,4 +1,4 @@
-import TomatoTips from '@/app/magazine/components/TomatoTips';
+import TomatoTips from '@/containers/magazine/TomatoTips';
 
 export default function Page() {
   return (
