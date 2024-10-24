@@ -53,7 +53,7 @@ const MagazineHeader = () => {
   }, [selectedMenu]);
 
   return (
-    <div className="relative mx-auto w-full max-w-[1264px] py-4">
+    <div className="relative mx-auto w-full">
       {/* 모바일 레이아웃 */}
       <div className="block w-full md:hidden">
         {/* 상단 바 */}
@@ -126,7 +126,7 @@ const MagazineHeader = () => {
 
       {/* PC 레이아웃 */}
       <div className="hidden md:block">
-        <div className="mb-[18px] mt-[75px] h-[60px] font-['Recipekorea'] text-[32px] font-normal text-black">
+        <div className="h-[60px] font-['Recipekorea'] text-[32px] font-normal text-black">
           매거진
         </div>
 
