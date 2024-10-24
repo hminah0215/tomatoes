@@ -4,7 +4,7 @@ import PaginationForHome from '@/components/ui/pagination/PaginationForHome';
 import Image from 'next/image';
 import ContestCardSlider from '@/containers/home/ContestCardSlider';
 import ActivityCardSlider from '@/containers/home/ActivityCardSlider';
-import TomatoTips from '@/app/magazine/components/TomatoTips';
+import TomatoTips from '../magazine/TomatoTips';
 import { AiOutlineRight } from 'react-icons/ai';
 import Link from 'next/link';
 

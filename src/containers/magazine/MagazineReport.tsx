@@ -1,6 +1,6 @@
 'use client';
 
-import MReportCoustomAlert from '@/app/magazine/components/MReportCoustomAlert';
+import MReportCoustomAlert from './MReportCoustomAlert';
 import Image from 'next/image';
 import { useState } from 'react';
 

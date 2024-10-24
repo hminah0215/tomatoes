@@ -1,4 +1,4 @@
-import MagazineHeader from './components/MagazineHeader';
+import MagazineHeader from '@/containers/magazine/MagazineHeader';
 
 const MagazineLayout = ({ children }: { children: React.ReactNode }) => {
   return (

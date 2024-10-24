@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 
-import CurrentHighlights from './components/CurrentHighlights';
-import MagazineList from './components/MagazineList';
+import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
+import MagazineList from '@/containers/magazine/MagazineList';
 
 const MagazinePage = () => {
   return (
