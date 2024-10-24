@@ -4,6 +4,9 @@ import PaginationForHome from '@/components/ui/pagination/PaginationForHome';
 import Image from 'next/image';
 import ContestCardSlider from '@/components/ui/homePage/ContestCardSlider';
 import ActivityCardSlider from '@/components/ui/homePage/ActivityCardSlider';
+import TomatoTips from './magazine/components/TomatoTips';
+import { AiOutlineRight } from 'react-icons/ai';
+import Link from 'next/link';
 
 export default function Home() {
   const dummyActivities: Activity[] = Array.from({ length: 80 }, (_, i) => ({
@@ -45,20 +48,47 @@ export default function Home() {
 
       {/* 공모전 */}
       <section className="mt-10">
-        <p className="ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">공모전</p>
+        <div className="flex flex-row justify-between">
+          <p className="ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">공모전</p>
+          <Link
+            href={'/contest'}
+            className="flex flex-row items-center gap-1 mr-10"
+          >
+            더보기
+            <AiOutlineRight />
+          </Link>
+        </div>
         <ContestCardSlider />
       </section>
 
       {/* 대외활동 */}
       <section className="mt-10">
-        <p className="ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">대외활동</p>
+        <div className="flex flex-row justify-between">
+          <p className="ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">대외활동</p>
+          <Link 
+          href={'/activity'}
+            className="flex flex-row items-center gap-1 mr-10"
+          >
+            더보기
+            <AiOutlineRight />
+          </Link>
+        </div>
         <ActivityCardSlider />
       </section>
 
       {/* 매거진 */}
-      <section className="mt-10">
-        <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">매거진</p>
-        <p>매거진 파트</p>
+      <section className="mt-10 ml-8">
+        <div className="flex flex-row justify-between">
+          <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">매거진</p>
+          <Link 
+            href={'/magazine'}
+            className="flex flex-row items-center gap-1 mr-10"
+          >
+            더보기
+            <AiOutlineRight />
+          </Link>
+        </div>
+        <TomatoTips pageSize={3} showPagination={false} />
       </section>
     </>
   );
