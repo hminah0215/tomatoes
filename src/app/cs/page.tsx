@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import TomatoReport from './components/TomatoReport';
-import BusinessIntro from './components/BusinessIntro';
-import AdInquiry from './components/AdInquiry';
-import Terms from './components/Terms';
-import LegalNotice from './components/LegalNotice';
-import SideBar from './components/SideBar';
+import TomatoReport from '@/containers/cs/TomatoReport';
+import BusinessIntro from '@/containers/cs/BusinessIntro';
+import AdInquiry from '@/containers/cs/AdInquiry';
+import Terms from '@/containers/cs/Terms';
+import LegalNotice from '@/containers/cs/LegalNotice';
+import SideBar from '@/containers/cs/SideBar';
 
 export default function CsPage() {
   const [activeContent, setActiveContent] = useState('business-intro');
