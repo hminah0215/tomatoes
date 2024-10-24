@@ -44,20 +44,20 @@ export default function GridItem({ activity }: { activity: Activity }) {
 
       {/* 카테고리 */}
       {!isSpecialRoute && (
-        <div className="absolute top-2 right-2 md:top-3 md:right-3 px-2 py-[2px] md:px-3 md:py-1 bg-sub-gray-500 text-white text-xs md:text-xl rounded-full font-normal md:font-medium">
+        <div className="absolute right-2 top-2 rounded-full bg-sub-gray-500 px-2 py-[2px] text-xs font-normal text-white md:right-3 md:top-3 md:px-3 md:py-1 md:text-xl md:font-medium">
           {category}
         </div>
       )}
 
       <div className="mt-2 md:mt-4">
         {/* 제목 */}
-        <h2 className="text-base md:text-xl font-semibold md:font-semibold line-clamp-2 h-12 md:h-[78px]">
+        <h2 className="line-clamp-2 h-12 text-base font-semibold md:h-[78px] md:text-xl md:font-semibold">
           {title}
         </h2>
 
         {/* 주최 기관 */}
         {isSpecialRoute && (
-          <p className="text-sm font-normal md:font-medium md:text-xl text-sub-gray-400 mb-2">
+          <p className="mb-2 text-sm font-normal text-sub-gray-400 md:text-xl md:font-medium">
             {organization}
           </p>
         )}
@@ -65,7 +65,7 @@ export default function GridItem({ activity }: { activity: Activity }) {
         {/* D-Day 및 조회수 또는 접수 기간 */}
         <div className="flex items-center gap-1.5">
           <Dday type="active" day={dDay} color="red" />
-          <p className="text-xs sm:text-sm md:text-md lg:text-base xl:text-base font-normal md:font-medium text-sub-gray-300">
+          <p className="md:text-md text-xs font-normal text-sub-gray-300 sm:text-sm md:font-medium lg:text-base xl:text-base">
             {isSpecialRoute ? (
               `조회 ${formatViewCount(viewCount)}회`
             ) : (

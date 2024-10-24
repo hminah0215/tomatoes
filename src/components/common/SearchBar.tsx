@@ -24,8 +24,8 @@ export default function SearchBar({ placeholder }: { placeholder: string }) {
     <>
       <form onSubmit={onKeywordSearchHandler}>
         {/* 토마토 이미지 */}
-        <div className="flex justify-center items-center w-[264px] h-10 px-2 py-1.5 rounded-[100px] border-2 border-point-red-500 gap-[11px]">
-          <div className="flex justify-center items-center">
+        <div className="flex h-10 w-[264px] items-center justify-center gap-[11px] rounded-[100px] border-2 border-point-red-500 px-2 py-1.5">
+          <div className="flex items-center justify-center">
             <Image
               src="/assets/common/PC_search_t.svg"
               alt="Tomato Icon"
@@ -34,18 +34,18 @@ export default function SearchBar({ placeholder }: { placeholder: string }) {
             />
           </div>
           {/* 검색창 */}
-          <div className="flex-grow flex items-center">
+          <div className="flex flex-grow items-center">
             <input
               type="text"
               value={keyword}
               onChange={onKeywordChangeHandler}
               placeholder={placeholder}
-              className="w-full pr-2 text-sub-gray-400 text-sm bg-transparent outline-none"
+              className="w-full bg-transparent pr-2 text-sm text-sub-gray-400 outline-none"
               autoFocus
             />
             {/* 버튼 */}
             <button type="submit">
-              <FaSearch className="text-point-red-500 text-2xl" />
+              <FaSearch className="text-2xl text-point-red-500" />
             </button>
           </div>
         </div>

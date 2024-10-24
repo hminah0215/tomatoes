@@ -84,37 +84,37 @@ const TomatoTips = ({
 
   return (
     <>
-      <div className="flex flex-wrap justify-center md:justify-start items-start gap-4 mx-auto my-[50px] max-w-[1266px]">
+      <div className="mx-auto my-[50px] flex max-w-[1266px] flex-wrap items-start justify-center gap-4 md:justify-start">
         {currentTips.map((tip, index) => (
           <div
-            className="flex-col justify-start items-start gap-4 inline-flex w-full md:w-[calc(33.33%-16px)] flex-shrink-0" // 한 줄에 1개 또는 3개
+            className="inline-flex w-full flex-shrink-0 flex-col items-start justify-start gap-4 md:w-[calc(33.33%-16px)]" // 한 줄에 1개 또는 3개
             key={index}
           >
-            <div className="w-full h-[230px] md:h-[290px] relative bg-main-beige rounded-[20px] overflow-hidden">
+            <div className="relative h-[230px] w-full overflow-hidden rounded-[20px] bg-main-beige md:h-[290px]">
               <Image
-                className="absolute hidden md:block object-cover"
+                className="absolute hidden object-cover md:block"
                 src={`/assets/magazine/PC_tips_thumbnail_${(index % 3) + 1}.svg`} // PC 이미지
                 alt={tip.title}
                 width={401}
                 height={290}
               />
               <Image
-                className="absolute block md:hidden object-cover"
+                className="absolute block object-cover md:hidden"
                 src={`/assets/magazine/MO_tips_thumbnail_${(index % 3) + 1}.svg`} // 모바일 이미지
                 alt={tip.title}
                 width={319}
                 height={230}
               />
             </div>
-            <div className="self-stretch h-[40px] md:h-[74px] flex-col justify-start items-start gap-2 flex">
-              <div className="self-stretch justify-start items-center gap-3 inline-flex">
+            <div className="flex h-[40px] flex-col items-start justify-start gap-2 self-stretch md:h-[74px]">
+              <div className="inline-flex items-center justify-start gap-3 self-stretch">
                 <Tag type="hot" label="HOT" />
-                <div className="w-[250px] h-[24px] md:w-[329px] md:h-[36px] text-sub-gray-500 font-semibold leading-5 overflow-hidden whitespace-nowrap text-ellipsis text-[16px] md:text-2xl ">
+                <div className="h-[24px] w-[250px] overflow-hidden text-ellipsis whitespace-nowrap text-[16px] font-semibold leading-5 text-sub-gray-500 md:h-[36px] md:w-[329px] md:text-2xl">
                   {tip.title}
                 </div>
               </div>
-              <div className="justify-start items-start gap-3 inline-flex">
-                <div className="hidden md:block w-[120px] h-[30px] text-sub-gray-300 text-sm md:text-xl font-medium overflow-hidden whitespace-nowrap text-ellipsis">
+              <div className="inline-flex items-start justify-start gap-3">
+                <div className="hidden h-[30px] w-[120px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium text-sub-gray-300 md:block md:text-xl">
                   {tip.author}
                 </div>
               </div>
@@ -124,7 +124,7 @@ const TomatoTips = ({
       </div>
       {/* 페이지네이션 */}
       {showPagination && (
-        <div className="mb-[72px] md:mb-[120px] md:w-[439px] md:h-[32px] mx-auto">
+        <div className="mx-auto mb-[72px] md:mb-[120px] md:h-[32px] md:w-[439px]">
           <PaginationControl
             currentPage={currentPage}
             totalPages={totalPages}

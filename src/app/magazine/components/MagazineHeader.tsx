@@ -53,12 +53,12 @@ const MagazineHeader = () => {
   }, [selectedMenu]);
 
   return (
-    <div className="w-full max-w-[1264px] mx-auto py-4 relative">
+    <div className="relative mx-auto w-full max-w-[1264px] py-4">
       {/* 모바일 레이아웃 */}
-      <div className="block md:hidden w-full">
+      <div className="block w-full md:hidden">
         {/* 상단 바 */}
-        <div className="w-[375px] h-12 px-7 py-[9px] bg-white flex justify-between items-center">
-          <div className="w-[72px] h-[30px] text-[#222222] text-2xl font-normal font-['Recipekorea'] leading-9">
+        <div className="flex h-12 w-[375px] items-center justify-between bg-white px-7 py-[9px]">
+          <div className="h-[30px] w-[72px] font-['Recipekorea'] text-2xl font-normal leading-9 text-[#222222]">
             매거진
           </div>
           {/* 기존의 매거진 서치바 컴포넌트 사용 */}
@@ -81,28 +81,28 @@ const MagazineHeader = () => {
             }}
           >
             <div
-              className={`w-[87px] h-[27px] text-lg font-semibold leading-[27px] ${selectedMenu === '토마토Pick' ? 'text-sub-gray-500' : 'text-sub-gray-200'}`}
+              className={`h-[27px] w-[87px] text-lg font-semibold leading-[27px] ${selectedMenu === '토마토Pick' ? 'text-sub-gray-500' : 'text-sub-gray-200'}`}
               onClick={() => setSelectedMenu('토마토Pick')}
               ref={menuRefs['토마토Pick']}
             >
               토마토 Pick
             </div>
             <div
-              className={`w-[78px] h-[27px] text-lg font-medium leading-[27px] ${selectedMenu === '토마토Tip' ? 'text-sub-gray-500' : 'text-sub-gray-200'}`}
+              className={`h-[27px] w-[78px] text-lg font-medium leading-[27px] ${selectedMenu === '토마토Tip' ? 'text-sub-gray-500' : 'text-sub-gray-200'}`}
               onClick={() => setSelectedMenu('토마토Tip')}
               ref={menuRefs['토마토Tip']}
             >
               토마토 Tip
             </div>
             <div
-              className={`w-[98px] h-[27px] text-lg font-medium leading-[27px] ${selectedMenu === '수상작갤러리' ? 'text-sub-gray-500' : 'text-sub-gray-200'}`}
+              className={`h-[27px] w-[98px] text-lg font-medium leading-[27px] ${selectedMenu === '수상작갤러리' ? 'text-sub-gray-500' : 'text-sub-gray-200'}`}
               onClick={() => setSelectedMenu('수상작갤러리')}
               ref={menuRefs['수상작갤러리']}
             >
               수상작 갤러리
             </div>
             <div
-              className={`w-[98px] h-[27px] text-lg font-medium leading-[27px] ${selectedMenu === '토마토리포트' ? 'text-sub-gray-500' : 'text-sub-gray-200'}`}
+              className={`h-[27px] w-[98px] text-lg font-medium leading-[27px] ${selectedMenu === '토마토리포트' ? 'text-sub-gray-500' : 'text-sub-gray-200'}`}
               onClick={() => setSelectedMenu('토마토리포트')}
               ref={menuRefs['토마토리포트']}
             >
@@ -111,11 +111,11 @@ const MagazineHeader = () => {
           </div>
 
           {/* 회색 줄 추가 */}
-          <div className="w-full border border-sub-gray-100 mt-2"></div>
+          <div className="mt-2 w-full border border-sub-gray-100"></div>
 
           {/* 검은 줄 추가 */}
           <div
-            className="absolute h-[2px] bg-black top-[35px] transition-all duration-300 ease-in-out"
+            className="absolute top-[35px] h-[2px] bg-black transition-all duration-300 ease-in-out"
             style={{
               left: `${linePosition.left}px`, // offsetLeft 값을 사용
               width: `${linePosition.width}px`, // offsetWidth 값을 사용
@@ -126,19 +126,19 @@ const MagazineHeader = () => {
 
       {/* PC 레이아웃 */}
       <div className="hidden md:block">
-        <div className="h-[60px] text-black text-[32px] font-normal font-['Recipekorea'] mb-[18px] mt-[75px]  ">
+        <div className="mb-[18px] mt-[75px] h-[60px] font-['Recipekorea'] text-[32px] font-normal text-black">
           매거진
         </div>
 
         <div className="relative mt-2 w-full">
           {/* 회색 선 */}
-          <div className="absolute w-full h-[2px] bg-sub-gray-100 top-[54px]"></div>
+          <div className="absolute top-[54px] h-[2px] w-full bg-sub-gray-100"></div>
 
-          <div className="flex justify-start items-start gap-[77px] relative z-10">
+          <div className="relative z-10 flex items-start justify-start gap-[77px]">
             {/* 토마토 Pick 메뉴 */}
             <Link href="/magazine">
               <div
-                className={`w-[114px] h-[53px] text-center text-[24px] ${selectedMenu === '토마토Pick' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '토마토Pick' ? 'sub-gray-dark' : 'sub-gray-200'}`}
+                className={`h-[53px] w-[114px] text-center text-[24px] ${selectedMenu === '토마토Pick' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '토마토Pick' ? 'sub-gray-dark' : 'sub-gray-200'}`}
                 onClick={() => setSelectedMenu('토마토Pick')}
               >
                 토마토Pick
@@ -148,7 +148,7 @@ const MagazineHeader = () => {
             {/* 토마토Tip 메뉴 */}
             <Link href="/magazine/tomatoTip">
               <div
-                className={`w-[104px] h-[53px] text-[24px] ${selectedMenu === '토마토Tip' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '토마토Tip' ? 'sub-gray-dark' : 'sub-gray-200'}`}
+                className={`h-[53px] w-[104px] text-[24px] ${selectedMenu === '토마토Tip' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '토마토Tip' ? 'sub-gray-dark' : 'sub-gray-200'}`}
                 onClick={() => setSelectedMenu('토마토Tip')}
               >
                 토마토Tip
@@ -158,7 +158,7 @@ const MagazineHeader = () => {
             {/* 수상작 갤러리 메뉴 */}
             <Link href="/magazine/magazineGallary">
               <div
-                className={`w-[140px] h-[53px] text-[24px] ${selectedMenu === '수상작갤러리' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '수상작갤러리' ? 'sub-gray-dark' : 'sub-gray-200'}`}
+                className={`h-[53px] w-[140px] text-[24px] ${selectedMenu === '수상작갤러리' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '수상작갤러리' ? 'sub-gray-dark' : 'sub-gray-200'}`}
                 onClick={() => setSelectedMenu('수상작갤러리')}
               >
                 수상작 갤러리
@@ -168,7 +168,7 @@ const MagazineHeader = () => {
             {/* 토마토리포트 메뉴 */}
             <Link href="/magazine/magazineReport">
               <div
-                className={`w-[140px] h-[53px] text-[24px] ${selectedMenu === '토마토리포트' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '토마토리포트' ? 'sub-gray-dark' : 'sub-gray-200'}`}
+                className={`h-[53px] w-[140px] text-[24px] ${selectedMenu === '토마토리포트' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '토마토리포트' ? 'sub-gray-dark' : 'sub-gray-200'}`}
                 onClick={() => setSelectedMenu('토마토리포트')}
               >
                 토마토리포트
@@ -180,19 +180,19 @@ const MagazineHeader = () => {
           <div
             className={`absolute h-[2px] bg-black ${
               selectedMenu === '토마토Pick'
-                ? 'left-0 w-[114px] top-[54px]'
+                ? 'left-0 top-[54px] w-[114px]'
                 : selectedMenu === '토마토Tip'
-                  ? 'left-[191px] w-[104px] top-[54px]'
+                  ? 'left-[191px] top-[54px] w-[104px]'
                   : selectedMenu === '수상작갤러리'
-                    ? 'left-[372px] w-[140px] top-[54px]'
+                    ? 'left-[372px] top-[54px] w-[140px]'
                     : selectedMenu === '토마토리포트'
-                      ? 'left-[589px] w-[140px] top-[54px]'
+                      ? 'left-[589px] top-[54px] w-[140px]'
                       : 'hidden'
             }`}
           ></div>
 
           {/* 메거진 검색바 컴포넌트 추가 */}
-          <div className="absolute right-0 top-0 flex items-center pr-5 mr-[9px] mb-[10px] ">
+          <div className="absolute right-0 top-0 mb-[10px] mr-[9px] flex items-center pr-5">
             <MagazineSearchBar placeholder="필요한 글을 검색해서 찾아보세요." />
           </div>
         </div>

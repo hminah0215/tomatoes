@@ -30,8 +30,8 @@ function Pagination({ contents = [] }: { contents: Activities }) {
   };
 
   return (
-    <section className="flex flex-col gap-4 md:gap-6 mx-[88px]">
-      <span className="text-sm md:text-xl md:font-medium text-sub-gray-200">
+    <section className="mx-[88px] flex flex-col gap-4 md:gap-6">
+      <span className="text-sm text-sub-gray-200 md:text-xl md:font-medium">
         검색결과 {contents.length}건
       </span>
       <GridView activities={currentItems} />

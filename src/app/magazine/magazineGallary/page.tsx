@@ -2,9 +2,9 @@ import Image from 'next/image';
 
 export default function page() {
   return (
-    <div className="flex justify-center items-center flex-col">
+    <div className="flex flex-col items-center justify-center">
       {/* 모바일 버전 이미지 */}
-      <div className="block md:hidden ml-[64px] mr-[71px] mt-[89px] mb-[212px]">
+      <div className="mb-[212px] ml-[64px] mr-[71px] mt-[89px] block md:hidden">
         <Image
           src="/assets/magazine/MO_gallary_tomato.svg"
           alt="토마토 갤러리"
@@ -14,7 +14,7 @@ export default function page() {
       </div>
 
       {/* PC 버전 이미지 */}
-      <div className="hidden md:block mx-auto mt-[100px] mb-[202px] ">
+      <div className="mx-auto mb-[202px] mt-[100px] hidden md:block">
         <Image
           src="/assets/magazine/PC_gallary_tomato.svg"
           alt="토마토 갤러리"

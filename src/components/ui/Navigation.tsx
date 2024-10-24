@@ -42,7 +42,7 @@ export default function Navigation() {
         width={36}
         height={38}
         alt=""
-        className="block md:hidden absolute right-6 bottom-[46px] z-[-1]"
+        className="absolute bottom-[46px] right-6 z-[-1] block md:hidden"
         aria-disabled="true"
       />
     </nav>

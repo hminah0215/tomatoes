@@ -9,18 +9,18 @@ const MReportCoustomAlert = ({
 }: MReportCoustomAlertProps) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50">
-      <div className="w-[311px] h-[160px] p-6 bg-white rounded-2xl flex-col justify-start items-center gap-4 inline-flex">
-        <div className="self-stretch h-[52px] flex-col justify-center items-center gap-2 flex">
-          <div className="w-[263px] text-center text-neutral-900 text-base font-semibold leading-relaxed">
+      <div className="inline-flex h-[160px] w-[311px] flex-col items-center justify-start gap-4 rounded-2xl bg-white p-6">
+        <div className="flex h-[52px] flex-col items-center justify-center gap-2 self-stretch">
+          <div className="w-[263px] text-center text-base font-semibold leading-relaxed text-neutral-900">
             {message}
           </div>
         </div>
-        <div className="w-[263px] justify-start items-center gap-3 inline-flex">
+        <div className="inline-flex w-[263px] items-center justify-start gap-3">
           <div
-            className="grow shrink basis-0 h-11 px-5 py-[9px] bg-white rounded-lg border border-[#D9D9D9] justify-center items-center gap-1.5 flex cursor-pointer"
+            className="flex h-11 shrink grow basis-0 cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-[#D9D9D9] bg-white px-5 py-[9px]"
             onClick={onClose}
           >
-            <div className="text-[#E2483D] text-base font-semibold leading-relaxed">
+            <div className="text-base font-semibold leading-relaxed text-[#E2483D]">
               닫기
             </div>
           </div>

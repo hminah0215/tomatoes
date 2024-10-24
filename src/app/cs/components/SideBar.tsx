@@ -21,21 +21,21 @@ export default function SideBar({
   return (
     <div>
       {/* 제목 */}
-      <div className="w-[154px] h-[48px] text-sub-gray-500 text-2xl font-normal font-recipe md:w-[204px] md:text-[32px]">
+      <div className="h-[48px] w-[154px] font-recipe text-2xl font-normal text-sub-gray-500 md:w-[204px] md:text-[32px]">
         공고등록/문의
       </div>
 
       {/* 구분선 */}
-      <div className="w-[318px] h-px bg-sub-gray-300 mt-4 mb-6 md:w-[200px] md:h-[3px] md:bg-sub-gray-500 rounded-full md:mt-[24px] md:mb-[64px] md:block" />
+      <div className="mb-6 mt-4 h-px w-[318px] rounded-full bg-sub-gray-300 md:mb-[64px] md:mt-[24px] md:block md:h-[3px] md:w-[200px] md:bg-sub-gray-500" />
 
       {/* 메뉴 */}
-      <div className="space-y-[32px] w-[187px] h-[323px] hidden md:block">
+      <div className="hidden h-[323px] w-[187px] space-y-[32px] md:block">
         {menuItems.map((item) => {
           const isActive = activeContent === item.key;
           return (
             <div
               key={item.key}
-              className={`text-2xl font-semibold cursor-pointer ${isActive ? 'text-point-red-500' : 'text-sub-gray-200'}`}
+              className={`cursor-pointer text-2xl font-semibold ${isActive ? 'text-point-red-500' : 'text-sub-gray-200'}`}
               onClick={() => setActiveContent(item.key)}
             >
               {isActive && (

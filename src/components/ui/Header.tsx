@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Header() {
   return (
-    <header className="flex items-center px-7 py-4 lg:px-[88px] lg:py-[22px] justify-between w-full shadow">
+    <header className="flex w-full items-center justify-between px-7 py-4 shadow lg:px-[88px] lg:py-[22px]">
       <Link href="/" className="mr-8 shrink-0">
         {/* 데스크탑 로고 */}
         <Image
@@ -21,7 +21,7 @@ export default function Header() {
           width={76}
           height={17}
           alt="tomatoes mobile logo"
-          className="md:hidden block"
+          className="block md:hidden"
         />
       </Link>
 

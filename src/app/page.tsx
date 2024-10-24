@@ -27,13 +27,15 @@ export default function Home() {
 
       {/* BEST PICK */}
       <section>
-        <p className="mt-20 ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px] text-point-red-500">BEST PICK</p>
+        <p className="ml-8 mt-20 font-recipe text-[28px] font-normal leading-[48px] text-point-red-500 md:text-[32px]">
+          BEST PICK
+        </p>
         <PaginationForHome contents={dummyActivities} />
       </section>
 
       {/* 토마토들 추천 활동 */}
-      <section className="flex items-center ml-8">
-        <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">
+      <section className="ml-8 flex items-center">
+        <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
           토마토들 <span className="text-point-red-500">추천 활동</span>
         </p>
         <Image
@@ -42,17 +44,19 @@ export default function Home() {
           width={80}
           height={82}
           className="ml-2"
-        />   
+        />
       </section>
       <PaginationForHome contents={dummyActivities} />
 
       {/* 공모전 */}
       <section className="mt-10">
         <div className="flex flex-row justify-between">
-          <p className="ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">공모전</p>
+          <p className="ml-8 font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
+            공모전
+          </p>
           <Link
             href={'/contest'}
-            className="flex flex-row items-center gap-1 mr-10"
+            className="mr-10 flex flex-row items-center gap-1"
           >
             더보기
             <AiOutlineRight />
@@ -64,10 +68,12 @@ export default function Home() {
       {/* 대외활동 */}
       <section className="mt-10">
         <div className="flex flex-row justify-between">
-          <p className="ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">대외활동</p>
-          <Link 
-          href={'/activity'}
-            className="flex flex-row items-center gap-1 mr-10"
+          <p className="ml-8 font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
+            대외활동
+          </p>
+          <Link
+            href={'/activity'}
+            className="mr-10 flex flex-row items-center gap-1"
           >
             더보기
             <AiOutlineRight />
@@ -77,12 +83,14 @@ export default function Home() {
       </section>
 
       {/* 매거진 */}
-      <section className="mt-10 ml-8">
+      <section className="ml-8 mt-10">
         <div className="flex flex-row justify-between">
-          <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">매거진</p>
-          <Link 
+          <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
+            매거진
+          </p>
+          <Link
             href={'/magazine'}
-            className="flex flex-row items-center gap-1 mr-10"
+            className="mr-10 flex flex-row items-center gap-1"
           >
             더보기
             <AiOutlineRight />

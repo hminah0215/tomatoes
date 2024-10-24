@@ -50,12 +50,12 @@ export default function CategoryPanel() {
   return (
     <>
       {/* 웹 컴포넌트 */}
-      <section className="hidden md:block px-[88px] pt-[74px] mb-14">
-        <h1 className="font-recipe font-medium text-[32px] pb-7">대외활동</h1>
+      <section className="mb-14 hidden px-[88px] pt-[74px] md:block">
+        <h1 className="pb-7 font-recipe text-[32px] font-medium">대외활동</h1>
 
-        <section className="flex justify-between pl-[14px] border-b-[1px]">
+        <section className="flex justify-between border-b-[1px] pl-[14px]">
           <nav>
-            <ul className="flex gap-20 text-base whitespace-nowrap">
+            <ul className="flex gap-20 whitespace-nowrap text-base">
               {tabs.map((tab, index) => (
                 <TabItem
                   key={index}
@@ -86,16 +86,16 @@ export default function CategoryPanel() {
         </section>
 
         {/* 정렬 패널 */}
-        <div className="flex justify-between items-center mt-7">
+        <div className="mt-7 flex items-center justify-between">
           <ul className="flex gap-4 md:gap-12">
             {sortOptions.map((option, index) => (
               <li
                 key={index}
-                className={`cursor-pointer relative text-sm md:text-xl font-medium ${
+                className={`relative cursor-pointer text-sm font-medium md:text-xl ${
                   activeSort === option
-                    ? 'text-point-red-500 font-semibold'
+                    ? 'font-semibold text-point-red-500'
                     : 'text-sub-gray-200'
-                } ${index !== 0 ? 'before:content-[""] before:absolute before:w-[1px] before:h-[20px] before:-left-6 before:bg-sub-gray-100 before:top-1/2 before:transform before:-translate-y-1/2' : ''}`}
+                } ${index !== 0 ? 'before:absolute before:-left-6 before:top-1/2 before:h-[20px] before:w-[1px] before:-translate-y-1/2 before:transform before:bg-sub-gray-100 before:content-[""]' : ''}`}
                 onClick={() => {
                   console.log('Sort option clicked:', option);
                   setActiveSort(option); // 정렬 클릭 시 동작
@@ -108,7 +108,7 @@ export default function CategoryPanel() {
 
           <button
             onClick={resetFiltersAndSort} // 상태 초기화
-            className="text-sub-gray-300 flex items-center font-medium text-sm md:text-xl"
+            className="flex items-center text-sm font-medium text-sub-gray-300 md:text-xl"
           >
             초기화
             <Image
@@ -130,15 +130,15 @@ export default function CategoryPanel() {
       </section>
 
       {/* 모바일 컴포넌트 md 기준 */}
-      <section className="md:hidden mt-9">
+      <section className="mt-9 md:hidden">
         <div className="flex justify-between pb-6">
-          <h1 className="font-recipe font-medium text-2xl px-7">대외활동</h1>
+          <h1 className="px-7 font-recipe text-2xl font-medium">대외활동</h1>
           <SearchBar placeholder="공모전을 찾아보세요" />
         </div>
 
-        <section className="flex justify-between border-b-[1px] pl-7 overflow-x-auto">
+        <section className="flex justify-between overflow-x-auto border-b-[1px] pl-7">
           <nav>
-            <ul className="flex gap-8 text-base whitespace-nowrap">
+            <ul className="flex gap-8 whitespace-nowrap text-base">
               {tabs.map((tab, index) => (
                 <TabItem
                   key={index}
@@ -168,16 +168,16 @@ export default function CategoryPanel() {
         </section>
 
         {/* 정렬 패널 */}
-        <div className="flex justify-between items-center mt-7 px-7">
+        <div className="mt-7 flex items-center justify-between px-7">
           <ul className="flex gap-4 md:gap-12">
             {sortOptions.map((option, index) => (
               <li
                 key={index}
-                className={`cursor-pointer relative text-sm md:text-xl font-medium ${
+                className={`relative cursor-pointer text-sm font-medium md:text-xl ${
                   activeSort === option
-                    ? 'text-point-red-500 font-semibold'
+                    ? 'font-semibold text-point-red-500'
                     : 'text-sub-gray-200'
-                } ${index !== 0 ? 'before:content-[""] before:absolute before:w-[1px] before:h-3 before:-left-2 md:before:h-[20px] md:before:-left-6 before:bg-sub-gray-100 before:top-1/2 before:transform before:-translate-y-1/2' : ''}`}
+                } ${index !== 0 ? 'before:absolute before:-left-2 before:top-1/2 before:h-3 before:w-[1px] before:-translate-y-1/2 before:transform before:bg-sub-gray-100 before:content-[""] md:before:-left-6 md:before:h-[20px]' : ''}`}
                 onClick={() => {
                   console.log('Sort option clicked:', option);
                   setActiveSort(option); // 정렬 클릭 시 동작
@@ -190,7 +190,7 @@ export default function CategoryPanel() {
 
           <button
             onClick={resetFiltersAndSort} // 상태 초기화
-            className="text-sub-gray-300 flex items-center font-medium text-sm md:text-xl"
+            className="flex items-center text-sm font-medium text-sub-gray-300 md:text-xl"
           >
             초기화
             <Image
