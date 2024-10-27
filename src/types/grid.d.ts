@@ -1,7 +1,6 @@
-type GridGap = {
-  x: number;
-  y: number;
-};
+// grid와 관련된 타입 정의
+
+type GapVariant = 'gapStyle1' | 'gapStyle2' | 'gapStyle3';
 
 type GridViewProps<T> = {
   items: T[];
@@ -10,8 +9,22 @@ type GridViewProps<T> = {
     mobile: number;
     web: number;
   };
-  gaps: {
-    mobile: GridGap;
-    web: GridGap;
-  };
+  variant: GapVariant;
 };
+
+type ActivityContestProps = {
+  title: string;
+  organization: string;
+  dDay: string;
+  viewCount: string;
+  imageUrl: string;
+  detailUrl: string;
+};
+
+type ActivityContestGridItemProps = {
+  item: ActivityContestProps;
+};
+
+type ActivityCategoryProps = {};
+
+type ContestCategoryProps = {};
