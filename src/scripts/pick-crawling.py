@@ -1,5 +1,4 @@
 import requests
-import os
 from io import BytesIO
 from PIL import Image
 from colorthief import ColorThief
@@ -7,9 +6,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException, NoSuchElementException
 import time
 import json
+import os
 
 # 기본 URL 설정
 base_url = "https://www.campuspick.com"
@@ -37,7 +37,6 @@ max_items = 100
 def get_image_dominant_color(image_url):
     try:
         response = requests.get(image_url)
-        img = Image.open(BytesIO(response.content))
         color_thief = ColorThief(BytesIO(response.content))
         dominant_color = color_thief.get_color(quality=1)
 
@@ -49,7 +48,7 @@ def get_image_dominant_color(image_url):
         return None
 
 # 페이지에서 데이터를 크롤링하는 함수
-def crawl_page(url, data_list):
+def crawl_page(url, data_list, xpath):
     driver.get(url)
     time.sleep(3)  # 페이지가 완전히 로드되도록 대기
     total_collected = 0  # 현재까지 수집된 총 게시물 개수
@@ -60,19 +59,15 @@ def crawl_page(url, data_list):
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(2)  # 스크롤 후 데이터 로드 대기
 
-        # 데이터 로드 여부 확인
-        new_height = driver.execute_script("return document.body.scrollHeight")
-        if new_height == last_height:
-            print("더 이상 로드할 게시물이 없습니다.")
-            break
-        last_height = new_height
-
         # 새로 로드된 항목들만 처리
         try:
             WebDriverWait(driver, 10).until(
-                EC.presence_of_all_elements_located((By.XPATH, '//*[@class="list"]/*[@class="item"]'))
+                EC.presence_of_all_elements_located((By.XPATH, xpath))
             )
-            lis = driver.find_elements(By.XPATH, '//*[@class="list"]/*[@class="item"]')
+            lis = driver.find_elements(By.XPATH, xpath)
+            if total_collected >= len(lis):
+                print("더 이상 로드할 게시물이 없습니다.")
+                break
         except TimeoutException:
             print(f"로드 시간 초과로 데이터가 불완전할 수 있습니다: {url}")
             break
@@ -148,9 +143,9 @@ def crawl_page(url, data_list):
                     print(f"게시물 정보를 가져오는 중 오류 발생: {e}")
                     break
 
-# 각 URL에 대해 크롤링 수행
+# XPath 설정 및 크롤링 수행
 for url, content_list in url_list:
-    crawl_page(url, content_list)
+    crawl_page(url, content_list, '//*[@class="list"]/*[@class="item"]')
 
 driver.quit()
 
