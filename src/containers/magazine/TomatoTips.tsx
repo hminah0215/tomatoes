@@ -83,6 +83,7 @@ const TomatoTips = ({
   const totalPages = Math.ceil(tips.length / (pageSize || tipsPerPage)); // pageSize가 없을 경우 tipsPerPage 사용
 
   return (
+    // 이제 페이지네이션 컴포넌트를 사용해서 PaginationControl까지 한번에 처리할 수 있어요
     <>
       <div className="mx-auto my-[50px] flex max-w-[1266px] flex-wrap items-start justify-center gap-4 md:justify-start">
         {currentTips.map((tip, index) => (
