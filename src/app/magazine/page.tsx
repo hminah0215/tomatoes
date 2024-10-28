@@ -7,9 +7,9 @@ import MagazineList from '@/containers/magazine/MagazineList';
 
 const MagazinePage = () => {
   return (
-    <div className="ml-[88px] mr-[88px] bg-white">
+    <div className="bg-white">
       {/* 배너 이미지 추가 */}
-      <div className="relative mx-auto mb-[106px] mt-[66px] w-full max-w-[1264px]">
+      <div className="relative mb-[106px] mt-[66px] h-full w-full">
         <Image
           src="/assets/magazine/PC_magazine_banner.svg"
           alt="매거진 배너"
