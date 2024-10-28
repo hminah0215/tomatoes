@@ -25,5 +25,10 @@ export const fetchAllTomatoTips = async (): Promise<{
   const { data, error } = await supabase
     .from('tomato_tips')
     .select('id, title, author, created_at, content, link');
+
+  if (error) {
+    console.error('fetchAllTomatoTips 데이터가져오기 실패:', error);
+  }
+
   return { data, error };
 };
