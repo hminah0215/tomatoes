@@ -112,18 +112,26 @@ def crawl_page(url, data_list, xpath):
                     # 이미지의 주요 색상 추출
                     dominant_color = get_image_dominant_color(thumbnail_url)
 
+                    # 상세 정보(description) 가져오기
+                    try:
+                        description_element = driver.find_element(By.CLASS_NAME, 'description')
+                        description = description_element.text
+                    except:
+                        description = "상세 정보 없음"
+
                     # 리스트로 돌아가기
                     driver.back()
                     time.sleep(3)
 
-                    results = {          
+                    results = {
                         "title": title,                    
                         "company": company,                
                         "view_count": view_count,          
                         "thumbnail_url": thumbnail_url,    
                         "reception_period": reception_period,
                         "award_info": award_info,
-                        "dominant_color": dominant_color   
+                        "dominant_color": dominant_color,
+                        "description": description   # 상세 정보 추가
                     }
 
                     data_list.append(results)
@@ -160,5 +168,5 @@ def save_to_json(data, filename):
     print(f"Data saved to {file_path}.")
 
 # 데이터 저장
-save_to_json(contest_content, "contest_1027.json")
-save_to_json(activity_content, "activity_1027.json")
+save_to_json(contest_content, "contest_1028.json")
+save_to_json(activity_content, "activity_1028.json")
