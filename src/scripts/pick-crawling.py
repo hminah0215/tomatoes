@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException, TimeoutException, NoSuchElementException
+from datetime import datetime  # datetime 모듈 추가
 import time
 import json
 import os
@@ -45,6 +46,24 @@ def get_image_dominant_color(image_url):
         return hex_color
     except Exception as e:
         print(f"이미지에서 색상 추출 중 오류 발생: {e}")
+        return None
+
+# 날짜 파싱 함수 (올해를 기준으로 날짜를 추출)
+def parse_reception_period(period_str):
+    try:
+        current_year = datetime.now().year  # 현재 연도
+        start_str, end_str = period_str.split(" ~ ")
+
+        # "월 일" 형식을 "yyyy-MM-dd"로 변환
+        start_date = datetime.strptime(f"{current_year}년 {start_str}", "%Y년 %m월 %d일(%a)")
+        end_date = datetime.strptime(f"{current_year}년 {end_str}", "%Y년 %m월 %d일(%a)")
+
+        return {
+            "start_date": start_date.date().isoformat(),  # ISO 형식으로 변환
+            "end_date": end_date.date().isoformat()  # ISO 형식으로 변환
+        }
+    except Exception as e:
+        print(f"날짜 파싱 중 오류 발생: {e}")
         return None
 
 # 페이지에서 데이터를 크롤링하는 함수
@@ -96,10 +115,12 @@ def crawl_page(url, data_list, xpath):
 
                     # 접수 기간 가져오기
                     try:
+                        # '접수 기간'이라는 <h2> 태그 다음의 <p class="indent"> 에서 날짜 추출
                         reception_period_section = driver.find_element(By.XPATH, '//h2[text()="접수 기간"]/following-sibling::p[@class="indent"]')
-                        reception_period = reception_period_section.text
+                        reception_period_text = reception_period_section.text
+                        reception_period = parse_reception_period(reception_period_text)  # date 객체로 변환 후 JSON으로 저장
                     except:
-                        reception_period = "접수 기간 정보 없음"
+                        reception_period = {"start_date": None, "end_date": None}
 
                     # 시상 정보 가져오기
                     try:
@@ -128,7 +149,7 @@ def crawl_page(url, data_list, xpath):
                         "company": company,                
                         "view_count": view_count,          
                         "thumbnail_url": thumbnail_url,    
-                        "reception_period": reception_period,
+                        "reception_period": reception_period,  # 파싱한 날짜 데이터
                         "award_info": award_info,
                         "dominant_color": dominant_color,
                         "description": description   # 상세 정보 추가
@@ -160,9 +181,7 @@ driver.quit()
 
 # JSON 파일로 저장하는 함수
 def save_to_json(data, filename):
-    folder_path = "scripts"
-    os.makedirs(folder_path, exist_ok=True)
-    file_path = os.path.join(folder_path, filename)
+    file_path = filename  # 파일 경로를 현재 위치로 설정
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
     print(f"Data saved to {file_path}.")
