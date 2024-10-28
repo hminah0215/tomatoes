@@ -53,12 +53,12 @@ const MagazineHeader = () => {
   }, [selectedMenu]);
 
   return (
-    <div className="relative mx-auto w-full">
+    <div className="relative mx-auto w-full md:px-[83px] md:pt-[75px]">
       {/* 모바일 레이아웃 */}
       <div className="block w-full md:hidden">
         {/* 상단 바 */}
         <div className="flex h-12 w-[375px] items-center justify-between bg-white px-7 py-[9px]">
-          <div className="h-[30px] w-[72px] font-['Recipekorea'] text-2xl font-normal leading-9 text-[#222222]">
+          <div className="h-[30px] w-[72px] font-['Recipekorea'] text-2xl font-normal leading-9 text-sub-gray-500">
             매거진
           </div>
           {/* 기존의 매거진 서치바 컴포넌트 사용 */}
