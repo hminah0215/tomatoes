@@ -4,11 +4,11 @@ import NotFound from '@/app/not-found';
 import Image from 'next/image';
 import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 
-const TomatoTipPage = async ({ params }: { params: { id: string } }) => {
+const TomatoTipDetailPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params; // URL의 id 파라미터를 가져옴
-
+  // console.log('Fetched ID:', id); // ID가 잘 가져와지는지 확인
   const numericId = parseInt(id, 10); // 문자열을 숫자로 변환
-
+  // console.log('Numeric ID:', numericId); // 변환된 ID 확인
   const { data: fetchedTip, error } = await fetchTomatoTipById(numericId);
 
   if (error || !fetchedTip) {
@@ -69,4 +69,4 @@ const TomatoTipPage = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default TomatoTipPage;
+export default TomatoTipDetailPage;
