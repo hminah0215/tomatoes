@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { supabase } from '@/lib/supabaseClient';
 
+// curl -X POST http://localhost:3000/api/uploadMagazine
+
 // 토마토TIP 크롤링 데이터 타입 정의
 interface TomatoTipDataType {
   title: string;
@@ -27,6 +29,37 @@ export async function POST() {
       fs.readFileSync(postFilePath, 'utf-8')
     );
 
+    // 현재 날짜 가져오기
+    const today = new Date();
+    const currentDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+    // created_at 형식 변환
+    const formattedData = postData.map((item) => {
+      let createdAt;
+
+      if (item.created_at) {
+        // created_at이 시간만 있는 경우
+        // 크롤링할때 작성된지 24시간이 지나지 않은 글은
+        // 날짜없이 23:56 이렇게 시간만 나와있어서 그렇게 가져와져가지고
+        // {"error":"invalid input syntax for type timestamp: \"23:56\""} 이런에러가 남
+        if (item.created_at.includes(':')) {
+          createdAt = `${currentDate} ${item.created_at}`; // 오늘 날짜와 시간 결합
+        } else {
+          createdAt = item.created_at.replace(/\./g, '-'); // 'YYYY.MM.DD' 형식으로 변경
+        }
+      } else {
+        createdAt = null; // created_at이 없으면 null
+      }
+
+      return {
+        title: item.title,
+        link: item.link,
+        content: item.content,
+        author: item.author,
+        created_at: createdAt,
+      };
+    });
+
     // tomato_tips 테이블의 기존 데이터 삭제
     // (현재 수동으로 크롤링코드를 실행시키므로 일단 OLD데이터 삭제처리 )
     const { error: deletePostError } = await supabase
@@ -48,7 +81,7 @@ export async function POST() {
     // tomato_tips 테이블에 새로운 데이터 삽입
     const { error: postError } = await supabase
       .from('tomato_tips')
-      .insert(postData);
+      .insert(formattedData);
 
     if (postError) {
       console.error('Failed to insert new post data:', postError);

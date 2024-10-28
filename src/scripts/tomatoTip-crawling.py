@@ -60,10 +60,18 @@ for page in range(1, total_pages + 1):
                 content_div = detail_soup.select_one('div.post-detail')
                 content = str(content_div) if content_div else 'No content available'
 
+                # 인라인 스타일 제거
+                content_soup = BeautifulSoup(content, 'html.parser')
+                for tag in content_soup.find_all(True):  # 모든 태그를 찾고
+                    if 'style' in tag.attrs:
+                        del tag.attrs['style']  # style 속성 제거하기
+
+                cleaned_content = str(content_soup)  # 스타일 속성을 제거한 html태그로 변환 
+
                 tomatoTip_data.append({
                     'title': title,
                     'link': full_link,
-                    'content': content,
+                    'content': cleaned_content,  # 인라인 스타일이 제거된 콘텐츠
                     'author': author,
                     'created_at': created_at
                 })
@@ -76,7 +84,7 @@ for page in range(1, total_pages + 1):
         print(f"Failed to fetch page {page}, status code: {response.status_code}")
 
 # JSON 파일로 저장할 경로 설정
-output_file_path = os.path.join(os.path.dirname(__file__), 'tomatoTip_data.json')
+output_file_path = os.path.join(os.path.dirname(__file__), '1028_data.json')
 
 with open(output_file_path, 'w', encoding='utf-8') as f:
     json.dump(tomatoTip_data, f, ensure_ascii=False, indent=4)
