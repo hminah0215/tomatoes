@@ -84,7 +84,7 @@ for page in range(1, total_pages + 1):
         print(f"Failed to fetch page {page}, status code: {response.status_code}")
 
 # JSON 파일로 저장할 경로 설정
-output_file_path = os.path.join(os.path.dirname(__file__), '1028_data.json')
+output_file_path = os.path.join(os.path.dirname(__file__), 'tomatoTip_data.json')
 
 with open(output_file_path, 'w', encoding='utf-8') as f:
     json.dump(tomatoTip_data, f, ensure_ascii=False, indent=4)
