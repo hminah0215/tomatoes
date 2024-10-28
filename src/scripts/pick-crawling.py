@@ -81,8 +81,6 @@ def crawl_page(url, data_list, xpath):
                 try:
                     # 웹 요소들이 현재 DOM에서 유효한지 확인
                     driver.implicitly_wait(5)
-                    keywords = li.find_elements(By.XPATH, './/*[@class="badges"]/span')
-                    keyword_str = ",".join([keyword.text for keyword in keywords])
                     title = li.find_element(By.XPATH, './/h2').text
                     company = li.find_element(By.XPATH, './/*[@class="company"]').text
                     view_count = li.find_element(By.XPATH, './/*[@class="viewcount"]').text
@@ -118,8 +116,7 @@ def crawl_page(url, data_list, xpath):
                     driver.back()
                     time.sleep(3)
 
-                    results = {
-                        "keywords": keyword_str,           
+                    results = {          
                         "title": title,                    
                         "company": company,                
                         "view_count": view_count,          
