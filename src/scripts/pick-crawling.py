@@ -18,13 +18,12 @@ import random
 base_url = "https://www.campuspick.com"
 
 # 크롤링한 데이터를 모아두는 리스트
-contest_content = []
-activity_content = []
+all_content = []
 
-# 캠퍼스픽 공모전 페이지 url
+# 캠퍼스픽 공모전 및 활동 페이지 url
 contest_url = "https://www.campuspick.com/contest"
 activity_url = "https://www.campuspick.com/activity"
-url_list = [(contest_url, contest_content), (activity_url, activity_content)]
+url_list = [(contest_url, "contest"), (activity_url, "activity")]
 
 # ChromeDriver 실행
 try:
@@ -34,7 +33,8 @@ except Exception as e:
     exit(1)
 
 # 수집할 최대 게시물 개수
-max_items = 100
+max_contest_items = 100
+max_activity_items = 100
 
 # 이미지에서 주요 색상을 추출하는 함수
 def get_image_dominant_color(image_url):
@@ -77,8 +77,8 @@ def parse_reception_period(period_str):
         print(f"날짜 파싱 중 오류 발생: {e}")
         return None
 
-# 페이지에서 데이터를 크롤링하는 함수
-def crawl_page(url, data_list, xpath):
+# 페이지에서 데이터를 크롤링하는 함수 (카테고리별로 최대 수집 개수를 전달)
+def crawl_page(url, main_category, max_items):
     driver.get(url)
     time.sleep(3)
     total_collected = 0
@@ -90,9 +90,9 @@ def crawl_page(url, data_list, xpath):
 
         try:
             WebDriverWait(driver, 10).until(
-                EC.presence_of_all_elements_located((By.XPATH, xpath))
+                EC.presence_of_all_elements_located((By.XPATH, '//*[@class="list"]/*[@class="item"]'))
             )
-            lis = driver.find_elements(By.XPATH, xpath)
+            lis = driver.find_elements(By.XPATH, '//*[@class="list"]/*[@class="item"]')
             if total_collected >= len(lis):
                 print("더 이상 로드할 게시물이 없습니다.")
                 break
@@ -110,7 +110,9 @@ def crawl_page(url, data_list, xpath):
                     driver.implicitly_wait(5)
                     title = li.find_element(By.XPATH, './/h2').text
                     company = li.find_element(By.XPATH, './/*[@class="company"]').text
-                    view_count = li.find_element(By.XPATH, './/*[@class="viewcount"]').text
+                    view_count_text = li.find_element(By.XPATH, './/*[@class="viewcount"]').text
+                    # 쉼표 제거 후 숫자로 변환
+                    view_count = int(view_count_text.replace(",", ""))
                     thumbnail_url = li.find_element(By.XPATH, './/figure').get_attribute("data-image")
                     detail_link = li.find_element(By.XPATH, './/a[@href]').get_attribute("href")
 
@@ -132,27 +134,30 @@ def crawl_page(url, data_list, xpath):
 
                     description = driver.find_element(By.CLASS_NAME, 'description').text
 
+                    # 홈페이지 URL 추출
+                    homepage_url = detail_link
+
+                    # 등록일 설정
+                    registration_date = reception_period["start_date"]
+
                     driver.back()
                     time.sleep(3)
-
-                    if url.endswith("/contest"):
-                        main_category = "contest"
-                    else:
-                        main_category = "activity"
 
                     results = {
                         "title": title,
                         "company": company,
-                        "view_count": view_count,
+                        "view_count": view_count,  # 숫자로 변환된 view_count
                         "thumbnail_url": thumbnail_url,
                         "reception_period": reception_period,
                         "award_info": award_info,
                         "dominant_color": dominant_color,
                         "description": description,
-                        "main_category": main_category
+                        "main_category": main_category,
+                        "homepage_url": homepage_url,
+                        "registration_date": registration_date
                     }
 
-                    data_list.append(results)
+                    all_content.append(results)
                     print(f"추가된 게시물: {title}")
                     total_collected += 1
                     break
@@ -166,9 +171,12 @@ def crawl_page(url, data_list, xpath):
                     print(f"게시물 정보를 가져오는 중 오류 발생: {e}")
                     break
 
-# 크롤링 수행
-for url, content_list in url_list:
-    crawl_page(url, content_list, '//*[@class="list"]/*[@class="item"]')
+# 크롤링 수행 (카테고리별로 최대 수집 개수를 전달)
+for url, main_category in url_list:
+    if main_category == "contest":
+        crawl_page(url, main_category, max_contest_items)
+    elif main_category == "activity":
+        crawl_page(url, main_category, max_activity_items)
 
 driver.quit()
 
@@ -212,8 +220,5 @@ def save_to_json(data, filename):
     print(f"Data saved to {file_path}.")
 
 # 데이터 저장
-contest_content = add_categories(contest_content)
-activity_content = add_categories(activity_content)
-
-save_to_json(contest_content, "contest_1028.json")
-save_to_json(activity_content, "activity_1028.json")
+all_content = add_categories(all_content)
+save_to_json(all_content, "activity_contest.json")
