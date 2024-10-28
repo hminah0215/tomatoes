@@ -23,17 +23,6 @@ type GridItemProps<T> = {
   item: T;
 };
 
-type ActivityContestDetailsProps = {
-  title: string;
-  organization: string;
-  dDay: string;
-  receptionPeriod: string; // 접수 기간
-  category: '대외활동' | '공모전'; // 카테고리 추가
-  viewCount: string; // 조회수 추가
-  imageUrl: string;
-  detailUrl: string;
-};
-
 type ActivityContestListProps = {
   item: ActivityContestDetailsProps;
 };
