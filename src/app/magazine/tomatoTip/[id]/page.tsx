@@ -1,54 +1,72 @@
-'use client';
-
-import { useParams } from 'next/navigation';
+import { fetchTomatoTip } from '@/lib/fetchTomatoTip';
 import TomatoTipDetail from '@/containers/magazine/TomatoTipDetail';
+import NotFound from '@/app/not-found'; // 경로에 맞게 수정
 import Image from 'next/image';
+import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 
-export default function Page() {
-  const params = useParams();
-  const id = params.id;
+const TomatoTipPage = async ({ params }: { params: { id: string } }) => {
+  const { id } = params; // URL의 id 파라미터를 가져옴
 
-  // useParams 훅을 사용하면 id의 타입이 string | string[]으로 반환될 수 있음
-  // typeof로 id가 string 타입인지 확인해서 안전하게 처리
-  // id가 문자열일 때만 숫자로 변환
-  if (!id || typeof id !== 'string') return <p>Loading...</p>;
+  const numericId = parseInt(id, 10); // 문자열을 숫자로 변환
+
+  const { data: fetchedTip, error } = await fetchTomatoTip(numericId);
+
+  if (error || !fetchedTip) {
+    return <NotFound />; // 데이터가 없으면 404 페이지 표시
+  }
 
   return (
-    <div className="relative">
-      {/* 배너 이미지 */}
-      <div className="mt-[67px] w-screen overflow-hidden">
-        <Image
-          src="/assets/magazine/PC_mzDetail_banner.svg"
-          alt="배너 이미지"
-          width={1442}
-          height={518}
-          className="hidden w-full object-cover md:block"
-        />
-        <Image
-          src="/assets/magazine/MO_mzDetail_banner.svg"
-          alt="모바일 배너 이미지"
-          width={375}
-          height={200}
-          className="block w-full object-cover md:hidden"
-        />
+    <>
+      <div className="relative">
+        {/* 배너 이미지 */}
+        <div className="relative mt-[23px] w-full overflow-hidden md:mt-[67px]">
+          <Image
+            src="/assets/magazine/PC_mzDetail_banner.svg"
+            alt="PC 배너 이미지"
+            width={1442}
+            height={518}
+            className="hidden w-full object-cover md:block"
+          />
+          <Image
+            src="/assets/magazine/MO_mzDetail_banner.svg"
+            alt="모바일 배너 이미지"
+            width={375}
+            height={171}
+            className="block w-full object-cover md:hidden"
+          />
+        </div>
+        {/* 왼쪽 배경 이미지 */}
+        <div className="fixed bottom-[41.14px] left-0 z-[-1] hidden h-[598.86px] w-[489px] opacity-80 md:block">
+          <Image
+            src="/assets/magazine/PC_mzDetail_left.svg"
+            alt="왼쪽 배경 이미지"
+            width={212}
+            height={599}
+            className="pointer-events-none"
+          />
+        </div>
+        {/* 오른쪽 배경 이미지 */}
+        <div className="fixed right-0 top-[136.01px] z-[-1] hidden h-[202.03px] w-[191.22px] opacity-80 md:block">
+          <Image
+            src="/assets/magazine/PC_mzDetail_right.svg"
+            alt="오른쪽 배경 이미지"
+            width={191.22}
+            height={202.03}
+            className="pointer-events-none"
+          />
+        </div>
+
+        {/* 콘텐츠 영역 */}
+        <TomatoTipDetail tipData={fetchedTip} />
+
+        {/* 하단 고정 회색줄 */}
+        <div className="relative mx-auto mb-16 mt-8 h-[2px] max-w-[319px] bg-sub-gray-100 md:mb-[80px] md:mt-[104px] md:max-w-[1264px]"></div>
+
+        {/* 지금 꼭 봐야하는 매거진 */}
+        <CurrentHighlights />
       </div>
-
-      {/* 화면의 왼쪽 끝에 고정된 배경 이미지 */}
-      <div className="fixed bottom-[41.14px] left-0 z-[-1] h-[598.86px] w-[489px] opacity-80">
-        <Image
-          src="/assets/magazine/PC_mzDetail_left.svg"
-          alt="왼쪽 배경 이미지"
-          width={212}
-          height={599}
-          className="pointer-events-none"
-        />
-      </div>
-
-      {/* 콘텐츠 영역 */}
-      <TomatoTipDetail id={parseInt(id, 10)} />
-
-      {/* 하단 고정 회색줄 */}
-      <div className="absolute bottom-0 left-0 h-[1px] w-full bg-sub-gray-100"></div>
-    </div>
+    </>
   );
-}
+};
+
+export default TomatoTipPage;
