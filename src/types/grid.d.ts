@@ -3,7 +3,7 @@ type ColumnStyles = 'web4mobile2' | 'web3mobile1';
 
 type GapStyles = 'gapStyle1' | 'gapStyle2' | 'gapStyle3';
 
-type PaginationTestProps<T> = {
+type PaginationProps<T> = {
   contents: T[];
   GridItem: React.ComponentType<GridItemProps<T>>;
   webItemPerPage: number;

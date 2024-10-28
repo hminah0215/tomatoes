@@ -10,7 +10,7 @@ export default function ActivityContestItem({
   const { title, organization, dDay, viewCount, imageUrl, detailUrl } = item;
 
   return (
-    <Link href={detailUrl} className="block justify-self-start">
+    <Link href={detailUrl} className="block justify-self-center">
       {/* 모바일 이미지 */}
       <div className="block sm:hidden">
         <Image

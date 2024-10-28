@@ -1,6 +1,6 @@
 import ActivityContestItem from '@/components/ui/grid/ActivityContestItem';
 import CategoryPanel from '@/containers/activity/CategoryPanel';
-import PaginationTest from '@/components/ui/pagination/PaginationTest';
+import Pagination from '@/components/ui/pagination/Pagination';
 
 export default function Page() {
   const dummyActivities: ActivityContestDetailsProps[] = Array.from(
@@ -20,7 +20,7 @@ export default function Page() {
   return (
     <>
       <CategoryPanel />
-      <PaginationTest
+      <Pagination
         contents={dummyActivities} // 데이터를 Pagination에 전달
         GridItem={ActivityContestItem} // 그리드 아이템 컴포넌트 전달
         webItemPerPage={16}

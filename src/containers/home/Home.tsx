@@ -1,6 +1,5 @@
 import ContestBanner from '@/containers/home/ContestBanner';
 import MainSlider from '@/containers/home/MainSlider';
-import PaginationForHome from '@/components/ui/pagination/PaginationForHome';
 import Image from 'next/image';
 import ContestCardSlider from '@/containers/home/ContestCardSlider';
 import ActivityCardSlider from '@/containers/home/ActivityCardSlider';
@@ -8,7 +7,7 @@ import TomatoTips from '../magazine/TomatoTips';
 import { AiOutlineRight } from 'react-icons/ai';
 import Link from 'next/link';
 import HomeGridItem from './HomeGridItem';
-import GridViewTest from '@/components/ui/grid/GridViewTest';
+import GridView from '@/components/ui/grid/GridView';
 
 export default function Home() {
   const dummyActivities: ActivityContestDetailsProps[] = Array.from(
@@ -36,7 +35,8 @@ export default function Home() {
         <p className="ml-8 mt-20 font-recipe text-[28px] font-normal leading-[48px] text-point-red-500 md:text-[32px]">
           BEST PICK
         </p>
-        <PaginationForHome contents={dummyActivities} />
+        {/* GridView 컴포넌트를 사용해서 변경해주세요 */}
+        {/* <PaginationForHome contents={dummyActivities} /> */}
       </section>
 
       {/* 토마토들 추천 활동 */}
@@ -52,9 +52,8 @@ export default function Home() {
           className="ml-2"
         />
       </section>
-      {/* <PaginationForHome contents={dummyActivities} /> */}
       <section className="mx-8 my-5 mb-20 flex flex-col">
-        <GridViewTest
+        <GridView
           items={dummyActivities}
           GridItem={HomeGridItem}
           columnStyle="web4mobile2"
