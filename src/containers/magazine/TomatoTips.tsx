@@ -3,15 +3,13 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Tag from '@/components/common/Tag';
-import { supabase } from '@/lib/supabaseClient';
 import PaginationControl from '@/components/ui/pagination/PaginationControl';
 import Link from 'next/link';
+import { TomatoTipDataType } from '@/types/tomatoTips';
+import { fetchAllTomatoTips } from '@/lib/fetchTomatoTip';
 
-interface Tip {
-  id: number;
-  image: string;
-  title: string;
-  author: string;
+interface Tip extends TomatoTipDataType {
+  image: string; // 여기서만 쓰이는 이미지 속성 추가
 }
 
 // Props 인터페이스 정의
@@ -39,18 +37,12 @@ const TomatoTips = ({
 
   useEffect(() => {
     const fetchTips = async () => {
-      const { data } = await supabase
-        .from('tomato_tips')
-        .select('id, title, author, created_at')
-        .order('created_at', { ascending: false })
-        .order('id', { ascending: true });
+      const { data, error } = await fetchAllTomatoTips(); // 모든 데이터 가져오기
 
       if (data) {
-        const tipsWithImages = data.map((tip, index) => ({
-          id: tip.id,
-          image: thumbnailImages[index % thumbnailImages.length],
-          title: tip.title,
-          author: tip.author,
+        const tipsWithImages: Tip[] = data.map((tip, index) => ({
+          ...tip, // 기존 속성들을 포함
+          image: thumbnailImages[index % thumbnailImages.length], // 이미지 추가
         }));
         setTips(tipsWithImages);
       }
@@ -86,7 +78,6 @@ const TomatoTips = ({
   const totalPages = Math.ceil(tips.length / (pageSize || tipsPerPage)); // pageSize가 없을 경우 tipsPerPage 사용
 
   return (
-    // 이제 페이지네이션 컴포넌트를 사용해서 PaginationControl까지 한번에 처리할 수 있어요
     <>
       <div className="mx-auto my-[50px] flex max-w-[1266px] flex-wrap items-start justify-center gap-4 md:justify-start">
         {currentTips.map((tip, index) => (

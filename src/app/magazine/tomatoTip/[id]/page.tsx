@@ -1,6 +1,6 @@
-import { fetchTomatoTip } from '@/lib/fetchTomatoTip';
+import { fetchTomatoTipById } from '@/lib/fetchTomatoTip';
 import TomatoTipDetail from '@/containers/magazine/TomatoTipDetail';
-import NotFound from '@/app/not-found'; // 경로에 맞게 수정
+import NotFound from '@/app/not-found';
 import Image from 'next/image';
 import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 
@@ -9,7 +9,7 @@ const TomatoTipPage = async ({ params }: { params: { id: string } }) => {
 
   const numericId = parseInt(id, 10); // 문자열을 숫자로 변환
 
-  const { data: fetchedTip, error } = await fetchTomatoTip(numericId);
+  const { data: fetchedTip, error } = await fetchTomatoTipById(numericId);
 
   if (error || !fetchedTip) {
     return <NotFound />; // 데이터가 없으면 404 페이지 표시
