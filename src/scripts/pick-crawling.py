@@ -8,6 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException, TimeoutException, NoSuchElementException
 from datetime import datetime  # datetime 모듈 추가
+import re # 정규표현식 모듈 추가
 import time
 import json
 import os
@@ -48,15 +49,34 @@ def get_image_dominant_color(image_url):
         print(f"이미지에서 색상 추출 중 오류 발생: {e}")
         return None
 
-# 날짜 파싱 함수 (올해를 기준으로 날짜를 추출)
+# 날짜 파싱 함수 (연도가 포함된 경우 처리)
 def parse_reception_period(period_str):
     try:
-        current_year = datetime.now().year  # 현재 연도
+        # 현재 연도
+        current_year = datetime.now().year
+
+        # 요일 부분을 제거하고 "월 일" 또는 "년 월 일" 부분만 남기기
+        period_str = re.sub(r'\(\w+\)', '', period_str).strip()
+
+        # 시작일과 종료일 분리
         start_str, end_str = period_str.split(" ~ ")
 
-        # "월 일" 형식을 "yyyy-MM-dd"로 변환
-        start_date = datetime.strptime(f"{current_year}년 {start_str}", "%Y년 %m월 %d일(%a)")
-        end_date = datetime.strptime(f"{current_year}년 {end_str}", "%Y년 %m월 %d일(%a)")
+        # 시작일에 연도가 포함되어 있는지 확인
+        if '년' in start_str:
+            start_date = datetime.strptime(start_str.strip(), "%Y년 %m월 %d일")
+        else:
+            start_date = datetime.strptime(f"{current_year}년 {start_str.strip()}", "%Y년 %m월 %d일")
+
+        # 종료일에 연도가 포함되어 있는지 확인
+        if '년' in end_str:
+            end_date = datetime.strptime(end_str.strip(), "%Y년 %m월 %d일")
+        else:
+            # 종료일의 월이 시작일의 월보다 작으면 다음 해로 간주
+            end_month = int(end_str.split("월")[0].strip())
+            if end_month < start_date.month:
+                end_date = datetime.strptime(f"{current_year + 1}년 {end_str.strip()}", "%Y년 %m월 %d일")
+            else:
+                end_date = datetime.strptime(f"{current_year}년 {end_str.strip()}", "%Y년 %m월 %d일")
 
         return {
             "start_date": start_date.date().isoformat(),  # ISO 형식으로 변환
