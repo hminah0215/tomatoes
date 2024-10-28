@@ -5,8 +5,10 @@ import Image from 'next/image';
 import Tag from '@/components/common/Tag';
 import { supabase } from '@/lib/supabaseClient';
 import PaginationControl from '@/components/ui/pagination/PaginationControl';
+import Link from 'next/link';
 
 interface Tip {
+  id: number;
   image: string;
   title: string;
   author: string;
@@ -39,12 +41,13 @@ const TomatoTips = ({
     const fetchTips = async () => {
       const { data } = await supabase
         .from('tomato_tips')
-        .select('title, author, created_at')
+        .select('id, title, author, created_at')
         .order('created_at', { ascending: false })
         .order('id', { ascending: true });
 
       if (data) {
         const tipsWithImages = data.map((tip, index) => ({
+          id: tip.id,
           image: thumbnailImages[index % thumbnailImages.length],
           title: tip.title,
           author: tip.author,
@@ -87,21 +90,22 @@ const TomatoTips = ({
     <>
       <div className="mx-auto my-[50px] flex max-w-[1266px] flex-wrap items-start justify-center gap-4 md:justify-start">
         {currentTips.map((tip, index) => (
-          <div
-            className="inline-flex w-full flex-shrink-0 flex-col items-start justify-start gap-4 md:w-[calc(33.33%-16px)]" // 한 줄에 1개 또는 3개
+          <Link
+            href={`/magazine/tomatoTip/${tip.id}`}
             key={index}
+            className="inline-flex w-full flex-shrink-0 flex-col items-start justify-start gap-4 md:w-[calc(33.33%-16px)]"
           >
             <div className="relative h-[230px] w-full overflow-hidden rounded-[20px] bg-main-beige md:h-[290px]">
               <Image
                 className="absolute hidden object-cover md:block"
-                src={`/assets/magazine/PC_tips_thumbnail_${(index % 3) + 1}.svg`} // PC 이미지
+                src={`/assets/magazine/PC_tips_thumbnail_${(index % 3) + 1}.svg`}
                 alt={tip.title}
                 width={401}
                 height={290}
               />
               <Image
                 className="absolute block object-cover md:hidden"
-                src={`/assets/magazine/MO_tips_thumbnail_${(index % 3) + 1}.svg`} // 모바일 이미지
+                src={`/assets/magazine/MO_tips_thumbnail_${(index % 3) + 1}.svg`}
                 alt={tip.title}
                 width={319}
                 height={230}
@@ -120,7 +124,7 @@ const TomatoTips = ({
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       {/* 페이지네이션 */}
