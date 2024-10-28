@@ -21,7 +21,7 @@ const TomatoTipItem = ({ item }: TomatoTipItemProps) => {
 
   return (
     <Link href={`/magazine/tomatoTip/${id}`}>
-      <div className="relative h-[230px] w-full overflow-hidden rounded-[20px] bg-main-beige md:mb-[16px] md:h-[290px]">
+      <div className="relative mb-[12px] h-[230px] overflow-hidden rounded-[20px] bg-main-beige md:mb-[16px] md:h-[290px]">
         <Image
           className="absolute hidden h-full w-full object-cover md:block"
           src={thumbnailImages[0]}
@@ -37,8 +37,8 @@ const TomatoTipItem = ({ item }: TomatoTipItemProps) => {
           height={230}
         />
       </div>
-      <div className="flex h-[40px] flex-col items-start justify-start gap-2 self-stretch md:h-[74px]">
-        <div className="inline-flex items-center justify-start gap-3 self-stretch">
+      <div className="flex h-[40px] flex-col flex-wrap items-start justify-between gap-2 md:h-[74px]">
+        <div className="inline-flex items-center justify-start gap-3">
           <Tag type="hot" label="HOT" />
           <div className="h-[24px] w-[250px] overflow-hidden text-ellipsis whitespace-nowrap text-[16px] font-semibold leading-5 text-sub-gray-500 md:h-[36px] md:w-[329px] md:text-2xl">
             {title}

@@ -45,7 +45,7 @@ const TomatoTips = ({ showPagination = true }: TomatoTipsProps) => {
 
   return (
     <>
-      <div className="relative mx-auto justify-center md:mb-[120px] md:mt-[40px] md:justify-start">
+      <div className="mb-[72px] flex flex-col items-center md:mb-[120px] md:mt-[40px] md:items-start">
         {/* 페이지네이션 */}
         {showPagination && tips.length > 0 && (
           <>
