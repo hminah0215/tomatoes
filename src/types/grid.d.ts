@@ -22,7 +22,3 @@ type GridViewProps<T> = {
 type GridItemProps<T> = {
   item: T;
 };
-
-type ActivityContestListProps = {
-  item: ActivityContestDetailsProps;
-};
