@@ -25,14 +25,14 @@ export default function GridView<T>({
   // 커스텀 gap 정의
 
   const columnStyles = {
-    web4mobile2: 'grid-cols-2 md:grid-cols-4',
-    web3mobile1: 'grid-cols-1 md:grid-cols-3',
+    web4mobile2: 'grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4',
+    web3mobile1: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3',
   };
 
   const gapStyles = {
-    gapStyle1: 'gap-x-[14px] gap-y-[40px] md:gap-x-[20px] md:gap-y-[80px]', // BEST PICK, 토마토들 추천활동, 토마토 Pick
-    gapStyle2: 'gap-x-[14px] gap-y-[32px] md:gap-x-[20px] md:gap-y-[64px]', // 대외활동, 공모전
-    gapStyle3: 'gap-x-[0px] gap-y-[16px] md:gap-x-[30px] md:gap-y-[80px]', // 토마토 Tip
+    gapStyle1: 'gap-x-4 gap-y-8 md:gap-x-8 md:gap-y-12', // BEST PICK, 토마토들 추천활동, 토마토 Pick
+    gapStyle2: 'gap-x-6 gap-y-10 md:gap-x-10 md:gap-y-12', // 대외활동, 공모전
+    gapStyle3: 'gap-x-2 gap-y-6 md:gap-x-8 md:gap-y-10', // 토마토 Tip
   };
 
   const gridClass =
