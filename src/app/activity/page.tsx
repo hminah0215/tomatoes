@@ -28,7 +28,7 @@ export default function Page() {
           webItemPerPage={16}
           mobileItemPerPage={10}
           columnStyle="web4mobile2"
-          gapStyle="gapStyle1" // 그리드 gap 스타일 설정
+          gapStyle="gapStyle2" // 그리드 gap 스타일 설정
         />
       </Suspense>
     </>

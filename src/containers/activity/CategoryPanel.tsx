@@ -1,73 +1,50 @@
 'use client';
 
-import TabItem from './TabItem';
-import FilterItem from './FilterItem';
 import { useState } from 'react';
 import Image from 'next/image';
+import FilterItem from './FilterItem';
+import CategoryHeader from '@/components/common/CategoryHeader';
 import { categoryFilters, sortOptions } from '@/constants/consts';
-import SearchBar from '@/components/common/SearchBar';
 
 export default function CategoryPanel() {
   const tabs = Object.keys(categoryFilters) as Array<
     keyof typeof categoryFilters
-  >; // 카테고리 탭
+  >;
   const [activeTab, setActiveTab] =
-    useState<keyof typeof categoryFilters>('분야'); // 초기 탭 설정
+    useState<keyof typeof categoryFilters>('분야');
   const [activeSort, setActiveSort] = useState('관련도순');
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]); // 선택된 필터 목록
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const handleTabClick = (tab: keyof typeof categoryFilters) => {
-    console.log('Tab clicked:', tab);
-    setActiveTab(tab); // 선택된 탭 설정
-    setSelectedFilters([]); // 탭을 변경하면 필터를 초기화
+    setActiveTab(tab);
+    setSelectedFilters([]);
   };
 
   const handleFilterClick = (filter: string) => {
     if (selectedFilters.includes(filter)) {
-      // 이미 선택된 필터라면 제거
       setSelectedFilters(selectedFilters.filter((item) => item !== filter));
     } else {
-      // 선택되지 않은 필터라면 추가
       setSelectedFilters([...selectedFilters, filter]);
     }
-    console.log(
-      'Filter clicked:',
-      filter,
-      'Current selected filters:',
-      selectedFilters
-    );
   };
 
   const resetFiltersAndSort = () => {
-    console.log('Reset filters and sort');
-    setActiveTab('분야'); // 탭 초기화
-    setActiveSort('관련도순'); // 정렬 초기화
-    setSelectedFilters([]); // 필터 초기화
+    setActiveTab('분야');
+    setActiveSort('관련도순');
+    setSelectedFilters([]);
   };
 
-  const filters = categoryFilters[activeTab]; // 선택된 탭에 맞는 필터 가져오기
+  const filters = categoryFilters[activeTab];
 
   return (
     <>
       {/* 웹 컴포넌트 */}
-      <section className="mb-14 hidden px-[88px] pt-[74px] md:block">
-        <h1 className="pb-7 font-recipe text-[32px] font-medium">대외활동</h1>
-
-        <section className="flex justify-between border-b-[1px] pl-[14px]">
-          <nav>
-            <ul className="flex gap-20 whitespace-nowrap text-base">
-              {tabs.map((tab, index) => (
-                <TabItem
-                  key={index}
-                  tab={tab}
-                  isActive={activeTab === tab}
-                  onClick={() => handleTabClick(tab)} // 탭 클릭 시 동작
-                />
-              ))}
-            </ul>
-          </nav>
-          <SearchBar placeholder="공모전을 찾아보세요" />
-        </section>
+      <section className="hidden md:block">
+        <CategoryHeader
+          tabs={tabs}
+          activeTab={activeTab}
+          onTabClick={handleTabClick}
+        />
 
         {/* 필터 패널 */}
         <section className="mt-7 flex flex-wrap gap-4 border-b-[1px] border-sub-gray-100 pb-7">
@@ -76,8 +53,8 @@ export default function CategoryPanel() {
               <FilterItem
                 key={index}
                 filterType={filter}
-                isSelected={selectedFilters.includes(filter)} // 필터가 선택되었는지 확인
-                onClick={() => handleFilterClick(filter)} // 필터 클릭 시 동작
+                isSelected={selectedFilters.includes(filter)}
+                onClick={() => handleFilterClick(filter)}
               />
             ))
           ) : (
@@ -95,11 +72,8 @@ export default function CategoryPanel() {
                   activeSort === option
                     ? 'font-semibold text-point-red-500'
                     : 'text-sub-gray-200'
-                } ${index !== 0 ? 'before:absolute before:-left-6 before:top-1/2 before:h-[20px] before:w-[1px] before:-translate-y-1/2 before:transform before:bg-sub-gray-100 before:content-[""]' : ''}`}
-                onClick={() => {
-                  console.log('Sort option clicked:', option);
-                  setActiveSort(option); // 정렬 클릭 시 동작
-                }}
+                } ${index !== 0 ? 'before:absolute before:-left-6 before:top-1/2 before:h-[20px] before:w-[1px] before:-translate-y-1/2 before:transform before:bg-sub-gray-100' : ''}`}
+                onClick={() => setActiveSort(option)}
               >
                 {option}
               </li>
@@ -107,17 +81,10 @@ export default function CategoryPanel() {
           </ul>
 
           <button
-            onClick={resetFiltersAndSort} // 상태 초기화
+            onClick={resetFiltersAndSort}
             className="flex items-center text-sm font-medium text-sub-gray-300 md:text-xl"
           >
             초기화
-            <Image
-              src="/assets/common/MO_reset.svg"
-              alt="reset icon"
-              className="ml-2 block md:hidden"
-              width={9.67}
-              height={10}
-            />
             <Image
               src="/assets/common/PC_reset.svg"
               alt="reset icon"
@@ -129,26 +96,27 @@ export default function CategoryPanel() {
         </div>
       </section>
 
-      {/* 모바일 컴포넌트 md 기준 */}
+      {/* 모바일 컴포넌트 */}
       <section className="mt-9 md:hidden">
         <div className="flex justify-between pb-6">
           <h1 className="px-7 font-recipe text-2xl font-medium">대외활동</h1>
-          <SearchBar placeholder="공모전을 찾아보세요" />
         </div>
 
         <section className="flex justify-between overflow-x-auto border-b-[1px] pl-7">
-          <nav>
-            <ul className="flex gap-8 whitespace-nowrap text-base">
-              {tabs.map((tab, index) => (
-                <TabItem
-                  key={index}
-                  tab={tab}
-                  isActive={activeTab === tab}
-                  onClick={() => handleTabClick(tab)} // 탭 클릭 시 동작
-                />
-              ))}
-            </ul>
-          </nav>
+          {/* 모바일 탭 메뉴 */}
+          <ul className="flex gap-8 whitespace-nowrap text-base">
+            {tabs.map((tab, index) => (
+              <li
+                key={index}
+                className={`cursor-pointer ${
+                  activeTab === tab ? 'font-bold text-black' : 'text-gray-500'
+                }`}
+                onClick={() => handleTabClick(tab)}
+              >
+                {tab}
+              </li>
+            ))}
+          </ul>
         </section>
 
         {/* 필터 패널 */}
@@ -158,57 +126,14 @@ export default function CategoryPanel() {
               <FilterItem
                 key={index}
                 filterType={filter}
-                isSelected={selectedFilters.includes(filter)} // 필터가 선택되었는지 확인
-                onClick={() => handleFilterClick(filter)} // 필터 클릭 시 동작
+                isSelected={selectedFilters.includes(filter)}
+                onClick={() => handleFilterClick(filter)}
               />
             ))
           ) : (
             <div>해당 카테고리는 필터가 없습니다.</div>
           )}
         </section>
-
-        {/* 정렬 패널 */}
-        <div className="mt-7 flex items-center justify-between px-7">
-          <ul className="flex gap-4 md:gap-12">
-            {sortOptions.map((option, index) => (
-              <li
-                key={index}
-                className={`relative cursor-pointer text-sm font-medium md:text-xl ${
-                  activeSort === option
-                    ? 'font-semibold text-point-red-500'
-                    : 'text-sub-gray-200'
-                } ${index !== 0 ? 'before:absolute before:-left-2 before:top-1/2 before:h-3 before:w-[1px] before:-translate-y-1/2 before:transform before:bg-sub-gray-100 before:content-[""] md:before:-left-6 md:before:h-[20px]' : ''}`}
-                onClick={() => {
-                  console.log('Sort option clicked:', option);
-                  setActiveSort(option); // 정렬 클릭 시 동작
-                }}
-              >
-                {option}
-              </li>
-            ))}
-          </ul>
-
-          <button
-            onClick={resetFiltersAndSort} // 상태 초기화
-            className="flex items-center text-sm font-medium text-sub-gray-300 md:text-xl"
-          >
-            초기화
-            <Image
-              src="/assets/common/MO_reset.svg"
-              alt="reset icon"
-              className="ml-2 block md:hidden"
-              width={9.67}
-              height={10}
-            />
-            <Image
-              src="/assets/common/PC_reset.svg"
-              alt="reset icon"
-              className="ml-2 hidden md:block"
-              width={16.93}
-              height={17.5}
-            />
-          </button>
-        </div>
       </section>
     </>
   );
