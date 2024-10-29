@@ -3,11 +3,11 @@ import MainSlider from '@/containers/home/MainSlider';
 import Image from 'next/image';
 import ContestCardSlider from '@/containers/home/ContestCardSlider';
 import ActivityCardSlider from '@/containers/home/ActivityCardSlider';
-import TomatoTips from '../magazine/TomatoTips';
 import { AiOutlineRight } from 'react-icons/ai';
 import Link from 'next/link';
 import HomeGridItem from './HomeGridItem';
 import GridView from '@/components/ui/grid/GridView';
+import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 
 export default function Home() {
   const dummyActivities: ActivityContestDetailsProps[] = Array.from(
@@ -109,7 +109,7 @@ export default function Home() {
             <AiOutlineRight />
           </Link>
         </div>
-        <TomatoTips pageSize={3} showPagination={false} />
+        <CurrentHighlights />
       </section>
     </>
   );
