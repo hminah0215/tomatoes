@@ -25,8 +25,8 @@ export default function GridView<T>({
   // 커스텀 gap 정의
 
   const columnStyles = {
-    web4mobile2: { mobile: 2, web: 4 },
-    web3mobile1: { mobile: 1, web: 3 },
+    web4mobile2: 'grid-cols-2 md:grid-cols-4',
+    web3mobile1: 'grid-cols-1 md:grid-cols-3',
   };
 
   const gapStyles = {
@@ -35,12 +35,8 @@ export default function GridView<T>({
     gapStyle3: 'gap-x-[0px] gap-y-[16px] md:gap-x-[30px] md:gap-y-[80px]', // 토마토 Tip
   };
 
-  const gridClass = `
-    grid 
-    grid-cols-${columnStyles[columnStyle].mobile} 
-    md:grid-cols-${columnStyles[columnStyle].web} 
-    ${gapStyles[gapStyle]}
-  `.trim();
+  const gridClass =
+    `grid ${columnStyles[columnStyle]} ${gapStyles[gapStyle]}`.trim();
 
   return (
     <div className={gridClass}>
