@@ -25,7 +25,9 @@ const MagazinePage = () => {
           className="block w-full object-cover md:hidden"
         />
       </div>
+    
       <CurrentHighlights />
+
       <MagazineList />
     </div>
   );
