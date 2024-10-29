@@ -7,6 +7,9 @@ import { AiOutlineRight } from 'react-icons/ai';
 import Link from 'next/link';
 import BestPickGridView from './BestPickGridView';
 import RecoActivityGridView from './RecoActivityGridView';
+import HomeGridItem from './HomeGridItem';
+import GridView from '@/components/ui/grid/GridView';
+import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 
 export default function Home() {
   return (
@@ -25,7 +28,7 @@ export default function Home() {
         </section>
       </section>
 
-      {/* 토마토들 추천 활동 */}
+      /* 토마토들 추천 활동 */}
       <section className="ml-8 mt-20 flex items-center">
         <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
           토마토들 <span className="text-point-red-500">추천 활동</span>
@@ -90,7 +93,7 @@ export default function Home() {
             <AiOutlineRight />
           </Link>
         </div>
-        매거진 컴포넌트 넣기
+        <CurrentHighlights />
       </section>
     </>
   );

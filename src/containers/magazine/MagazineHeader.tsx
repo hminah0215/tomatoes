@@ -2,7 +2,7 @@
 
 // 매거진 제목 및 메뉴
 // 매거진 해더 모바일 반응형 아직 안돼요!!
-import MagazineSearchBar from '@/components/common/MagazineSearchBar';
+
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -53,16 +53,13 @@ const MagazineHeader = () => {
   }, [selectedMenu]);
 
   return (
-    <div className="relative mx-auto w-full md:px-[83px] md:pt-[75px]">
+    <div className="relative mx-auto w-full md:px-[88px] md:pt-[75px]">
       {/* 모바일 레이아웃 */}
       <div className="block w-full md:hidden">
         {/* 상단 바 */}
-        <div className="flex h-12 w-[375px] items-center justify-between bg-white px-7 py-[9px]">
-          <div className="h-[30px] w-[72px] font-['Recipekorea'] text-2xl font-normal leading-9 text-sub-gray-500">
-            매거진
-          </div>
-          {/* 기존의 매거진 서치바 컴포넌트 사용 */}
-          <MagazineSearchBar placeholder="매거진을 찾아보세요." />
+
+        <div className="mb-[20px] ml-[28px] mt-[37px] h-[30px] font-['Recipekorea'] text-[24px] font-medium text-sub-gray-500">
+          매거진
         </div>
 
         {/* 메뉴 슬라이드 컨테이너 */}
@@ -126,11 +123,11 @@ const MagazineHeader = () => {
 
       {/* PC 레이아웃 */}
       <div className="hidden md:block">
-        <div className="h-[60px] font-['Recipekorea'] text-[32px] font-normal text-black">
+        <div className="h-[42px] font-['Recipekorea'] text-[24px] font-medium text-black md:text-[32px]">
           매거진
         </div>
 
-        <div className="relative mt-2 w-full">
+        <div className="relative mt-[18px] w-full">
           {/* 회색 선 */}
           <div className="absolute top-[54px] h-[2px] w-full bg-sub-gray-100"></div>
 
@@ -190,11 +187,6 @@ const MagazineHeader = () => {
                       : 'hidden'
             }`}
           ></div>
-
-          {/* 메거진 검색바 컴포넌트 추가 */}
-          <div className="absolute right-0 top-0 mb-[10px] mr-[9px] flex items-center pr-5">
-            <MagazineSearchBar placeholder="필요한 글을 검색해서 찾아보세요." />
-          </div>
         </div>
       </div>
     </div>

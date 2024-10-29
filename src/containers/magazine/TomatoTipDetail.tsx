@@ -1,13 +1,7 @@
-interface Tip {
-  title: string;
-  author: string;
-  created_at: string;
-  content: string;
-  link: string;
-}
+import { TomatoTipDataType } from '@/types/tomatoTips';
 
 interface TomatoTipDetailProps {
-  tipData: Tip;
+  tipData: TomatoTipDataType; // Tip 대신 TomatoTipDataType 사용
 }
 
 const TomatoTipDetail = ({ tipData }: TomatoTipDetailProps) => {
@@ -29,7 +23,9 @@ const TomatoTipDetail = ({ tipData }: TomatoTipDetailProps) => {
               </h1>
               <p className="mb-[18px] ml-[1px] text-sm text-sub-gray-300 md:mb-[23px] md:ml-[6px] md:text-base">
                 작성자 : {tipData.author} | 작성일 :{' '}
-                {new Date(tipData.created_at).toLocaleDateString()}
+                {tipData.created_at
+                  ? new Date(tipData.created_at).toLocaleDateString()
+                  : '정보 없음'}
               </p>
 
               {/* 회색줄 */}
