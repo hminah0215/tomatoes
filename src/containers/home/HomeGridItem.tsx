@@ -4,7 +4,7 @@ import Dday from '@/components/common/Dday';
 import Link from 'next/link';
 
 export default function HomeGridItem({ item }: ContestActivityListProps) {
-  const { id, title, d_day, start_date, end_date, view_count, main_category, thumbnail_url, homepage_url } = item;
+  const { id, title, d_day, start_date, end_date, main_category, thumbnail_url } = item;
   const en_main_category = main_category === 'contest' ? 'contest' : 'activity';
 
   return (

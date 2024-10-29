@@ -1,33 +1,23 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from 'react-icons/ai';
 import GridView from '@/components/ui/grid/GridView';
 import HomeGridItem from './HomeGridItem';
-
-async function FetchData(): Promise<ContestActivityDataProps []> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/activities_contests`, {
-    headers: {
-      'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
-      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''}`,
-    },
-  });
-
-  if (!response.ok) {
-    console.error("데이터를 가져오는 중 오류 발생");
-    return [];
-  }
-
-  const data: ContestActivityDataProps[] = await response.json();
-  return data;
-}
+import { fetchContestCardSlider } from '@/lib/fetchContestCardSlider';
 
 function ContestCardSlider() {
   const [activities, setActivities] = useState<ContestActivityDataProps []>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await FetchData();
-      setActivities(data);
+      const { data, error } = await fetchContestCardSlider();
+
+      if (error) {
+        console.error("데이터를 가져오는 중 오류 발생:", error.message);
+      } else {
+        setActivities(data || []);
+      }
     };
 
     fetchData();
@@ -58,10 +48,10 @@ function ContestCardSlider() {
 
   const totalPages = Math.ceil(activities.length / itemsPerPage);
 
-  const currentItems = activities.slice(
-    currentPage * itemsPerPage,
-    (currentPage + 1) * itemsPerPage
-  );
+  // const currentItems = activities.slice(
+  //   currentPage * itemsPerPage,
+  //   (currentPage + 1) * itemsPerPage
+  // );
 
   const goToNextPage = () => {
     if (currentPage < totalPages - 1) {
@@ -81,7 +71,7 @@ function ContestCardSlider() {
         <GridView
           items={activities}
           GridItem={HomeGridItem}
-          columnStyle="web4mobile2"
+          columnStyle="web3mobile1"
           gapStyle="gapStyle2"
         />
       </div>
