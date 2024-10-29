@@ -8,7 +8,7 @@ export default function Page() {
           토마토 Tip
         </div>
       </div>
-      <TomatoTips showPagination={true} />
+      <TomatoTips />
     </>
   );
 }
