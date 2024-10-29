@@ -2,13 +2,13 @@ import Image from 'next/image';
 
 interface DdayProps {
   type: 'active' | 'completed' | 'upcoming';
-  day?: string;
+  day?: number;
   color?: 'red' | 'yellow' | 'green';
 }
 
 const baseTagStyle =
-  'w-[68px] h-[33px] md:w-[95px] md:h-[33px] p-1 rounded-[999px] justify-center items-center gap-1.5 inline-flex';
-const baseTextStyle = 'text-xs lg:text-base font-medium leading-[20px]';
+  'w-[75px] h-[33px] md:w-[95px] md:h-[33px] p-1 rounded-[999px] justify-center items-center gap-1.5 inline-flex';
+const baseTextStyle = 'text-xs sm:text-xs md:text-xs lg:text-base font-medium leading-[20px]';
 
 const tagStyles = {
   active: {
