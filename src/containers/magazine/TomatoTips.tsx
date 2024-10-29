@@ -6,13 +6,7 @@ import { fetchAllTomatoTips } from '@/lib/fetchTomatoTip';
 import Pagination from '@/components/ui/pagination/Pagination';
 import TomatoTipItem from './TomatoTipItem';
 
-// Props 인터페이스 정의
-interface TomatoTipsProps {
-  pageSize?: number; // 페이지당 아이템 수
-  showPagination?: boolean; // 페이지네이션 표시 여부
-}
-
-const TomatoTips = ({ showPagination = true }: TomatoTipsProps) => {
+const TomatoTips = () => {
   const [tips, setTips] = useState<TomatoTipDataType[]>([]);
 
   useEffect(() => {
@@ -29,15 +23,6 @@ const TomatoTips = ({ showPagination = true }: TomatoTipsProps) => {
       if (data) {
         setTips(data);
       }
-
-      // if (data) {
-      //   const processedTips = data.map((tip) => ({
-      //     ...tip,
-      //   }));
-
-      //   setTips(processedTips);
-      //   console.log('Updated Tips:', processedTips);
-      // }
     };
 
     fetchTips();
@@ -46,8 +31,7 @@ const TomatoTips = ({ showPagination = true }: TomatoTipsProps) => {
   return (
     <>
       <div className="mb-[72px] flex flex-col items-center md:mb-[120px] md:mt-[40px] md:items-start">
-        {/* 페이지네이션 */}
-        {showPagination && tips.length > 0 && (
+        {tips.length > 0 && (
           <>
             {/* {console.log('Tips Contents:', tips)} Tips 로그 */}
             <Pagination
