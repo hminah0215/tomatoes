@@ -7,8 +7,6 @@ import { AiOutlineRight } from 'react-icons/ai';
 import Link from 'next/link';
 import BestPickGridView from './BestPickGridView';
 import RecoActivityGridView from './RecoActivityGridView';
-import HomeGridItem from './HomeGridItem';
-import GridView from '@/components/ui/grid/GridView';
 import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 
 export default function Home() {
