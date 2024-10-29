@@ -6,7 +6,7 @@ import Dday from '@/components/common/Dday';
 
 interface DdayProps {
   type: 'active' | 'completed' | 'upcoming';
-  day?: string;
+  day?: number;
   color?: 'red' | 'yellow' | 'green';
 }
 
@@ -73,7 +73,7 @@ function ActivityCardSlider() {
       imageUrl: '/assets/homePage/Activity_2.png',
       dDay: {
         type: 'active',
-        day: '5',
+        day: 5,
         color: 'red',
       },
     },
@@ -91,7 +91,7 @@ function ActivityCardSlider() {
       imageUrl: '/assets/homePage/Activity_2.png',
       dDay: {
         type: 'active',
-        day: '10',
+        day: 10,
         color: 'yellow',
       },
     },
@@ -101,7 +101,7 @@ function ActivityCardSlider() {
       imageUrl: '/assets/homePage/Activity_3.png',
       dDay: {
         type: 'active',
-        day: '5',
+        day: 5,
         color: 'green',
       },
     },
@@ -111,7 +111,7 @@ function ActivityCardSlider() {
       imageUrl: '/assets/homePage/Activity_1.png',
       dDay: {
         type: 'active',
-        day: '20',
+        day: 20,
         color: 'red',
       },
     },
