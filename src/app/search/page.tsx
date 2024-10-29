@@ -1,21 +1,16 @@
-// pages/search/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
-
+import { useSearchParams } from 'next/navigation';
 import { fetchSearchResults } from '@/lib/fetchSearchResults';
-
 import SearchResults from '@/containers/search/SearchResults';
-import SearchHeader from '@/containers/search/SearchHeader';
 import NoResult from '@/components/common/noResult';
+import SearchHeader from '@/containers/search/SearchHeader';
 
 export default function SearchPage() {
-  const [query, setQuery] = useState('');
+  const searchParams = useSearchParams();
+  const query = searchParams.get('query') || '';
   const [results, setResults] = useState([]);
-
-  const handleSearch = async (searchQuery: string) => {
-    setQuery(searchQuery);
-  };
 
   useEffect(() => {
     if (query) {
@@ -35,7 +30,7 @@ export default function SearchPage() {
     <>
       {results.length > 0 ? (
         <>
-          <SearchHeader onSearch={handleSearch} />
+          <SearchHeader />
           <SearchResults results={results} />
         </>
       ) : (

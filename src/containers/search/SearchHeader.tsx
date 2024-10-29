@@ -3,13 +3,8 @@
 import TabItem from '../contest/TabItem';
 import { useState } from 'react';
 import { searchFilters, sortSearchOptions } from '@/constants/consts';
-import SearchBar from '@/components/common/SearchBar';
 
-interface SearchHeaderProps {
-  onSearch: (query: string) => void;
-}
-
-export default function SearchHeader({ onSearch }: SearchHeaderProps) {
+export default function SearchHeader() {
   const tabs = Object.keys(searchFilters) as Array<keyof typeof searchFilters>;
   const [activeTab, setActiveTab] =
     useState<keyof typeof searchFilters>('전체');

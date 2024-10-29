@@ -2,10 +2,7 @@ import Navigation from '../ui/navigation/Navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import SearchBar from './SearchBar';
-
-interface HeaderProps {
-  onSearch: (query: string) => void;
-}
+import { HeaderProps } from '@/types/search';
 
 export default function Header({ onSearch }: HeaderProps) {
   return (

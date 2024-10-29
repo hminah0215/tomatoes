@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import React from 'react';
+import ClientLayout from './clientLayout';
 
 const pretendard_var = localFont({
   src: '../../public/fonts/pretendard_variable.woff2',
@@ -22,8 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${pretendard_var.className}`}>
-        <Header />
-        {children}
+        <ClientLayout>{children}</ClientLayout>
         <Footer />
       </body>
     </html>

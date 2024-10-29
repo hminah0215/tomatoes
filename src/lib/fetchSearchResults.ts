@@ -1,4 +1,3 @@
-// lib/fetchSearchResults.ts
 import { supabase } from '@/lib/supabaseClient';
 
 export const fetchSearchResults = async (query: string) => {
