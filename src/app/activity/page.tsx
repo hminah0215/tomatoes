@@ -1,5 +1,4 @@
 import ActivityContestItem from '@/components/ui/grid/ActivityContestItem';
-import CategoryPanel from '@/containers/activity/CategoryPanel';
 import Pagination from '@/components/ui/pagination/Pagination';
 import { Suspense } from 'react';
 
@@ -20,7 +19,6 @@ export default function Page() {
 
   return (
     <>
-      <CategoryPanel />
       <Suspense fallback={<div>로딩 중...</div>}>
         <Pagination
           contents={dummyActivities} // 데이터를 Pagination에 전달
