@@ -1,6 +1,6 @@
 'use client';
 
-import TabItem from './TabItem';
+import TabItem from '../../components/common/TabItem';
 import FilterItem from './FilterItem';
 import { useState } from 'react';
 import Image from 'next/image';
