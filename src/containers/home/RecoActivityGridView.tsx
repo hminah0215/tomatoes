@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import HomeGridItem from "./HomeGridItem";
 
 async function FetchData(): Promise<ContestActivityDataProps []> {
-  // 조회수(view_count)가 높은 순으로 정렬 후 8개만 가져오기
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/activities_contests?select=*&order=view_count.desc&limit=8`, {
+  // D-day 오름차순으로 정렬 후 8개만 가져오기
+  const response = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/activities_contests?select=*&d_day=gt.0&order=d_day.asc&limit=8`, {
     headers: {
       'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
       'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''}`,
@@ -22,7 +22,7 @@ async function FetchData(): Promise<ContestActivityDataProps []> {
   return data;
 }
 
-export default function BestPickGridView() {
+export default function RecoActivityGridView() {
   const [activities, setActivities] = useState<ContestActivityDataProps []>([]);
 
   useEffect(() => {

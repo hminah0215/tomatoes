@@ -3,12 +3,10 @@ import MainSlider from '@/containers/home/MainSlider';
 import Image from 'next/image';
 import ContestCardSlider from '@/containers/home/ContestCardSlider';
 import ActivityCardSlider from '@/containers/home/ActivityCardSlider';
-import TomatoTips from '../magazine/TomatoTips';
 import { AiOutlineRight } from 'react-icons/ai';
 import Link from 'next/link';
-import HomeGridItem from './HomeGridItem';
-import GridView from '@/components/ui/grid/GridView';
 import BestPickGridView from './BestPickGridView';
+import RecoActivityGridView from './RecoActivityGridView';
 
 export default function Home() {
   return (
@@ -41,12 +39,7 @@ export default function Home() {
         />
       </section>
       <section className="mx-8 my-5 flex flex-col">
-        {/* <GridView
-          items={dummyActivities}
-          GridItem={HomeGridItem}
-          columnStyle="web4mobile2"
-          gapStyle="gapStyle1"
-        /> */}
+        <RecoActivityGridView />
       </section>
 
       {/* 공모전 */}
