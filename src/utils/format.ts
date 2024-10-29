@@ -1,3 +1,7 @@
-export const formatViewCount = (count: string) => {
-  return new Intl.NumberFormat('ko-KR').format(Number(count));
+import { parseISO, format } from 'date-fns';
+
+export const formatViewCount = (count: number) => {
+  return new Intl.NumberFormat('ko-KR').format(count);
 };
+
+export const formatDate = (date: string) => format(parseISO(date), 'yy.MM.dd');
