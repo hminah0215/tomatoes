@@ -35,7 +35,7 @@ export default function GridSlideView<T>({
 
   // 그리드 클래스 정의
   const gridClass = `
-    flex overflow-x-auto  ${slideGapStyles[slideGapStyle]} 
+    flex overflow-x-auto scrollbar-hide ${slideGapStyles[slideGapStyle]} 
     grid-cols-${slideColumnStyles[slideColumnStyle].mobile} 
     md:grid md:grid-cols-${slideColumnStyles[slideColumnStyle].web}
   `.trim();
