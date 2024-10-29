@@ -28,7 +28,7 @@ export default function Home() {
         </section>
       </section>
 
-      /* 토마토들 추천 활동 */}
+      {/* 토마토들 추천 활동 */}
       <section className="ml-8 mt-20 flex items-center">
         <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
           토마토들 <span className="text-point-red-500">추천 활동</span>
