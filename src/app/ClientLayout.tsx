@@ -19,7 +19,7 @@ export default function ClientLayout({
       <Header onSearch={handleSearch} />
       {/* 검색어 상태를 children에 전달 */}
       {React.cloneElement(children as React.ReactElement, { query })}
-      {children}
+      {/* {children} */}
     </>
   );
 }

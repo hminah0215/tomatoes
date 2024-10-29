@@ -1,23 +1,27 @@
 'use client';
 
 import TabItem from '../contest/TabItem';
-import { useState } from 'react';
 import { searchFilters, sortSearchOptions } from '@/constants/consts';
 
-export default function SearchHeader() {
-  const tabs = Object.keys(searchFilters) as Array<keyof typeof searchFilters>;
-  const [activeTab, setActiveTab] =
-    useState<keyof typeof searchFilters>('전체');
-  const [activeSort, setActiveSort] = useState('관련도순');
+interface SearchHeaderProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+  activeSort: string;
+  setActiveSort: (sort: string) => void;
+}
 
-  const handleTabClick = (tab: keyof typeof searchFilters) => {
-    setActiveTab(tab);
-  };
+export default function SearchHeader({
+  activeTab,
+  setActiveTab,
+  activeSort,
+  setActiveSort,
+}: SearchHeaderProps) {
+  const tabs = Object.keys(searchFilters) as Array<keyof typeof searchFilters>;
 
   return (
     <>
       {/* 웹 컴포넌트 */}
-      <section className="mb-14 hidden px-[88px] pt-[74px] md:block">
+      <section className="hidden px-[88px] pt-[74px] md:block">
         <h1 className="pb-7 font-recipe text-[32px] font-medium">검색</h1>
 
         <section className="flex justify-between border-b-[1px] pl-[14px]">
@@ -27,7 +31,7 @@ export default function SearchHeader() {
                 key={index}
                 tab={tab}
                 isActive={activeTab === tab}
-                onClick={() => handleTabClick(tab)} // 탭 클릭 시 동작
+                onClick={() => setActiveTab(tab)} // 탭 클릭 시 동작
               />
             ))}
           </ul>
@@ -67,7 +71,7 @@ export default function SearchHeader() {
                 key={index}
                 tab={tab}
                 isActive={activeTab === tab}
-                onClick={() => handleTabClick(tab)} // 탭 클릭 시 동작
+                onClick={() => setActiveTab(tab)} // 탭 클릭 시 동작
               />
             ))}
           </ul>

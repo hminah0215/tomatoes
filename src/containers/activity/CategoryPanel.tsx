@@ -5,7 +5,6 @@ import FilterItem from './FilterItem';
 import { useState } from 'react';
 import Image from 'next/image';
 import { categoryFilters, sortOptions } from '@/constants/consts';
-import SearchBar from '@/components/common/SearchBar';
 
 export default function CategoryPanel() {
   const tabs = Object.keys(categoryFilters) as Array<
@@ -66,7 +65,6 @@ export default function CategoryPanel() {
               ))}
             </ul>
           </nav>
-          <SearchBar placeholder="공모전을 찾아보세요" />
         </section>
 
         {/* 필터 패널 */}
@@ -133,7 +131,6 @@ export default function CategoryPanel() {
       <section className="mt-9 md:hidden">
         <div className="flex justify-between pb-6">
           <h1 className="px-7 font-recipe text-2xl font-medium">대외활동</h1>
-          <SearchBar placeholder="공모전을 찾아보세요" />
         </div>
 
         <section className="flex justify-between overflow-x-auto border-b-[1px] pl-7">
