@@ -5,7 +5,11 @@ import { useState } from 'react';
 import { searchFilters, sortSearchOptions } from '@/constants/consts';
 import SearchBar from '@/components/common/SearchBar';
 
-export default function SearchHeader() {
+interface SearchHeaderProps {
+  onSearch: (query: string) => void;
+}
+
+export default function SearchHeader({ onSearch }: SearchHeaderProps) {
   const tabs = Object.keys(searchFilters) as Array<keyof typeof searchFilters>;
   const [activeTab, setActiveTab] =
     useState<keyof typeof searchFilters>('전체');
@@ -32,7 +36,6 @@ export default function SearchHeader() {
               />
             ))}
           </ul>
-          <SearchBar placeholder="검색어를 입력해주세요" />
         </section>
 
         {/* 정렬 패널 */}

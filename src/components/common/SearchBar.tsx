@@ -3,8 +3,14 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import Image from 'next/image';
+import NoResult from './noResult';
 
-export default function SearchBar({ placeholder }: { placeholder: string }) {
+interface SearchBarProps {
+  placeholder: string;
+  onSearch: (query: string) => void;
+}
+
+export default function SearchBar({ placeholder, onSearch }: SearchBarProps) {
   const [keyword, setKeyword] = useState('');
 
   const onKeywordChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,10 +20,10 @@ export default function SearchBar({ placeholder }: { placeholder: string }) {
   const onKeywordSearchHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (keyword.length < 1) {
-      alert('검색어를 입력해주세요');
+      <NoResult />;
       return;
     }
-    alert('나는 토마토야');
+    onSearch(keyword);
   };
 
   return (
