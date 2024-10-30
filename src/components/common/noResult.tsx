@@ -13,7 +13,9 @@ export default function NoResult() {
         <Image
           src="/assets/noResult/PC_header_t.svg"
           alt="Header"
-          className="mb-4 h-[50px] md:h-[50px] lg:h-[55px]"
+          width={198}
+          height={24}
+          className="mb-4 h-[50px] md:h-[50px] md:w-[350px] lg:h-[55px]"
         />
         <p>
           <span className="text-point-red-500">{`'${keyword}'`}</span> 에 대한
@@ -25,6 +27,8 @@ export default function NoResult() {
           <Image
             src="/assets/noResult/PC_logo_t.svg"
             alt="Logo"
+            width={174}
+            height={184}
             className="relative mt-28 h-[120px] w-[150px] md:h-[160px] md:w-[200px] lg:h-[189px] lg:w-[225px]"
           />
           <p className="font-pretendard mb-4 mt-4 text-[22px] font-semibold leading-[60px] md:text-[25px] lg:text-[30px]">

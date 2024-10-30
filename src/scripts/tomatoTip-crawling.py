@@ -2,12 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import os
+import re  # 정규식을 사용하기 위한 모듈
 
 # 크롤링할 기본 URL
 base_url = "https://community.linkareer.com/honeytips?word=&field=&page={}"
 
-# 크롤링할 페이지 수 (크롤링할 기본 URL 한페이지에 20개의 글이 존재하는 상태)
-total_pages = 5  
+# 크롤링할 페이지 수 (크롤링할 기본 URL 한 페이지에 20개의 글이 존재하는 상태)
+total_pages = 5
 
 tomatoTip_data = []
 
@@ -60,20 +61,27 @@ for page in range(1, total_pages + 1):
                 content_div = detail_soup.select_one('div.post-detail')
                 content = str(content_div) if content_div else 'No content available'
 
+                # 조회수 정보 추출 및 숫자만 가져오기
+                views_element = detail_soup.select_one('span.views')
+                views_text = views_element.text.strip() if views_element else '0'
+                views = re.search(r'\d+', views_text)  # 조회수에서 숫자만 추출
+                views = views.group() if views else '0'
+
                 # 인라인 스타일 제거
                 content_soup = BeautifulSoup(content, 'html.parser')
                 for tag in content_soup.find_all(True):  # 모든 태그를 찾고
                     if 'style' in tag.attrs:
                         del tag.attrs['style']  # style 속성 제거하기
 
-                cleaned_content = str(content_soup)  # 스타일 속성을 제거한 html태그로 변환 
+                cleaned_content = str(content_soup)  # 스타일 속성을 제거한 html태그로 변환
 
                 tomatoTip_data.append({
                     'title': title,
                     'link': full_link,
                     'content': cleaned_content,  # 인라인 스타일이 제거된 콘텐츠
                     'author': author,
-                    'created_at': created_at
+                    'created_at': created_at,
+                    'views': views  # 조회수 숫자만 저장
                 })
 
             except Exception as e:
@@ -88,5 +96,6 @@ output_file_path = os.path.join(os.path.dirname(__file__), 'tomatoTip_data.json'
 
 with open(output_file_path, 'w', encoding='utf-8') as f:
     json.dump(tomatoTip_data, f, ensure_ascii=False, indent=4)
-    
+
 print(f"총 {len(tomatoTip_data)}개의 게시글을 가져왔습니다.")
+

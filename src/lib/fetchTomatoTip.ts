@@ -22,9 +22,7 @@ export const fetchAllTomatoTips = async (): Promise<{
   data: TomatoTipDataType[] | null;
   error: PostgrestError | null;
 }> => {
-  const { data, error } = await supabase
-    .from('tomato_tips')
-    .select('id, title, author, created_at, content, link');
+  const { data, error } = await supabase.from('tomato_tips').select('*');
 
   if (error) {
     console.error('fetchAllTomatoTips 데이터가져오기 실패:', error);

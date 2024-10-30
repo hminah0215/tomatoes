@@ -5,4 +5,5 @@ export interface TomatoTipDataType {
   content: string;
   author: string | null;
   created_at: string | null;
+  views?: number | null;
 }
