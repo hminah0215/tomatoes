@@ -42,7 +42,7 @@ export default function SearchPage() {
           <SearchResults results={results} query={query} />
         </>
       ) : (
-        <NoResult />
+        <NoResult searchKeyword={query} />
       )}
     </Suspense>
   );

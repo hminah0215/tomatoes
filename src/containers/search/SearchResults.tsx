@@ -17,7 +17,7 @@ interface SearchResultsProps {
 
 export default function SearchResults({ results, query }: SearchResultsProps) {
   if (results.length === 0) {
-    return <NoResult />; // 검색 결과가 없을 때 noResult 컴포넌트 표시
+    return <NoResult searchKeyword={query} />;
   }
 
   return (

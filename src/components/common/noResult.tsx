@@ -1,8 +1,12 @@
 import { AiOutlineClose } from 'react-icons/ai';
 import Image from 'next/image';
 
-export default function NoResult() {
-  const keyword = '토마토들'; // 사용자가 입력한 키워드, 추후 수정 예정
+type searchKeywordProps = {
+  searchKeyword: string;
+};
+
+export default function NoResult({ searchKeyword }: searchKeywordProps) {
+  const keyword = searchKeyword;  // 사용자가 입력한 검색어
 
   return (
     <div className="relative flex h-screen w-full flex-col items-center">
