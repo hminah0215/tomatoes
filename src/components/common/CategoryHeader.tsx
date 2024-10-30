@@ -1,13 +1,22 @@
+// CategoryHeader.tsx
 'use client';
 
 import TabMenu from './TabMenu';
-import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import FilterPanel from './FilterPanel';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import {
+  activityFilters,
+  contestFilters,
+  sortOptions,
+} from '@/constants/consts';
 
 export default function CategoryHeader() {
   const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  // 라우트에 따라 페이지 제목과 탭 설정
+  // 페이지 제목과 탭 설정
   const pageTitle = (() => {
     if (/^\/magazine/.test(pathname)) return '매거진';
     if (/^\/activity/.test(pathname)) return '대외활동';
@@ -42,10 +51,68 @@ export default function CategoryHeader() {
     return [];
   })();
 
-  const [activeTab, setActiveTab] = useState(tabs[0]?.name);
+  const filters = (() => {
+    if (/^\/activity/.test(pathname)) return activityFilters;
+    if (/^\/contest/.test(pathname)) return contestFilters;
+    return null;
+  })();
 
+  // URL에서 상태 초기화
+  const [activeTab, setActiveTab] = useState(tabs[0]?.name);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [activeSort, setActiveSort] = useState(
+    searchParams.get('sort') || '관련도순'
+  );
+
+  // URL 파라미터로부터 초기 상태 설정
+  useEffect(() => {
+    const tabFromUrl = searchParams.get('tab');
+    const filtersFromUrl = searchParams
+      .get('filters')
+      ?.split(',')
+      .filter(Boolean);
+    const sortFromUrl = searchParams.get('sort');
+
+    if (tabFromUrl) setActiveTab(tabFromUrl);
+    if (filtersFromUrl) setSelectedFilters(filtersFromUrl);
+    if (sortFromUrl) setActiveSort(sortFromUrl);
+  }, []);
+
+  // URL 업데이트 함수
+  const updateURL = (newTab: string, newFilters: string[], newSort: string) => {
+    const params = new URLSearchParams();
+
+    if (newTab) params.set('tab', newTab);
+    if (newFilters.length > 0) params.set('filters', newFilters.join(','));
+    if (newSort) params.set('sort', newSort);
+
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
+  // 이벤트 핸들러
   const handleTabClick = (tabName: string) => {
     setActiveTab(tabName);
+    updateURL(tabName, [], activeSort);
+  };
+
+  const handleFilterChange = (filter: string) => {
+    const newFilters = selectedFilters.includes(filter)
+      ? selectedFilters.filter((f) => f !== filter)
+      : [...selectedFilters, filter];
+
+    setSelectedFilters(newFilters);
+    updateURL(activeTab, newFilters, activeSort);
+  };
+
+  const handleSortChange = (sortOption: string) => {
+    setActiveSort(sortOption);
+    updateURL(activeTab, selectedFilters, sortOption);
+  };
+
+  const resetFiltersAndSort = () => {
+    setActiveSort('관련도순');
+    setSelectedFilters([]);
+    updateURL(activeTab, [], '관련도순');
   };
 
   return (
@@ -54,6 +121,18 @@ export default function CategoryHeader() {
         {pageTitle}
       </h1>
       <TabMenu tabs={tabs} activeTab={activeTab} onTabClick={handleTabClick} />
+
+      {filters && (
+        <FilterPanel
+          filters={filters[activeTab as keyof typeof filters] || []}
+          selectedFilters={selectedFilters}
+          onFilterChange={handleFilterChange}
+          sortOptions={sortOptions}
+          activeSort={activeSort}
+          onSortChange={handleSortChange}
+          onReset={resetFiltersAndSort}
+        />
+      )}
     </header>
   );
 }
