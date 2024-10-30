@@ -14,21 +14,19 @@ export default function SearchPage() {
   const [activeTab, setActiveTab] = useState('전체');
   const [activeSort, setActiveSort] = useState('관련도순');
 
-  const fetchResults = async () => {
-    const { data, error } = await fetchSearchResults(
-      query,
-      activeTab,
-      activeSort
-    ); // 선택한 탭과 정렬 기준 전달
-    if (data) {
-      setResults(data);
-    } else if (error) {
-      console.error('검색 오류:', error);
-    }
-  };
-
   useEffect(() => {
     if (query) {
+      console.log('검색어:', query);
+
+      const fetchResults = async () => {
+        const { data, error } = await fetchSearchResults(
+          query,
+          activeTab,
+          activeSort
+        );
+        if (data) setResults(data);
+        else if (error) console.error('검색 오류:', error);
+      };
       fetchResults();
     }
   }, [query, activeTab, activeSort]);
