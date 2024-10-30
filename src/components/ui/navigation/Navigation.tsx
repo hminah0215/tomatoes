@@ -36,13 +36,16 @@ export default function Navigation() {
     <nav className={containerClasses}>
       <ul className={listClasses}>
         {navItems.map((item) => {
-          const isActive = pathname === item.route;
+          // pathname이 item.route로 시작하는 경우 isActive를 true로 설정
+          const isActive = new RegExp(`^${item.route}`).test(pathname);
           return <NavItem key={item.name} {...item} isActive={isActive} />;
         })}
         <li className="hidden md:block">
           <Link
             href="/cs"
-            className={`${linkItemClasses} ${pathname === '/cs' ? activeLinkClasses : inactiveLinkClasses}`}
+            className={`${linkItemClasses} ${
+              /^\/cs/.test(pathname) ? activeLinkClasses : inactiveLinkClasses
+            }`}
           >
             공고등록/문의
           </Link>

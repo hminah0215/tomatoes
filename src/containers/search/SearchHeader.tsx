@@ -1,6 +1,7 @@
 'use client';
 
-import TabItem from '../contest/TabItem';
+import TabItem from '@/components/common/TabItem';
+import { useState } from 'react';
 import { searchFilters, sortSearchOptions } from '@/constants/consts';
 
 interface SearchHeaderProps {
