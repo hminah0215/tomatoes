@@ -20,7 +20,7 @@ const TomatoTipItem = ({ item }: TomatoTipItemProps) => {
   ];
 
   return (
-    <Link href={`/magazine/tomatoTip/${id}`}>
+    <Link href={`/magazine/tomatoTip/${id}`} className="">
       <div className="relative mb-[12px] h-[230px] overflow-hidden rounded-[20px] bg-main-beige md:mb-[16px] md:h-[290px]">
         <Image
           className="absolute hidden h-full w-full object-cover md:block"
@@ -40,7 +40,7 @@ const TomatoTipItem = ({ item }: TomatoTipItemProps) => {
       <div className="flex h-[40px] flex-col items-start justify-between gap-2 md:h-[74px]">
         <div className="inline-flex items-center justify-start gap-3">
           <Tag type="hot" label="HOT" />
-          <div className="h-[24px] w-[250px] overflow-hidden text-ellipsis whitespace-nowrap text-[16px] font-semibold leading-5 text-sub-gray-500 md:h-[36px] md:w-[329px] md:text-2xl">
+          <div className="md:text- line-clamp-2 text-ellipsis text-[16px] font-semibold leading-5 text-sub-gray-500">
             {title}
           </div>
         </div>
