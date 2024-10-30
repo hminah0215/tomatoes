@@ -1,40 +1,53 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from 'react-icons/ai';
 import Image from 'next/image';
 import Dday from '@/components/common/Dday';
+import { fetchActivityCardSlider } from '@/lib/fetchActivityCardSlider';
 
-interface DdayProps {
-  type: 'active' | 'completed' | 'upcoming';
-  day?: number;
-  color?: 'red' | 'yellow' | 'green';
-}
-
-interface CardProps {
-  title: string;
-  period: string;
-  imageUrl: string;
-  dDay: DdayProps;
-}
-
-function Card({ title, period, imageUrl, dDay }: CardProps) {
+function Card({ item }: ContestActivityListProps) {
   return (
-    <div className="m-3 overflow-hidden rounded-lg bg-white shadow-lg">
-      <div className="relative h-48 w-full">
-        <Image src={imageUrl} alt={title} fill objectFit="cover" />
+    <div id={`${item.id}`} className="m-3 overflow-hidden bg-white">
+      <div className="relative h-48 w-full shadow-md">
+        <Image 
+          src={item.thumbnail_url} 
+          alt={item.title} 
+          fill objectFit="cover" 
+          className="rounded-xl" 
+        />
       </div>
-      <div className="p-4">
-        <h3 className="my-2 text-base font-bold">{title}</h3>
-        <div className="flex items-center">
-          <Dday type={dDay.type} color={dDay.color} day={dDay.day} />
-          <span className="ml-2 text-sm text-gray-600">{period}</span>
+      <div className="p-4 flex flex-col h-[calc(100%-12rem)]">
+        <h3 className="mb-4 text-base font-bold flex-grow">{item.title}</h3>
+        <div className="flex items-center mt-auto">
+          {item.d_day < 0 
+            ? <Dday type="completed" /> 
+            : <Dday type="active" day={item.d_day} color={item.d_day <= 7 ? 'red' : item.d_day <= 31 ? 'yellow' : 'green'} />
+          }
+          <span className="ml-2 text-sm text-gray-600">{`${item.start_date} ~ ${item.end_date}`}</span>
         </div>
       </div>
     </div>
   );
 }
 
+
 function ActivityCardSlider() {
+  const [activities, setActivities] = useState<ContestActivityDataProps[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await fetchActivityCardSlider();
+      if (error) {
+        console.error("데이터를 가져오는 중 오류 발생:", error.message);
+      } else {
+        setActivities(data || []);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -58,68 +71,9 @@ function ActivityCardSlider() {
     };
   }, []);
 
-  const cards: CardProps[] = [
-    {
-      title: '경북 K-스토리 페스티벌: K-스토리, 경북을 담다.',
-      period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Activity_1.png',
-      dDay: {
-        type: 'upcoming',
-      },
-    },
-    {
-      title: 'CLEAN HEART: 대학생 서포터즈 모집',
-      period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Activity_2.png',
-      dDay: {
-        type: 'active',
-        day: 5,
-        color: 'red',
-      },
-    },
-    {
-      title: '굿네이버스 경남사업본부와 ‘우리함께지구하자’',
-      period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Activity_3.png',
-      dDay: {
-        type: 'completed',
-      },
-    },
-    {
-      title: 'CLEAN HEART: 대학생 서포터즈 모집',
-      period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Activity_2.png',
-      dDay: {
-        type: 'active',
-        day: 10,
-        color: 'yellow',
-      },
-    },
-    {
-      title: '굿네이버스 경남사업본부와 ‘우리함께지구하자’',
-      period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Activity_3.png',
-      dDay: {
-        type: 'active',
-        day: 5,
-        color: 'green',
-      },
-    },
-    {
-      title: '경북 K-스토리 페스티벌: K-스토리, 경북을 담다.',
-      period: '24.09.02 ~ 24.09.15',
-      imageUrl: '/assets/homePage/Activity_1.png',
-      dDay: {
-        type: 'active',
-        day: 20,
-        color: 'red',
-      },
-    },
-  ];
+  const totalPages = Math.ceil(activities.length / itemsPerPage);
 
-  const totalPages = Math.ceil(cards.length / itemsPerPage);
-
-  const currentItems = cards.slice(
+  const currentItems = activities.slice(
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage
   );
@@ -138,14 +92,12 @@ function ActivityCardSlider() {
 
   return (
     <section className="flex flex-col items-center gap-4 p-4">
+      {/* 상세페이지 구현 완료되면 Link 컴포넌트로 바꿔서 링크업시킬 예정 */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {currentItems.map((card, index) => (
+        {currentItems.map((card) => (
           <Card
-            key={index}
-            title={card.title}
-            period={card.period}
-            imageUrl={card.imageUrl}
-            dDay={card.dDay}
+            key={card.id}
+            item={card}
           />
         ))}
       </div>
