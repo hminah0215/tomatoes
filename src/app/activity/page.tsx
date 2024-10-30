@@ -1,26 +1,33 @@
-import ActivityContestItem from '@/components/ui/grid/ActivityContestItem';
-import Pagination from '@/components/ui/pagination/Pagination';
-import { fetchActivityContestAbstracts } from '@/lib/fetchActivityContestAbstracts';
-import { Suspense } from 'react';
+import { fetchActivityContestAbstractWith } from '@/lib/fetchActivityAbstractWith';
+import Activity from '@/containers/activity/Activity';
 
-export default async function Page() {
+interface PageProps {
+  searchParams: {
+    tab?: string;
+    filters?: string;
+    sort?: string;
+  };
+}
+
+export default async function Page({ searchParams }: PageProps) {
+  // URL 파라미터에서 필터와 정렬 옵션 추출
+  const filters = searchParams.filters?.split(',').filter(Boolean) || [];
+  const sort = searchParams.sort || '관련도순';
+
+  console.log(filters, sort);
+
+  // 필터와 정렬 옵션을 API 호출에 전달
   const { data: activitiesContests, error } =
-    await fetchActivityContestAbstracts();
+    await fetchActivityContestAbstractWith({
+      filters,
+      sort,
+      mainCategory: '대외활동',
+    });
 
-  console.log(activitiesContests, error);
+  if (error) {
+    console.error('Error fetching activities:', error);
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
 
-  return (
-    <>
-      <Suspense fallback={<div>로딩 중...</div>}>
-        <Pagination
-          contents={activitiesContests || []} // null일 경우 빈 배열로 기본값 설정
-          GridItem={ActivityContestItem} // 그리드 아이템 컴포넌트 전달
-          webItemPerPage={16}
-          mobileItemPerPage={10}
-          columnStyle="web4mobile2"
-          gapStyle="gapStyle2" // 그리드 gap 스타일 설정
-        />
-      </Suspense>
-    </>
-  );
+  return <Activity activitiesContests={activitiesContests || []} />;
 }
