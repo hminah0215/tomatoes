@@ -3,20 +3,27 @@ import Image from 'next/image';
 import Dday from '@/components/common/Dday';
 import { formatViewCount } from '@/utils/format';
 import Link from 'next/link';
+import { useDetailUrl } from '@/utils/url';
 
-type ContestActivityDataPropsWithViewCount = {
-  id: number;
+const ThumbnailImage = ({
+  url,
+  title,
+  isMobile,
+}: {
+  url: string;
   title: string;
-  d_day: number;
-  view_count: number;
-  main_category: '공모전' | '대외활동';
-  thumbnail_url: string;
-  company: string;
-};
-
-interface ActivityContestItemProps {
-  item: ContestActivityDataPropsWithViewCount;
-}
+  isMobile: boolean;
+}) => (
+  <div
+    className={`relative overflow-hidden rounded-[20px] border border-sub-gray-100 ${
+      isMobile
+        ? 'aspect-[3/4] w-full sm:hidden'
+        : 'hidden aspect-[5/6] w-full sm:block'
+    }`}
+  >
+    <Image src={url} alt={title} fill={true} className="object-cover" />
+  </div>
+);
 
 export default function ActivityContestItem({
   item,
@@ -31,32 +38,13 @@ export default function ActivityContestItem({
     thumbnail_url,
   } = item;
 
-  const detailUrl =
-    main_category === '공모전' ? `/contest/${id}` : `/activity/${id}`;
+  const detailUrl = useDetailUrl(id, main_category);
 
   return (
     <Link href={detailUrl} className="block w-full">
-      {/* 모바일 이미지 */}
-      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[20px] border border-sub-gray-100 sm:hidden">
-        <Image
-          src={thumbnail_url}
-          alt={title}
-          fill={true}
-          className="object-cover"
-        />
-      </div>
+      <ThumbnailImage url={thumbnail_url} title={title} isMobile={true} />
+      <ThumbnailImage url={thumbnail_url} title={title} isMobile={false} />
 
-      {/* 웹 이미지 */}
-      <div className="relative hidden aspect-[5/6] w-full overflow-hidden rounded-[20px] border border-sub-gray-100 sm:block">
-        <Image
-          src={thumbnail_url}
-          alt={title}
-          fill={true}
-          className="object-cover"
-        />
-      </div>
-
-      {/* 제목, 주최기관, 디데이 및 조회수 */}
       <div className="mt-2 w-full md:mt-4">
         <h2 className="line-clamp-2 min-h-[3em] text-base font-semibold md:min-h-[3.9em] md:text-xl">
           {title}
