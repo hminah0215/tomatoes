@@ -25,12 +25,12 @@ type ActivityContestDataType = {
   award_info: string; // text, nullable
   dominant_color: string; // char(7) (e.g., "#FFFFFF"), nullable
   description: string; // text, nullable
-  main_category: 'activity' | 'contest' // varchar, limited to values "공모전" or "대외활동"
+  main_category: 'activity' | 'contest'; // varchar, limited to values "공모전" or "대외활동"
   homepage_url: string; // text, nullable
   registration_date: string; // date in ISO format ("YYYY-MM-DD")
   d_day: number; // 디데이 (숫자)
 
-  // 옵셔널 값
+  // 옵셔널
   field?: string | null;
   activity?: string | null;
   host?: string | null;
@@ -42,6 +42,7 @@ type ActivityContestDataType = {
   target?: string | null;
   organizer?: string | null;
 };
+
 // 메인 슬라이더
 type MainSliderDataProps = {
   id: number;
@@ -58,7 +59,6 @@ type MainSliderListProps = {
   item: MainSliderDataProps;
 };
 
-// 공모전, 대외활동 
 type ContestActivityDataProps = {
   id: number;
   title: string;
@@ -71,6 +71,36 @@ type ContestActivityDataProps = {
   homepage_url: string;
 };
 
+type ContestActivityDataPropsWithViewCount = {
+  id: number;
+  title: string;
+  company: string;
+  d_day: number;
+  view_count: number;
+  main_category: '공모전' | '대외활동';
+  thumbnail_url: string;
+};
+
 type ContestActivityListProps = {
   item: ContestActivityDataProps;
+};
+
+type ContestActivityData = {
+  id: number;
+  title: string;
+  company: string;
+  d_day: number;
+  view_count: number;
+  main_category: '공모전' | '대외활동';
+  thumbnail_url: string;
+};
+
+type ActivityContestItemProps = {
+  item: ContestActivityData;
+};
+
+type FetchActivityContestAbstractParams = {
+  filters?: string[];
+  sort?: string;
+  mainCategory: string;
 };
