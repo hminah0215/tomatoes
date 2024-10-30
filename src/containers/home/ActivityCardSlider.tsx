@@ -6,12 +6,16 @@ import Image from 'next/image';
 import Dday from '@/components/common/Dday';
 import { fetchActivityCardSlider } from '@/lib/fetchActivityCardSlider';
 
-
 function Card({ item }: ContestActivityListProps) {
   return (
-    <div id={`${item.id}`} className="m-3 overflow-hidden rounded-lg bg-white shadow-lg">
-      <div className="relative h-48 w-full">
-        <Image src={item.thumbnail_url} alt={item.title} fill objectFit="cover" />
+    <div id={`${item.id}`} className="m-3 overflow-hidden bg-white">
+      <div className="relative h-48 w-full shadow-md">
+        <Image 
+          src={item.thumbnail_url} 
+          alt={item.title} 
+          fill objectFit="cover" 
+          className="rounded-xl" 
+        />
       </div>
       <div className="p-4 flex flex-col h-[calc(100%-12rem)]">
         <h3 className="mb-4 text-base font-bold flex-grow">{item.title}</h3>
