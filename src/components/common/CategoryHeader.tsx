@@ -15,6 +15,7 @@ export default function CategoryHeader() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMagazine = /^\/magazine/.test(pathname);
+  const isDetailPage = /^\/(activity|contest)\/\d+$/.test(pathname); // 상세 페이지 여부 확인
 
   // 페이지 제목과 탭 설정
   const pageTitle = (() => {
@@ -131,7 +132,7 @@ export default function CategoryHeader() {
         isMagazine={isMagazine}
       />
 
-      {filters && !isMagazine && (
+      {filters && !isMagazine && !isDetailPage && (
         <FilterPanel
           filters={filters[activeTab as keyof typeof filters] || []}
           selectedFilters={selectedFilters}
