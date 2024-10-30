@@ -8,7 +8,7 @@ import { fetchActivityCardSlider } from '@/lib/fetchActivityCardSlider';
 
 function Card({ item }: ContestActivityListProps) {
   return (
-    <div id={`${item.id}`} className="m-3 overflow-hidden bg-white">
+    <div id={`${item.id}`} className="overflow-hidden bg-white">
       <div className="relative h-48 w-full shadow-md">
         <Image 
           src={item.thumbnail_url} 
@@ -17,7 +17,7 @@ function Card({ item }: ContestActivityListProps) {
           className="rounded-xl" 
         />
       </div>
-      <div className="p-4 flex flex-col h-[calc(100%-12rem)]">
+      <div className="p-3 flex flex-col h-[calc(100%-12rem)]">
         <h3 className="mb-4 text-base font-bold flex-grow">{item.title}</h3>
         <div className="flex items-center mt-auto">
           {item.d_day < 0 
@@ -91,7 +91,7 @@ function ActivityCardSlider() {
   };
 
   return (
-    <section className="flex flex-col items-center gap-4 p-4">
+    <section className="my-5 flex flex-col items-center gap-4">
       {/* 상세페이지 구현 완료되면 Link 컴포넌트로 바꿔서 링크업시킬 예정 */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {currentItems.map((card) => (

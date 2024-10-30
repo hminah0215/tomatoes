@@ -17,17 +17,17 @@ export default function Home() {
       <ContestBanner />
 
       {/* BEST PICK */}
-      <section>
-        <p className="ml-8 mt-20 font-recipe text-[28px] font-normal leading-[48px] text-point-red-500 md:text-[32px]">
+      <section className="px-[28px] md:px-[88px]">
+        <p className="mt-20 font-recipe text-[28px] font-normal leading-[48px] text-point-red-500 md:text-[32px]">
           BEST PICK
         </p>
-        <section className="mx-8 my-5 flex flex-col">
+        <section className="my-5 flex flex-col">
           <BestPickGridView />
         </section>
       </section>
 
       {/* 토마토들 추천 활동 */}
-      <section className="ml-8 mt-20 flex items-center">
+      <section className="px-[28px] md:px-[88px] mt-20 flex items-center">
         <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
           토마토들 <span className="text-point-red-500">추천 활동</span>
         </p>
@@ -39,14 +39,14 @@ export default function Home() {
           className="ml-2"
         />
       </section>
-      <section className="mx-8 my-5 flex flex-col">
+      <section className="px-[28px] md:px-[88px] my-5 flex flex-col">
         <RecoActivityGridView />
       </section>
 
       {/* 공모전 */}
-      <section className="mt-20">
+      <section className="px-[28px] md:px-[88px] mt-20">
         <div className="flex flex-row justify-between">
-          <p className="ml-8 font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
+          <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
             공모전
           </p>
           <Link
@@ -61,9 +61,9 @@ export default function Home() {
       </section>
 
       {/* 대외활동 */}
-      <section className="mt-20">
+      <section className="px-[28px] md:px-[88px] mt-20">
         <div className="flex flex-row justify-between">
-          <p className="ml-8 font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
+          <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
             대외활동
           </p>
           <Link
@@ -78,7 +78,7 @@ export default function Home() {
       </section>
 
       {/* 매거진 */}
-      <section className="ml-8 mt-20">
+      <section className="px-[28px] md:px-[88px] mt-20">
         <div className="flex flex-row justify-between">
           <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
             매거진

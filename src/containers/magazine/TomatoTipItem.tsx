@@ -45,7 +45,7 @@ const TomatoTipItem = ({ item }: TomatoTipItemProps) => {
           </div>
         </div>
 
-        <div className="hidden h-[30px] w-[120px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium text-sub-gray-300 md:block md:text-xl">
+        <div className="hidden h-[30px] w-[120px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium text-sub-gray-300 md:block md:text-base">
           {author}
         </div>
       </div>
