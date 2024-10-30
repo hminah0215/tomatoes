@@ -42,7 +42,23 @@ type ActivityContestDataType = {
   target?: string | null;
   organizer?: string | null;
 };
-// 공모전, 대외활동
+
+// 메인 슬라이더
+type MainSliderDataProps = {
+  id: number;
+  title: string;
+  main_category: 'activity' | 'contest';
+  start_date: string;
+  end_date: string;
+  thumbnail_url: string;
+  homepage_url: string;
+  dominant_color: string;
+};
+
+type MainSliderListProps = {
+  item: MainSliderDataProps;
+};
+
 type ContestActivityDataProps = {
   id: number;
   title: string;

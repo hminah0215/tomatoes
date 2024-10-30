@@ -1,48 +1,51 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import BannerLink from './BannerLink';
+import { fetchMainSlider } from '@/lib/fetchMainSlider';
+// 색상의 밝기를 구분하는 함수
+function isDarkColor(color: string) {
+  if (!color) return false;
+
+  const r = parseInt(color.slice(1, 3), 16);
+  const g = parseInt(color.slice(3, 5), 16);
+  const b = parseInt(color.slice(5, 7), 16);
+  // 색상 밝기 계산
+  const brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  // 밝기가 128보다 작으면 어두운 색으로 간주
+  return brightness < 128;
+}
 
 export default function MainSlider() {
-  const contents = [
-    {
-      imageUrl: '/assets/homePage/Main_Poster1.png',
-      title: (
-        <>
-          2024 두드림 페스티벌
-          <br />
-          자원 봉사자 모집
-        </>
-      ), // hard coding
-      period: `10월 3일(월) ~ 10월 27일(금)`, // hydration error로 인한 hard coding
-      category: '대외활동',
-      bgColor: '#eb6265',
-    },
-    {
-      imageUrl: '/assets/homePage/Main_Poster2.png',
-      title: (
-        <>
-          한국체육산업개발(주)
-          <br />
-          인스타툰 홍보웹툰 공모전
-        </>
-      ), // hard coding
-      period: `10월 18일(월) ~ 10월 31일(금)`, // hydration error로 인한 hard coding
-      category: '공모전',
-      bgColor: '#000000',
-    },
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [contents, setContents] = useState<MainSliderDataProps[]>([]); 
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % contents.length);
-    }, 5000);
+    const fetchData = async () => {
+      const { data, error } = await fetchMainSlider();
+      if (error) {
+        console.error("데이터를 가져오는 중 오류 발생:", error.message);
+      } else {
+        setContents(data || []);
+      }
+    };
 
-    return () => clearInterval(intervalId);
+    fetchData();
   }, []);
+
+  // 페이지 슬라이더
+  const [currentIndex, setCurrentIndex] = useState(0);
+  useEffect(() => {
+    if (contents.length > 0) {
+      const intervalId = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % contents.length);
+      }, 5000);
+  
+      return () => clearInterval(intervalId);
+    }
+  }, [contents]);
+  
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -53,11 +56,15 @@ export default function MainSlider() {
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % contents.length);
   };
+  // 텍스트 색상 설정
+  const textColor = isDarkColor(contents[currentIndex]?.dominant_color)
+    ? "text-white"
+    : "text-black";
 
   return (
     <div
       className="relative h-[527px] w-full overflow-hidden"
-      style={{ backgroundColor: contents[currentIndex].bgColor }}
+      style={{ backgroundColor: contents[currentIndex]?.dominant_color || '#000000' }}
     >
       <div
         className="flex h-full w-full transition-transform duration-700 ease-out"
@@ -66,16 +73,16 @@ export default function MainSlider() {
         {contents.map((content, index) => (
           <div
             key={index}
-            className="relative flex min-w-full items-center justify-center"
+            className="relative flex min-w-full items-center justify-center overflow-hidden"
           >
-            <div className="z-10 ml-20 pl-10 text-white">
-              <h1 className="mb-4 break-words text-2xl font-bold md:text-3xl">
+            <div className={`z-10 ml-20 pl-10 ${textColor}`}>
+              <h1 className="mb-4 break-words text-2xl font-bold md:text-3xl max-w-[80%]">
                 {content.title}
               </h1>
               <div className="mb-6">
-                <p className="text-base md:text-lg">기간 | {content.period}</p>
+                <p className="text-base md:text-lg">기간 | {`${content.start_date} ~ ${content.end_date}`}</p>
                 <p className="text-base md:text-lg">
-                  분야 | {content.category}
+                  분야 | {content.main_category}
                 </p>
                 <p className="text-base md:text-lg">
                   대상 | 일반인, 대학생, 청소년
@@ -86,7 +93,7 @@ export default function MainSlider() {
 
             <div className="relative right-0 mr-10 h-full w-[55%] scale-125 md:min-w-[500px]">
               <Image
-                src={content.imageUrl}
+                src={content.thumbnail_url}
                 alt={`slide-${index}`}
                 layout="fill"
                 objectFit="contain"

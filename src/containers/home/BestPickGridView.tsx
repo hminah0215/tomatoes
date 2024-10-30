@@ -6,7 +6,7 @@ import HomeGridItem from "./HomeGridItem";
 import { fetchBestPickActivities } from "@/lib/fetchBestPickGridView";
 
 export default function BestPickGridView() {
-  const [activities, setActivities] = useState<ContestActivityDataProps []>([]);
+  const [activities, setActivities] = useState<ContestActivityDataProps[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

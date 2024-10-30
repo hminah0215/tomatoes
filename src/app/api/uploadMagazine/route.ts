@@ -12,6 +12,7 @@ interface TomatoTipDataType {
   content: string;
   author: string | null;
   created_at: string | null;
+  views: string;
 }
 
 export async function POST() {
@@ -57,6 +58,7 @@ export async function POST() {
         content: item.content,
         author: item.author,
         created_at: createdAt,
+        views: parseInt(item.views, 10) || 0, // views를 정수형으로 변환하여 추가
       };
     });
 
