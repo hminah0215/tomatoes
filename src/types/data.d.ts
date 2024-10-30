@@ -41,7 +41,6 @@ type ActivityContestDataType = {
   prize_benefit?: string | null;
   target?: string | null;
   organizer?: string | null;
-  값;
 };
 // 공모전, 대외활동
 type ContestActivityDataProps = {
@@ -59,6 +58,7 @@ type ContestActivityDataProps = {
 type ContestActivityDataPropsWithViewCount = {
   id: number;
   title: string;
+  company: string;
   d_day: number;
   view_count: number;
   main_category: '공모전' | '대외활동';
@@ -67,4 +67,24 @@ type ContestActivityDataPropsWithViewCount = {
 
 type ContestActivityListProps = {
   item: ContestActivityDataProps;
+};
+
+type ContestActivityData = {
+  id: number;
+  title: string;
+  company: string;
+  d_day: number;
+  view_count: number;
+  main_category: '공모전' | '대외활동';
+  thumbnail_url: string;
+};
+
+type ActivityContestItemProps = {
+  item: ContestActivityData;
+};
+
+type FetchActivityContestAbstractParams = {
+  filters?: string[];
+  sort?: string;
+  mainCategory: string;
 };
