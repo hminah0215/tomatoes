@@ -36,7 +36,7 @@ export default function FilterPanel({
             />
           ))
         ) : (
-          <div>해당 카테고리는 필터가 없습니다.</div>
+          <div></div>
         )}
       </div>
 
