@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { fetchSearchResults } from '@/lib/fetchSearchResults';
 import SearchResults from '@/containers/search/SearchResults';
@@ -41,7 +41,9 @@ export default function SearchPage() {
             activeSort={activeSort}
             setActiveSort={setActiveSort}
           />
-          <SearchResults results={results} query={query} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SearchResults results={results} query={query} />
+          </Suspense>
         </>
       ) : (
         <NoResult />
