@@ -13,8 +13,8 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
       className="relative block"
     >
       {/* 모바일 이미지 */}
-      <div className="block sm:hidden w-full my-4 justify-self-start">
-        <div className="absolute right-4 top-4 mt-3 rounded-full bg-sub-gray-500 px-2 py-2 text-xs font-normal text-white md:right-3 md:top-3 md:px-3 md:py-1 md:text-lg md:font-medium">
+      <div className="sm:hidden w-full my-4 justify-self-start relative flex flex-col items-center">
+        <div className="absolute mt-3 rounded-full bg-sub-gray-500 px-2 py-2 text-xs font-normal text-white md:right-3 md:top-3 md:px-3 md:py-1 md:text-lg md:font-medium">
           {main_category}
         </div>
         <Image
@@ -39,11 +39,6 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
           className="rounded-[20px] border border-sub-gray-100 h-[360px] object-cover"
         />
       </div>
-
-      {/* 카테고리 */}
-      {/* <div className="absolute right-2 top-2 rounded-full bg-sub-gray-500 px-2 py-[2px] text-xs font-normal text-white md:right-3 md:top-3 md:px-3 md:py-1 md:text-lg md:font-medium">
-        {main_category}
-      </div> */}
 
       <div className="mt-2 md:mt-4">
         {/* 제목 */}

@@ -51,7 +51,7 @@ export default function Home() {
           </p>
           <Link
             href={'/contest'}
-            className="mr-10 flex flex-row items-center gap-1"
+            className="flex flex-row items-center gap-1"
           >
             더보기
             <AiOutlineRight />
@@ -68,7 +68,7 @@ export default function Home() {
           </p>
           <Link
             href={'/activity'}
-            className="mr-10 flex flex-row items-center gap-1"
+            className="flex flex-row items-center gap-1"
           >
             더보기
             <AiOutlineRight />
@@ -85,7 +85,7 @@ export default function Home() {
           </p>
           <Link
             href={'/magazine'}
-            className="mr-10 flex flex-row items-center gap-1"
+            className="flex flex-row items-center gap-1"
           >
             더보기
             <AiOutlineRight />
