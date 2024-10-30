@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import CategoryHeader from '@/components/common/CategoryHeader';
 
 export default function ContestLayout({
@@ -7,7 +8,9 @@ export default function ContestLayout({
 }) {
   return (
     <>
-      <CategoryHeader />
+      <Suspense fallback={<div>로딩 중...</div>}>
+        <CategoryHeader />
+      </Suspense>
       {children}
     </>
   );
