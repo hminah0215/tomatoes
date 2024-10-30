@@ -13,6 +13,9 @@ const pretendard_var = localFont({
 export const metadata: Metadata = {
   title: '토마토들',
   description: '토마토들에서 나에게 딱 맞는 공모전을 찾아보세요!',
+  icons: {
+    icon: '/assets/common/MO_nav_t.svg', // 파비콘으로 사용할 이미지
+  },
 };
 
 export default function RootLayout({

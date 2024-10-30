@@ -34,6 +34,93 @@ export type Database = {
   };
   public: {
     Tables: {
+      activities_contests: {
+        Row: {
+          activity: string | null;
+          award_info: string | null;
+          company: string | null;
+          created_at: string | null;
+          d_day: number | null;
+          department: string | null;
+          description: string | null;
+          dominant_color: string | null;
+          duration: string | null;
+          end_date: string | null;
+          field: string | null;
+          homepage_url: string | null;
+          host: string | null;
+          id: number;
+          main_category: string | null;
+          organizer: string | null;
+          prize_amount: string | null;
+          prize_benefit: string | null;
+          region: string | null;
+          registration_date: string | null;
+          start_date: string | null;
+          target: string | null;
+          thumbnail_url: string | null;
+          title: string;
+          updated_at: string | null;
+          view_count: number | null;
+        };
+        Insert: {
+          activity?: string | null;
+          award_info?: string | null;
+          company?: string | null;
+          created_at?: string | null;
+          d_day?: number | null;
+          department?: string | null;
+          description?: string | null;
+          dominant_color?: string | null;
+          duration?: string | null;
+          end_date?: string | null;
+          field?: string | null;
+          homepage_url?: string | null;
+          host?: string | null;
+          id?: number;
+          main_category?: string | null;
+          organizer?: string | null;
+          prize_amount?: string | null;
+          prize_benefit?: string | null;
+          region?: string | null;
+          registration_date?: string | null;
+          start_date?: string | null;
+          target?: string | null;
+          thumbnail_url?: string | null;
+          title: string;
+          updated_at?: string | null;
+          view_count?: number | null;
+        };
+        Update: {
+          activity?: string | null;
+          award_info?: string | null;
+          company?: string | null;
+          created_at?: string | null;
+          d_day?: number | null;
+          department?: string | null;
+          description?: string | null;
+          dominant_color?: string | null;
+          duration?: string | null;
+          end_date?: string | null;
+          field?: string | null;
+          homepage_url?: string | null;
+          host?: string | null;
+          id?: number;
+          main_category?: string | null;
+          organizer?: string | null;
+          prize_amount?: string | null;
+          prize_benefit?: string | null;
+          region?: string | null;
+          registration_date?: string | null;
+          start_date?: string | null;
+          target?: string | null;
+          thumbnail_url?: string | null;
+          title?: string;
+          updated_at?: string | null;
+          view_count?: number | null;
+        };
+        Relationships: [];
+      };
       tomato_tips: {
         Row: {
           author: string | null;
@@ -42,6 +129,7 @@ export type Database = {
           id: number;
           link: string;
           title: string;
+          views: number | null;
         };
         Insert: {
           author?: string | null;
@@ -50,6 +138,7 @@ export type Database = {
           id?: number;
           link: string;
           title: string;
+          views?: number | null;
         };
         Update: {
           author?: string | null;
@@ -58,6 +147,7 @@ export type Database = {
           id?: number;
           link?: string;
           title?: string;
+          views?: number | null;
         };
         Relationships: [];
       };
@@ -66,7 +156,24 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      search_tomato_tips: {
+        Args: {
+          query: string;
+        };
+        Returns: {
+          author: string | null;
+          content: string;
+          created_at: string | null;
+          id: number;
+          link: string;
+          title: string;
+          views: number | null;
+        }[];
+      };
+      update_d_day: {
+        Args: Record<PropertyKey, never>;
+        Returns: undefined;
+      };
     };
     Enums: {
       [_ in never]: never;
