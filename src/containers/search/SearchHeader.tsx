@@ -1,24 +1,27 @@
 'use client';
 
 import TabItem from '@/components/common/TabItem';
-import { useState } from 'react';
 import { searchFilters, sortSearchOptions } from '@/constants/consts';
-import SearchBar from '@/components/common/SearchBar';
 
-export default function SearchHeader() {
+interface SearchHeaderProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+  activeSort: string;
+  setActiveSort: (sort: string) => void;
+}
+
+export default function SearchHeader({
+  activeTab,
+  setActiveTab,
+  activeSort,
+  setActiveSort,
+}: SearchHeaderProps) {
   const tabs = Object.keys(searchFilters) as Array<keyof typeof searchFilters>;
-  const [activeTab, setActiveTab] =
-    useState<keyof typeof searchFilters>('전체');
-  const [activeSort, setActiveSort] = useState('관련도순');
-
-  const handleTabClick = (tab: keyof typeof searchFilters) => {
-    setActiveTab(tab);
-  };
 
   return (
     <>
       {/* 웹 컴포넌트 */}
-      <section className="mb-14 hidden px-[88px] pt-[74px] md:block">
+      <section className="hidden px-[88px] pt-[74px] md:block">
         <h1 className="pb-7 font-recipe text-[32px] font-medium">검색</h1>
 
         <section className="flex justify-between border-b-[1px] pl-[14px]">
@@ -28,11 +31,10 @@ export default function SearchHeader() {
                 key={index}
                 tab={tab}
                 isActive={activeTab === tab}
-                onClick={() => handleTabClick(tab)} // 탭 클릭 시 동작
+                onClick={() => setActiveTab(tab)} // 탭 클릭 시 동작
               />
             ))}
           </ul>
-          <SearchBar placeholder="검색어를 입력해주세요" />
         </section>
 
         {/* 정렬 패널 */}
@@ -60,7 +62,7 @@ export default function SearchHeader() {
 
       {/* 모바일 컴포넌트 */}
       <section className="md:hidden">
-        <h1 className="pb-7 font-recipe text-[32px] font-medium">공모전</h1>
+        <h1 className="pb-7 font-recipe text-[32px] font-medium">검색</h1>
 
         <section className="flex justify-between border-b-[1px] pl-[14px]">
           <ul className="flex gap-20 whitespace-nowrap text-base">
@@ -69,7 +71,7 @@ export default function SearchHeader() {
                 key={index}
                 tab={tab}
                 isActive={activeTab === tab}
-                onClick={() => handleTabClick(tab)} // 탭 클릭 시 동작
+                onClick={() => setActiveTab(tab)} // 탭 클릭 시 동작
               />
             ))}
           </ul>
