@@ -1,4 +1,3 @@
-// CategoryHeader.tsx
 'use client';
 
 import TabMenu from './TabMenu';
@@ -15,17 +14,18 @@ export default function CategoryHeader() {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const isMagazine = /^\/magazine/.test(pathname);
 
   // 페이지 제목과 탭 설정
   const pageTitle = (() => {
-    if (/^\/magazine/.test(pathname)) return '매거진';
+    if (isMagazine) return '매거진';
     if (/^\/activity/.test(pathname)) return '대외활동';
     if (/^\/contest/.test(pathname)) return '공모전';
     return '';
   })();
 
   const tabs = (() => {
-    if (/^\/magazine/.test(pathname))
+    if (isMagazine)
       return [
         { name: '토마토Pick', path: '/magazine' },
         { name: '토마토Tip', path: '/magazine/tomatoTip' },
@@ -57,15 +57,17 @@ export default function CategoryHeader() {
     return null;
   })();
 
-  // URL에서 상태 초기화
+  // URL에서 상태 초기화 (magazine이 아닐 때만)
   const [activeTab, setActiveTab] = useState(tabs[0]?.name);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [activeSort, setActiveSort] = useState(
     searchParams.get('sort') || '관련도순'
   );
 
-  // URL 파라미터로부터 초기 상태 설정
+  // URL 파라미터로부터 초기 상태 설정 (magazine이 아닐 때만)
   useEffect(() => {
+    if (isMagazine) return;
+
     const tabFromUrl = searchParams.get('tab');
     const filtersFromUrl = searchParams
       .get('filters')
@@ -76,7 +78,7 @@ export default function CategoryHeader() {
     if (tabFromUrl) setActiveTab(tabFromUrl);
     if (filtersFromUrl) setSelectedFilters(filtersFromUrl);
     if (sortFromUrl) setActiveSort(sortFromUrl);
-  }, []);
+  }, [isMagazine, searchParams]);
 
   // URL 업데이트 함수
   const updateURL = (newTab: string, newFilters: string[], newSort: string) => {
@@ -91,6 +93,8 @@ export default function CategoryHeader() {
 
   // 이벤트 핸들러
   const handleTabClick = (tabName: string) => {
+    if (isMagazine) return; // magazine일 경우 처리하지 않음
+
     setActiveTab(tabName);
     updateURL(tabName, [], activeSort);
   };
@@ -120,9 +124,14 @@ export default function CategoryHeader() {
       <h1 className="pb-7 pl-7 font-recipe text-2xl font-medium md:pl-[88px] md:text-[32px]">
         {pageTitle}
       </h1>
-      <TabMenu tabs={tabs} activeTab={activeTab} onTabClick={handleTabClick} />
+      <TabMenu
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabClick={handleTabClick}
+        isMagazine={isMagazine}
+      />
 
-      {filters && (
+      {filters && !isMagazine && (
         <FilterPanel
           filters={filters[activeTab as keyof typeof filters] || []}
           selectedFilters={selectedFilters}
