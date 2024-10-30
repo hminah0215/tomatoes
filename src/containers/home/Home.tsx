@@ -8,12 +8,14 @@ import Link from 'next/link';
 import BestPickGridView from './BestPickGridView';
 import RecoActivityGridView from './RecoActivityGridView';
 import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
+import MoMainSlider from './MoMainSlider';
 
 export default function Home() {
   return (
     <>
       {/* 메인 공고 컴포넌트 */}
-      <MainSlider />
+      <div className="hidden md:block"><MainSlider /></div>
+      <div className="block md:hidden"><MoMainSlider /></div>
       <ContestBanner />
 
       {/* BEST PICK */}
