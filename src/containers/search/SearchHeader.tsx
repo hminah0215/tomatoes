@@ -62,7 +62,7 @@ export default function SearchHeader({
 
       {/* 모바일 컴포넌트 */}
       <section className="md:hidden">
-        <h1 className="pb-7 font-recipe text-[32px] font-medium">공모전</h1>
+        <h1 className="pb-7 font-recipe text-[32px] font-medium">검색</h1>
 
         <section className="flex justify-between border-b-[1px] pl-[14px]">
           <ul className="flex gap-20 whitespace-nowrap text-base">
