@@ -1,38 +1,36 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { Suspense, useState, useEffect } from 'react';
 import { fetchSearchResults } from '@/lib/fetchSearchResults';
 import SearchResults from '@/containers/search/SearchResults';
 import NoResult from '@/components/common/noResult';
 import SearchHeader from '@/containers/search/SearchHeader';
+import SearchContent from '@/containers/search/SearchContent';
 
 export default function SearchPage() {
-  const searchParams = useSearchParams();
-  const query = searchParams.get('query') || '';
   const [results, setResults] = useState([]);
+  const [query, setQuery] = useState(''); // Query 상태 관리
   const [activeTab, setActiveTab] = useState('전체');
   const [activeSort, setActiveSort] = useState('관련도순');
 
-  useEffect(() => {
-    if (query) {
-      console.log('검색어:', query);
+  const fetchResults = async () => {
+    const { data, error } = await fetchSearchResults(
+      query,
+      activeTab,
+      activeSort
+    );
+    if (data) setResults(data);
+    else if (error) console.error('검색 오류:', error);
+  };
 
-      const fetchResults = async () => {
-        const { data, error } = await fetchSearchResults(
-          query,
-          activeTab,
-          activeSort
-        );
-        if (data) setResults(data);
-        else if (error) console.error('검색 오류:', error);
-      };
-      fetchResults();
-    }
+  useEffect(() => {
+    if (query) fetchResults();
   }, [query, activeTab, activeSort]);
 
   return (
-    <>
+    <Suspense fallback={<div>로딩 중...</div>}>
+      {/* 쿼리 파라미터 가져오기 */}
+      <SearchContent onContentChange={setQuery} />
       {results.length > 0 ? (
         <>
           <SearchHeader
@@ -41,13 +39,11 @@ export default function SearchPage() {
             activeSort={activeSort}
             setActiveSort={setActiveSort}
           />
-          <Suspense fallback={<div>Loading...</div>}>
-            <SearchResults results={results} query={query} />
-          </Suspense>
+          <SearchResults results={results} query={query} />
         </>
       ) : (
         <NoResult />
       )}
-    </>
+    </Suspense>
   );
 }
