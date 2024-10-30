@@ -3,7 +3,7 @@
 import Image from 'next/image';
 
 import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
-import MagazineList from '@/containers/magazine/MagazineList';
+import MtomatoPick from '@/containers/magazine/MtomatoPick';
 
 const MagazinePage = () => {
   return (
@@ -31,9 +31,13 @@ const MagazinePage = () => {
             지금 꼭 봐야하는 매거진
           </div>
           <CurrentHighlights />
+
+          <div className="font-['Recipekorea'] text-[20px] font-medium text-sub-gray-500 md:text-[32px]">
+            토마토 Pick
+          </div>
         </div>
+        <MtomatoPick />
       </div>
-      <MagazineList />
     </>
   );
 };
