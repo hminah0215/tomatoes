@@ -141,8 +141,8 @@ export default function ActivityDetail({
       {activeTab === '상세내용' && (
         <ActivityContestDescription description={description} />
       )}
-      {activeTab === '토마토 TIP' && <div />} {/* 빈 컴포넌트 */}
-      {activeTab === '수상작 갤러리' && <div />} {/* 빈 컴포넌트 */}
+      {activeTab === '토마토 TIP' && <div />}
+      {activeTab === '수상작 갤러리' && <div />}
     </section>
   );
 }

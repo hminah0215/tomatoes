@@ -14,7 +14,7 @@ export default function SearchBar({ placeholder, onSearch }: SearchBarProps) {
   const onKeywordSearchHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (keyword.trim().length === 0) {
-      alert('검색어를 입력해 주세요🍅'); // 검색어가 비어 있을 때 경고 메시지 표시
+      alert('검색어를 입력해 주세요🍅');
       return;
     }
     onSearch(keyword);

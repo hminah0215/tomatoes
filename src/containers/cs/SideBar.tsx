@@ -19,15 +19,12 @@ export default function SideBar({
 
   return (
     <div>
-      {/* 제목 */}
       <div className="h-[48px] w-[154px] font-recipe text-2xl font-normal text-sub-gray-500 md:w-[204px] md:text-[32px]">
         공고등록/문의
       </div>
 
-      {/* 구분선 */}
       <div className="mb-6 mt-4 h-px w-[318px] rounded-full bg-sub-gray-300 md:mb-[64px] md:mt-[24px] md:block md:h-[3px] md:w-[200px] md:bg-sub-gray-500" />
 
-      {/* 메뉴 */}
       <div className="hidden h-[323px] w-[187px] space-y-[32px] md:block">
         {menuItems.map((item) => {
           const isActive = activeContent === item.key;

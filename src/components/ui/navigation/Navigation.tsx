@@ -35,7 +35,6 @@ export default function Navigation() {
     <nav className={containerClasses}>
       <ul className={listClasses}>
         {navItems.map((item) => {
-          // pathname이 item.route로 시작하는 경우 isActive를 true로 설정
           const isActive = new RegExp(`^${item.route}`).test(pathname);
           return <NavItem key={item.name} {...item} isActive={isActive} />;
         })}

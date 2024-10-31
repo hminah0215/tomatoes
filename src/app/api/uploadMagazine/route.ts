@@ -17,13 +17,11 @@ export async function POST(req: Request) {
     // 이렇게 변경해서 GitHub Actions에서 JSON 데이터를 요청 본문에서 직접 읽어와서 사용하는게 가능해짐!
     const postData: TomatoTipDataType[] = await req.json();
 
-    // 현재 날짜 가져오기
     const today = new Date();
     const currentDate = `${today.getFullYear()}-${String(
       today.getMonth() + 1
     ).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
-    // created_at 형식 변환
     const formattedData = postData.map((item) => {
       let createdAt;
 

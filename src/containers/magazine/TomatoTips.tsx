@@ -11,7 +11,7 @@ const TomatoTips = () => {
 
   useEffect(() => {
     const fetchTips = async () => {
-      const { data, error } = await fetchAllTomatoTips(); // 모든 데이터 가져오기
+      const { data, error } = await fetchAllTomatoTips(); 
 
       if (error) {
         console.error('Error fetching tips:', error);
@@ -31,11 +31,10 @@ const TomatoTips = () => {
       <div className="mb-[72px] flex flex-col items-center px-7 md:mb-[120px] md:mt-10 md:items-start md:px-[88px]">
         {tips.length > 0 && (
           <>
-            {/* {console.log('Tips Contents:', tips)} Tips 로그 */}
             <Suspense fallback={<div>로딩 중...</div>}>
               <Pagination
                 contents={tips}
-                GridItem={TomatoTipItem} // TomatoTipItem을 그리드 아이템으로 전달
+                GridItem={TomatoTipItem}
                 webItemPerPage={15}
                 mobileItemPerPage={12}
                 columnStyle="web3mobile1"

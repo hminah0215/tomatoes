@@ -4,9 +4,7 @@ import Image from 'next/image';
 export default function Footer() {
   return (
     <footer className="bg-main-beige">
-      {/* 모바일 섹션 */}
       <div className="flex flex-col items-center gap-4 px-8 py-8 md:hidden">
-        {/* 모바일 Footer 전용 버튼 */}
         <div className="relative flex h-8 w-[100px] items-center rounded-[5px] bg-white shadow">
           <Link href="/intro" className="absolute inset-0 flex items-center">
             <span className="pl-[9px] text-[10px] font-medium">
@@ -22,7 +20,6 @@ export default function Footer() {
             />
           </div>
         </div>
-        {/* 모바일 Footer 하단 섹션*/}
         <div className="flex flex-col items-center gap-2">
           <div className="flex gap-4">
             <Link href="/" className="text-xs underline">
@@ -60,10 +57,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* PC 섹션 */}
       <div className="hidden h-[536px] flex-col items-start justify-start gap-2.5 px-[84px] py-16 md:flex">
         <div className="flex h-[408px] w-full items-start justify-between gap-[72px]">
-          {/* 좌측 섹션 */}
           <div className="flex items-start justify-start gap-[88px]">
             <div className="flex flex-col items-start justify-start gap-6">
               <div>TOMATO.DLE</div>
@@ -112,7 +107,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 우측 섹션 (로고와 인스타그램) */}
           <div className="flex flex-col items-end justify-start gap-8">
             <div>
               <Image
@@ -135,7 +129,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 하단 법적 정보 섹션 */}
         <div className="flex h-[72px] w-full flex-col items-start justify-start gap-6">
           <div className="flex items-center justify-start gap-10">
             <div>Copyright ©Tomato.DLE. All Rights Reserved.</div>

@@ -17,7 +17,6 @@ export const fetchTomatoTipById = async (
   return { data, error };
 };
 
-// 모든 데이터를 가져오는 함수, 매거진 리스트를 보일때 사용
 export const fetchAllTomatoTips = async (): Promise<{
   data: TomatoTipDataType[] | null;
   error: PostgrestError | null;

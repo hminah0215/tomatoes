@@ -72,7 +72,6 @@ export const fetchActivityContestDetailWith = async (
       return { data: null, error };
     }
 
-    // data를 unknown으로 먼저 변환 후 ActivityContestDetail로 캐스팅
     return { data: data as unknown as ActivityContestDetail, error: null };
   } catch (error) {
     console.error('Error fetching data:', error);

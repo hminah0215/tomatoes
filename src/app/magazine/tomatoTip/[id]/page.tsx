@@ -12,13 +12,12 @@ const TomatoTipDetailPage = async ({ params }: { params: { id: string } }) => {
   const { data: fetchedTip, error } = await fetchTomatoTipById(numericId);
 
   if (error || !fetchedTip) {
-    return <NotFound />; // 데이터가 없으면 404 페이지 표시
+    return <NotFound />;
   }
 
   return (
     <>
       <div className="relative">
-        {/* 배너 이미지 */}
         <div className="relative mt-[23px] w-full overflow-hidden md:mt-[67px]">
           <Image
             src="/assets/magazine/PC_mzDetail_banner.svg"
@@ -35,7 +34,6 @@ const TomatoTipDetailPage = async ({ params }: { params: { id: string } }) => {
             className="block w-full object-cover md:hidden"
           />
         </div>
-        {/* 왼쪽 배경 이미지 */}
         <div className="fixed bottom-[41.14px] left-0 z-[-1] hidden h-[598.86px] w-[489px] opacity-80 md:block">
           <Image
             src="/assets/magazine/PC_mzDetail_left.svg"
@@ -45,7 +43,6 @@ const TomatoTipDetailPage = async ({ params }: { params: { id: string } }) => {
             className="pointer-events-none"
           />
         </div>
-        {/* 오른쪽 배경 이미지 */}
         <div className="fixed right-0 top-[136.01px] z-[-1] hidden h-[202.03px] w-[191.22px] opacity-80 md:block">
           <Image
             src="/assets/magazine/PC_mzDetail_right.svg"
@@ -61,7 +58,6 @@ const TomatoTipDetailPage = async ({ params }: { params: { id: string } }) => {
 
         <div className="relative mx-auto mb-16 mt-8 h-[2px] max-w-[319px] bg-sub-gray-100 md:mb-[80px] md:mt-[104px] md:max-w-[1264px]"></div>
 
-        {/* 지금 꼭 봐야하는 매거진 */}
         <div className="px-[28px] md:px-[88px]">
           <CurrentHighlights />
         </div>

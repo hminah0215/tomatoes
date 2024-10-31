@@ -12,7 +12,6 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
       href={`${en_main_category}/${id}`} 
       className="relative block"
     >
-      {/* 모바일 이미지 */}
       <div className="block sm:hidden w-full justify-self-end">
         <div className="absolute mt-5 ml-4 rounded-full bg-sub-gray-500 p-2 text-xs font-normal text-white md:text-lg md:font-medium">
           {main_category}
@@ -26,7 +25,6 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
         />
       </div>
 
-      {/* 웹 이미지 */}
       <div className="hidden sm:block w-full justify-self-end">
         <div className="absolute mt-5 ml-5 rounded-full bg-sub-gray-500 p-2 text-xs font-normal text-white md:text-base md:font-medium">
           {main_category}
@@ -41,12 +39,10 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
       </div>
 
       <div className="mt-2 md:mt-4">
-        {/* 제목 */}
         <h2 className="line-clamp-0.5 h-12 mb-2 text-sm font-semibold md:h-[78px] md:text-base md:font-semibold lg:text-lg">
           {title}
         </h2>
 
-        {/* D-Day 및 접수 기간 */}
         <div className="flex items-center gap-1.5">
           <Dday type="active" day={d_day} color={d_day <= 7 ? 'red' : d_day <= 31 ? 'yellow' : 'green'} />
           <p className="md:text-md text-xs font-normal text-sub-gray-300 sm:text-sm md:font-medium md:text-sm lg:text-base xl:text-base">

@@ -104,8 +104,6 @@ export const searchFilters = {
   대외활동: [],
 };
 
-// sortOptions 상수 정의
 export const sortOptions = ['관련도순', '최신순', '조회순', '마감순'];
 
-// sortSearchOptions 상수 정의
 export const sortSearchOptions = ['관련도순', '최신순', '조회순'];

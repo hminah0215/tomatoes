@@ -13,7 +13,6 @@ const MagazineReport = () => {
 
   return (
     <div className="relative flex flex-col items-center">
-      {/* PC 버전 이미지 */}
       <div className="mx-[636px] my-[100px] mb-[161px] hidden h-[271px] w-[168px] md:block">
         <Image
           src="/assets/magazine/PC_report_tomato.svg"
@@ -23,7 +22,6 @@ const MagazineReport = () => {
         />
       </div>
 
-      {/* 모바일 버전 이미지 */}
       <div className="mx-[104px] my-[100px] mb-[225px] block h-[271px] w-[168px] md:hidden">
         <Image
           src="/assets/magazine/MO_report_tomato.svg"
@@ -33,7 +31,6 @@ const MagazineReport = () => {
         />
       </div>
 
-      {/* 알럿 창 */}
       {isAlertOpen && (
         <div className="fixed left-1/2 top-1/2 z-50 flex items-center justify-center">
           <MReportCoustomAlert

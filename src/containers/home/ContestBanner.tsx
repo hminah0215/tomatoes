@@ -7,7 +7,6 @@ export default function ContestBanner() {
       href={`/contest`}
       className="mx-5 my-5 flex justify-center md:my-10 md:mt-10"
     >
-      {/* 데스크탑 로고 */}
       <Image
         src={`/assets/homePage/PC_banner.svg`}
         alt="banner"
@@ -16,7 +15,6 @@ export default function ContestBanner() {
         className="hidden rounded-[10px] md:block"
       />
 
-      {/* 모바일 로고 */}
       <Image
         src={`/assets/homePage/MO_banner.svg`}
         alt="banner"

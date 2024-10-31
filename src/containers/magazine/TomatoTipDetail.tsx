@@ -1,7 +1,7 @@
 import { TomatoTipDataType } from '@/types/tomatoTips';
 
 interface TomatoTipDetailProps {
-  tipData: TomatoTipDataType; // Tip 대신 TomatoTipDataType 사용
+  tipData: TomatoTipDataType;
 }
 
 const TomatoTipDetail = ({ tipData }: TomatoTipDetailProps) => {
@@ -9,12 +9,9 @@ const TomatoTipDetail = ({ tipData }: TomatoTipDetailProps) => {
     <>
       {/* 콘텐츠 영역 */}
       <div className="relative mx-auto flex max-w-screen-md flex-col justify-center px-7 md:px-0">
-        {/* 콘텐츠 섹션 */}
         <div className="mt-[26.85px] w-full rounded-lg md:mt-[56px]">
-          {/* tip이 로드되었을 때만 렌더링 */}
           {tipData && (
             <>
-              {/* 제목, 작성자, 작성일 */}
               <h1 className="mb-[6px] text-2xl font-semibold leading-9 text-sub-gray-500 md:mb-3 md:text-5xl md:font-bold md:leading-[72px]">
                 {tipData.title}
               </h1>
@@ -25,21 +22,18 @@ const TomatoTipDetail = ({ tipData }: TomatoTipDetailProps) => {
                   : '정보 없음'}
               </p>
 
-              {/* 회색줄 */}
               <div className="relative mb-[34px] h-[2px] w-full bg-sub-gray-100 md:mb-[52px]"></div>
 
-              {/* 내용 */}
               <div className="space-y-4 text-sm font-normal leading-normal text-sub-gray-500 md:text-2xl md:leading-9">
                 <div dangerouslySetInnerHTML={{ __html: tipData.content }} />
               </div>
 
-              {/* 원본 링크 */}
               {tipData.link && (
                 <div className="mt-8 text-center">
                   <a
                     href={tipData.link}
                     target="_blank"
-                    rel="noopener noreferrer" // 보안을 강화하고 원래 페이지 URL 정보 숨기기
+                    rel="noopener noreferrer"
                     className="text-base font-medium text-blue-500 hover:underline md:text-xl"
                   >
                     ▶️ 원본 글 보러가기

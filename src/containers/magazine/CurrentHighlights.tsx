@@ -11,7 +11,6 @@ const CurrentHighlights = () => {
 
   useEffect(() => {
     const fetchTips = async () => {
-      // 필요한 3개의 데이터만 가져오는 함수 불러서 쓰기
       const { data, error } = await fetchThreeTomatoTips();
 
       if (error) {

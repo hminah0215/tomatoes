@@ -4,7 +4,7 @@ import { TomatoTipDataType } from '@/types/tomatoTips';
 import Tag from '@/components/common/Tag';
 
 interface TomatoTipItemProps {
-  item: TomatoTipDataType; // 원래 tip 속성
+  item: TomatoTipDataType;
 }
 
 const TomatoTipItem = ({ item }: TomatoTipItemProps) => {

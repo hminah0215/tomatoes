@@ -1,5 +1,3 @@
-// src/app/magazine/page.tsx
-
 import Image from 'next/image';
 import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 import MtomatoPick from '@/containers/magazine/MtomatoPick';

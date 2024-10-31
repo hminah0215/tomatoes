@@ -1,4 +1,3 @@
-// Pagination.tsx
 'use client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import GridView from '../grid/GridView';
@@ -66,7 +65,7 @@ export default function Pagination<T>({
   };
 
   return (
-    <section className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4 px-[28px] md:px-[88px]">
       <GridView<T>
         items={currentItems}
         GridItem={GridItem}

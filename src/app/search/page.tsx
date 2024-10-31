@@ -29,7 +29,6 @@ export default function SearchPage() {
 
   return (
     <Suspense fallback={<div>로딩 중...</div>}>
-      {/* 쿼리 파라미터 가져오기 */}
       <SearchContent onContentChange={setQuery} />
       {results.length > 0 ? (
         <>
