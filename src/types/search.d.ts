@@ -6,16 +6,16 @@ type SearchBarProps = {
 type SearchResult = {
   id: number;
   title: string;
-  author?: string; // `tomato_tips` 전용
-  company?: string; // `activities_contests` 전용
-  link?: string;
+  author?: string;
+  company?: string;
+  link: string | null;
   content?: string;
   description?: string;
   created_at?: string;
   view_count?: number;
-  thumbnail_url?: string; // `activities_contests` 전용
-  main_category?: string; // `activities_contests` 전용
-  homepage_url?: string; // `activities_contests` 전용
+  thumbnail_url: string | null;
+  main_category?: string;
+  homepage_url?: string;
   start_date?: string;
   end_date?: string;
   award_info?: string;

@@ -8,7 +8,7 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
     return <NoResult searchKeyword={query} />;
   }
 
-  const getResultHref = (result: any) => {
+  const getResultHref = (result: SearchResult) => {
     if (result.link) return `/magazine/tomatoTip/${result.id}`;
     if (result.main_category === '공모전') return `/contest/${result.id}`;
     if (result.main_category === '대외활동') return `/activity/${result.id}`;
@@ -33,16 +33,18 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
                   height={168}
                 />
                 <div className="flex flex-col items-start gap-3 pl-[14px]">
-                  {result.author && (
-                    <div className="text-xl font-medium text-sub-gray-300">
-                      {result.author}
-                    </div>
-                  )}
-                  {result.company && (
-                    <div className="text-xl font-medium text-sub-gray-300">
+                  <div className="flex">
+                    <div>공모전</div>
+                    <div className="ml-[12px] text-[20px] font-medium text-sub-gray-400">
                       {result.company}
                     </div>
-                  )}
+                  </div>
+                  <div className="text-[32px] font-semibold text-sub-gray-500">
+                    {result.title}
+                  </div>
+                  <div className="text-xl font-medium text-sub-gray-300">
+                    조회 {(result.view_count ?? 0).toLocaleString()}회
+                  </div>
                 </div>
               </div>
             </Link>
