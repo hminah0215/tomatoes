@@ -36,7 +36,9 @@ export default function GridSlideView<T>({
   return (
     <div className={gridClass}>
       {items.map((item, index) => (
-        <GridItem key={index} item={item} />
+        <div key={index} className="w-4/5 flex-shrink-0 md:w-auto">
+          <GridItem item={item} />
+        </div>
       ))}
     </div>
   );

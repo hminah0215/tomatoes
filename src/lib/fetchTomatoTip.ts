@@ -10,7 +10,7 @@ export const fetchTomatoTipById = async (
 }> => {
   const { data, error } = await supabase
     .from('tomato_tips')
-    .select('id, title, author, created_at, content, link')
+    .select('*')
     .eq('id', id)
     .single();
 
@@ -21,7 +21,10 @@ export const fetchAllTomatoTips = async (): Promise<{
   data: TomatoTipDataType[] | null;
   error: PostgrestError | null;
 }> => {
-  const { data, error } = await supabase.from('tomato_tips').select('*');
+  const { data, error } = await supabase
+    .from('tomato_tips')
+    .select('*')
+    .order('created_at', { ascending: false }); // created_at을 기준으로 내림차순 정렬
 
   if (error) {
     console.error('fetchAllTomatoTips 데이터가져오기 실패:', error);
@@ -30,15 +33,17 @@ export const fetchAllTomatoTips = async (): Promise<{
   return { data, error };
 };
 
+// 지금 꼭 봐야하는 매거진 - 조회수 상위 3개만 가져오기
+// 데이터 전송량을 줄이고 클라이언트에서 필터링 작업을 할 필요없도록 생성한 함수
 export const fetchThreeTomatoTips = async (): Promise<{
   data: TomatoTipDataType[] | null;
   error: PostgrestError | null;
 }> => {
   const { data, error } = await supabase
     .from('tomato_tips')
-    .select('id, title, author, created_at, content, link')
-    .order('created_at', { ascending: false })
-    .limit(3);
+    .select('*')
+    .order('views', { ascending: false }) // 조회수 순으로 내림차순 정렬
+    .limit(3); // 상위 3개만 가져오기
 
   if (error) {
     console.error('fetchThreeTomatoTips 데이터가져오기 실패:', error);

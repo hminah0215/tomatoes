@@ -12,12 +12,39 @@ type ActivityContestDetail = {
   homepage_url: string;
   d_day: number;
   description: string;
-  department?: string; 
-  target?: string; 
+  department?: string;
+  target?: string;
   field?: string;
   duration?: string;
 };
 
+/**
+ * Fetches detailed information for a specific activity or contest item from Supabase.
+ *
+ * @async
+ * @function fetchActivityContestDetailWith
+ * @param {number} id - The unique identifier of the activity or contest item.
+ * @param {string} mainCategory - The main category, which determines additional fields to include.
+ *                                - `'공모전'`: Includes `department` and `target` fields.
+ *                                - `'대외활동'`: Includes `field` and `duration` fields.
+ *
+ * @returns {Promise<{data: ActivityContestDetail | null, error: PostgrestError | null}>}
+ *          A promise that resolves to an object containing:
+ *          - `data`: The detailed information of the specified item or `null` if an error occurred.
+ *          - `error`: Supabase's `PostgrestError` object or `null` if no error occurred.
+ *
+ * @throws Will log an error if the data fetching fails.
+ *
+ * @example
+ * // Fetch the details of an activity with ID 1 and main category '대외활동'
+ * const { data, error } = await fetchActivityContestDetailWith(1, '대외활동');
+ *
+ * if (error) {
+ *   console.error('Error fetching detail:', error);
+ * } else {
+ *   console.log('Activity Contest Detail:', data);
+ * }
+ */
 export const fetchActivityContestDetailWith = async (
   id: number,
   mainCategory: string

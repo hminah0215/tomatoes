@@ -98,7 +98,7 @@ export const contestFilters = {
 };
 
 export const searchFilters = {
-  전체: ['매거진', '공모전', '대외활동'],
+  전체: [],
   매거진: [],
   공모전: [],
   대외활동: [],

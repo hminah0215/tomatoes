@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Dday from '@/components/common/Dday';
 import ActivityContestDetailTab from '@/components/common/ActivityContestDetailTab';
 import ActivityContestDescription from '@/components/common/ActivityContestDescription';
+import { formatDate } from '@/utils/format';
 import { useState } from 'react';
 
 type ActivityContestDetailProps = {
@@ -38,10 +39,17 @@ export default function ContestDetail({
   target,
 }: ActivityContestDetailProps) {
   const [activeTab, setActiveTab] = useState('상세내용');
+  const [formatted_start_date, formatted_end_date] = [
+    formatDate(start_date),
+    formatDate(end_date),
+  ];
 
   const details = [
     { label: '공모 분야', value: department },
-    { label: '공모 기간', value: `${start_date} ~ ${end_date}` },
+    {
+      label: '공모 기간',
+      value: `${formatted_start_date} ~ ${formatted_end_date}`,
+    },
     { label: '주최 기관', value: company },
     { label: '참여 대상', value: target },
     {

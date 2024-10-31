@@ -7,6 +7,7 @@ interface TomatoTipDetailProps {
 const TomatoTipDetail = ({ tipData }: TomatoTipDetailProps) => {
   return (
     <>
+      {/* 콘텐츠 영역 */}
       <div className="relative mx-auto flex max-w-screen-md flex-col justify-center px-7 md:px-0">
         <div className="mt-[26.85px] w-full rounded-lg md:mt-[56px]">
           {tipData && (

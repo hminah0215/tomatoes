@@ -11,7 +11,6 @@ export default function SideBar({
   setActiveContent,
 }: SideBarProps) {
   const menuItems = [
-    { key: 'tomato-report', label: '토마토 리포트' },
     { key: 'business-intro', label: '사업소개' },
     { key: 'ad-inquiry', label: '광고/제휴 문의' },
     { key: 'terms', label: '이용약관' },

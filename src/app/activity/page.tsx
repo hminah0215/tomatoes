@@ -13,8 +13,6 @@ export default async function Page({ searchParams }: PageProps) {
   const filters = searchParams.filters?.split(',').filter(Boolean) || [];
   const sort = searchParams.sort || '관련도순';
 
-  console.log(filters, sort);
-
   const { data: activitiesContests, error } =
     await fetchActivityContestAbstractWith({
       filters,

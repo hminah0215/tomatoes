@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import TomatoReport from '@/containers/cs/TomatoReport';
 import BusinessIntro from '@/containers/cs/BusinessIntro';
 import AdInquiry from '@/containers/cs/AdInquiry';
 import Terms from '@/containers/cs/Terms';
@@ -13,8 +12,6 @@ export default function CsPage() {
 
   const renderContent = () => {
     switch (activeContent) {
-      case 'tomato-report':
-        return <TomatoReport />;
       case 'business-intro':
         return <BusinessIntro />;
       case 'ad-inquiry':

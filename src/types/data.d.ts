@@ -76,6 +76,8 @@ type ContestActivityDataPropsWithViewCount = {
   view_count: number;
   main_category: '공모전' | '대외활동';
   thumbnail_url: string;
+  start_date: string;
+  end_date: string;
 };
 
 type ContestActivityListProps = {
