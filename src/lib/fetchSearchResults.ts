@@ -7,12 +7,13 @@ export const fetchSearchResults = async (
   sortOption: string
 ) => {
   // 데이터 정렬 함수
-  const sortData = (data: any[], option: string) => {
+  const sortData = (data: SearchResult[], option: string) => {
     if (option === '최신순') {
-      return data.sort(
-        (a, b) =>
-          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-      );
+      return data.sort((a, b) => {
+        const dateA = a.created_at ? new Date(a.created_at).getTime() : 0;
+        const dateB = b.created_at ? new Date(b.created_at).getTime() : 0;
+        return dateB - dateA;
+      });
     } else if (option === '조회순') {
       return data.sort((a, b) => (b.view_count || 0) - (a.view_count || 0));
     } else if (option === '관련도순') {

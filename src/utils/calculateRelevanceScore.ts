@@ -1,4 +1,7 @@
-export const calculateRelevanceScore = (item: any, query: string): number => {
+export const calculateRelevanceScore = (
+  item: SearchResult,
+  query: string
+): number => {
   const title = item.title || '';
   const content = item.content || item.description || '';
 
