@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 import MtomatoPick from '@/containers/magazine/MtomatoPick';
+import { Suspense } from 'react';
 
 const MagazinePage = () => {
   return (
@@ -31,7 +32,10 @@ const MagazinePage = () => {
           </div>
           <CurrentHighlights />
 
-          <MtomatoPick />
+          {/* Suspense로 MtomatoPick 감싸기 */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <MtomatoPick />
+          </Suspense>
         </div>
       </div>
     </>

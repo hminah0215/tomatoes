@@ -5,7 +5,6 @@ on:
     branches:
       - main # main 브랜치에 푸시될 때 실행
       - dev # dev 브랜치에 푸시될 때도 실행
-      - refactor/magazine/#67 # 테스트용 브랜치에서 푸시될 때도 실행
   workflow_dispatch: # 수동 실행을 위한 옵션
   schedule:
     - cron: '0 0 */2 * *' # 이틀에 한번 실행
