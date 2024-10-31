@@ -1,0 +1,60 @@
+name: Run TomatoTips Crawler
+
+on:
+  push:
+    branches:
+      - main # main 브랜치에 푸시될 때 실행
+      - dev # dev 브랜치에 푸시될 때도 실행
+  workflow_dispatch: # 수동 실행을 위한 옵션
+  schedule:
+    - cron: '0 0 */2 * *' # 이틀에 한번 실행
+
+jobs:
+  run-crawler:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 코드 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v4 # 최신 버전의 코드를 체크아웃
+
+      # Python 환경 설정
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x' # Python 버전을 3.x로 설정
+
+      # requirements.txt 파일에 적힌 의존성 설치
+      - name: Install dependencies
+        run: |
+          pip install -r src/scripts/requirements.txt
+
+      # 크롤러 스크립트 실행
+      # tomatoTip 크롤링 스크립트를 실행하여 JSON 데이터 생성
+      - name: Run tomatoTip crawler script
+        run: |
+          python src/scripts/tomatoTip-crawling.py
+
+      # API로 JSON 데이터 전송
+      # 배포된 Vercel API 엔드포인트 사용
+      # 요청의 Content-Type을 JSON으로 설정
+      # SUPABASE_ANON_KEY를 Authorization 헤더에 넣어서 인증을 처리하도록 설정
+      # JSON 데이터를 API 요청의 본문으로 전송
+      - name: Upload JSON data to Vercel API
+        env:
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          response=$(curl -s -X POST "https://tomatoes-lemon.vercel.app/api/uploadMagazine" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            --data-binary @src/scripts/tomatoTip_data.json)
+
+          echo "API Response: $response"
+
+          # Check if the response contains "error"
+          if echo "$response" | grep -q '"error"'; then
+            echo "Upload to Vercel API failed"
+            exit 1
+          else
+            echo "Upload to Vercel API was successful"
+          fi

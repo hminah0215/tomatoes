@@ -5,3 +5,8 @@ type CategoryFilters = {
   활동기간: string[];
   지역: string[];
 };
+
+type navItemType = {
+  name: string;
+  route: string;
+};

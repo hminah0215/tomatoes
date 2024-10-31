@@ -18,8 +18,6 @@ const TomatoTips = () => {
         return;
       }
 
-      // console.log('Fetched Tips:', data); // 데이터 로그
-
       if (data) {
         setTips(data);
       }
@@ -30,7 +28,7 @@ const TomatoTips = () => {
 
   return (
     <>
-      <div className="mb-[72px] px-[28px] flex flex-col items-center md:mb-[120px] md:mt-[40px] md:px-[88px] md:items-start">
+      <div className="mb-[72px] flex flex-col items-center px-7 md:mb-[120px] md:mt-10 md:items-start md:px-[88px]">
         {tips.length > 0 && (
           <>
             {/* {console.log('Tips Contents:', tips)} Tips 로그 */}
