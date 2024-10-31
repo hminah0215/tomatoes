@@ -45,7 +45,17 @@ jobs:
         env:
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          curl -X POST "https://tomatoes-lemon.vercel.app/api/uploadMagazine" \
-          -H "Content-Type: application/json" \
-          -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
-          --data-binary @src/scripts/tomatoTip_data.json
+          response=$(curl -s -X POST "https://tomatoes-lemon.vercel.app/api/uploadMagazine" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            --data-binary @src/scripts/tomatoTip_data.json)
+
+          echo "API Response: $response"
+
+          # Check if the response contains "error"
+          if echo "$response" | grep -q '"error"'; then
+            echo "Upload to Vercel API failed"
+            exit 1
+          else
+            echo "Upload to Vercel API was successful"
+          fi
