@@ -15,6 +15,7 @@ type SearchResult = {
   view_count?: number;
   thumbnail_url: string | null;
   main_category?: string;
+  views?: number;
   homepage_url?: string;
   start_date?: string;
   end_date?: string;

@@ -15,7 +15,17 @@ export const fetchSearchResults = async (
         return dateB - dateA;
       });
     } else if (option === '조회순') {
-      return data.sort((a, b) => (b.view_count || 0) - (a.view_count || 0));
+      return data.sort((a, b) => {
+        const viewsA =
+          a.main_category === '공모전' || a.main_category === '대외활동'
+            ? a.view_count
+            : a.views;
+        const viewsB =
+          b.main_category === '공모전' || b.main_category === '대외활동'
+            ? b.view_count
+            : b.views;
+        return (viewsB || 0) - (viewsA || 0);
+      });
     } else if (option === '관련도순') {
       return data.sort(
         (a, b) =>
