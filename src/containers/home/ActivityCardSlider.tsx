@@ -5,6 +5,7 @@ import { AiOutlineLeftCircle, AiOutlineRightCircle } from 'react-icons/ai';
 import Image from 'next/image';
 import Dday from '@/components/common/Dday';
 import { fetchActivityCardSlider } from '@/lib/fetchActivityCardSlider';
+import Link from 'next/link';
 
 function Card({ item }: ContestActivityListProps) {
   return (
@@ -94,10 +95,13 @@ function ActivityCardSlider() {
     <section className="my-5 flex flex-col items-center gap-4">
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {currentItems.map((card) => (
-          <Card
-            key={card.id}
-            item={card}
-          />
+          <Link
+            href={`/${card.main_category === "activity" ? "activity" : "contest"}/${card.id}`}>
+            <Card
+              key={card.id}
+              item={card}
+            />
+          </Link>
         ))}
       </div>
 

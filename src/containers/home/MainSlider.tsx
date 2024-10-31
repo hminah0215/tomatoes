@@ -87,7 +87,7 @@ export default function MainSlider() {
                   대상 | 일반인, 대학생, 청소년
                 </p>
               </div>
-              <BannerLink url={'/contest'} />
+              <BannerLink url={`/${content.main_category === "activity" ? "activity" : "contest"}/${content.id}`} />
             </div>
 
             <div className="relative right-0 mr-10 h-full w-[55%] scale-125 md:min-w-[500px]">
