@@ -36,10 +36,6 @@ jobs:
         run: |
           python src/scripts/tomatoTip-crawling.py
 
-      # scripts 폴더 JSON 파일 생성 확인
-      - name: List generated JSON files
-        run: ls -la scripts/ # scripts 폴더의 파일 목록을 출력하여 JSON 파일 생성 여부 확인
-
       # API로 JSON 데이터 전송
       # 배포된 Vercel API 엔드포인트 사용
       # 요청의 Content-Type을 JSON으로 설정
