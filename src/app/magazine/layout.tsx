@@ -1,4 +1,3 @@
-// import MagazineHeader from '@/containers/magazine/MagazineHeader';
 import CategoryHeader from '@/components/common/CategoryHeader';
 import { Suspense } from 'react';
 
