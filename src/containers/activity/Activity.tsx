@@ -10,14 +10,16 @@ export default function Activity({ activitiesContests }: ActivityProps) {
   return (
     <>
       <Suspense fallback={<div>로딩 중...</div>}>
-        <Pagination
-          contents={activitiesContests}
-          GridItem={ActivityContestItem}
-          webItemPerPage={16}
-          mobileItemPerPage={10}
-          columnStyle="web4mobile2"
-          gapStyle="gapStyle2"
-        />
+        <div className="px-7 md:px-[88px]">
+          <Pagination
+            contents={activitiesContests}
+            GridItem={ActivityContestItem}
+            webItemPerPage={16}
+            mobileItemPerPage={10}
+            columnStyle="web4mobile2"
+            gapStyle="gapStyle2"
+          />
+        </div>
       </Suspense>
     </>
   );

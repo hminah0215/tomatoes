@@ -37,8 +37,6 @@ export default async function Page({ params }: PageProps) {
     return <div>데이터 로딩 중 에러 발생</div>;
   }
 
-  console.log(contestDetail);
-
   // 개별 필드를 직접 전달
   return <ContestDetail {...contestDetail} />;
 }

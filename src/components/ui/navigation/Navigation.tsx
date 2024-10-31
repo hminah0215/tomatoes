@@ -7,16 +7,15 @@ import NavItem from './NavItem';
 type navItemType = {
   name: string;
   route: string;
-  hasNewContent: boolean; // 새로운 콘텐츠 여부
 };
 
 export default function Navigation() {
   const pathname = usePathname();
 
   const navItems: navItemType[] = [
-    { name: '매거진', route: '/magazine', hasNewContent: true },
-    { name: '공모전', route: '/contest', hasNewContent: false },
-    { name: '대외활동', route: '/activity', hasNewContent: false },
+    { name: '매거진', route: '/magazine' },
+    { name: '공모전', route: '/contest' },
+    { name: '대외활동', route: '/activity' },
   ];
 
   const containerClasses =
