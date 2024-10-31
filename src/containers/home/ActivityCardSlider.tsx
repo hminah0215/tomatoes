@@ -96,9 +96,9 @@ function ActivityCardSlider() {
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {currentItems.map((card) => (
           <Link
+            key={card.id}
             href={`/${card.main_category === "activity" ? "activity" : "contest"}/${card.id}`}>
             <Card
-              key={card.id}
               item={card}
             />
           </Link>
