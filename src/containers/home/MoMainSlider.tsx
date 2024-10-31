@@ -6,7 +6,6 @@ import BannerLink from './BannerLink';
 import { fetchMainSlider } from '@/lib/fetchMainSlider';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
-// 색상이 어두운지 확인하는 함수
 function isDarkColor(color: string) {
   if (!color) return false;
 
@@ -46,7 +45,6 @@ export default function MoMainSlider() {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % contents.length);
   };
 
-  // 텍스트 색상 설정
   const textColor = isDarkColor(contents[currentIndex]?.dominant_color)
     ? "text-white"
     : "text-black";
@@ -57,7 +55,10 @@ export default function MoMainSlider() {
       style={{ backgroundColor: contents[currentIndex]?.dominant_color || '#000000' }}
     >
       <div className={`absolute top-10 left-6 z-20 ${textColor}`}>
-        <h1 className="mb-2 text-2xl font-bold leading-10 max-w-[60%]">
+        <h2 className="text-base font-medium">
+          {`[ ${contents[currentIndex]?.main_category} ]`}
+        </h2>
+        <h1 className="mb-2 text-2xl font-bold leading-10 max-w-[70%]">
           {contents[currentIndex]?.title}
         </h1>
         <BannerLink url={'/contest'} />
@@ -68,10 +69,10 @@ export default function MoMainSlider() {
           const position = (index - currentIndex + contents.length) % contents.length;
 
           let transformStyle = '';
-          if (position === 0) transformStyle = 'scale(1.2) translateX(0)'; // 중앙
-          else if (position === 1) transformStyle = 'scale(0.9) translateX(150%)'; // 오른쪽
-          else if (position === contents.length - 1) transformStyle = 'scale(0.9) translateX(-150%)'; // 왼쪽
-          else transformStyle = 'scale(0.7) translateX(300%)'; // 나머지
+          if (position === 0) transformStyle = 'scale(1.2) translateX(0)'; 
+          else if (position === 1) transformStyle = 'scale(0.9) translateX(150%)'; 
+          else if (position === contents.length - 1) transformStyle = 'scale(0.9) translateX(-150%)';
+          else transformStyle = 'scale(0.7) translateX(300%)';
 
           return (
             <div
@@ -79,7 +80,7 @@ export default function MoMainSlider() {
               className={`absolute transition-all duration-700 ease-out ${position === 0 ? 'z-10' : 'z-0'}`}
               style={{
                 transform: transformStyle,
-                opacity: position === 0 ? 1 : 0.5, // 중앙 이미지 강조
+                opacity: position === 0 ? 1 : 0.5,
               }}
             >
               <div className="w-[200px] h-[180px] shadow-2xl rounded-3xl overflow-hidden">
@@ -104,15 +105,15 @@ export default function MoMainSlider() {
 
       <button
         onClick={prevSlide}
-        className="absolute left-4 bottom-1/4 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
+        className="absolute left-10 bottom-1/4 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
       >
-        <AiOutlineLeft className="h-4 w-4" />
+        <AiOutlineLeft className="h-7 w-5" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 bottom-1/4 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
+        className="absolute right-10 bottom-1/4 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
       >
-        <AiOutlineRight className="h-4 w-4" />
+        <AiOutlineRight className="h-7 w-5" />
       </button>
     </div>
   );
