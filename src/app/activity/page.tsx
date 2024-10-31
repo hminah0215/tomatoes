@@ -10,13 +10,9 @@ interface PageProps {
 }
 
 export default async function Page({ searchParams }: PageProps) {
-  // URL 파라미터에서 필터와 정렬 옵션 추출
   const filters = searchParams.filters?.split(',').filter(Boolean) || [];
   const sort = searchParams.sort || '관련도순';
 
-  console.log(filters, sort);
-
-  // 필터와 정렬 옵션을 API 호출에 전달
   const { data: activitiesContests, error } =
     await fetchActivityContestAbstractWith({
       filters,
