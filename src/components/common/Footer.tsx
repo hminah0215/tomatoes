@@ -4,16 +4,14 @@ import Image from 'next/image';
 export default function Footer() {
   return (
     <footer className="bg-main-beige">
-      {/* 모바일 섹션 */}
-      <div className="flex flex-col items-center gap-4 md:hidden px-8 py-8">
-        {/* 모바일 Footer 전용 버튼 */}
-        <div className="relative w-[100px] h-8 bg-white rounded-[5px] shadow flex items-center">
+      <div className="flex flex-col items-center gap-4 px-8 py-8 md:hidden">
+        <div className="relative flex h-8 w-[100px] items-center rounded-[5px] bg-white shadow">
           <Link href="/intro" className="absolute inset-0 flex items-center">
-            <span className="text-[10px] font-medium pl-[9px]">
+            <span className="pl-[9px] text-[10px] font-medium">
               토마토들 소개 →
             </span>
           </Link>
-          <div className="absolute right-0 bottom-0 flex items-end">
+          <div className="absolute bottom-0 right-0 flex items-end">
             <Image
               src="/assets/common/MO_button_t.svg"
               alt="토마토들 소개 버튼 토마토 이미지"
@@ -22,32 +20,31 @@ export default function Footer() {
             />
           </div>
         </div>
-        {/* 모바일 Footer 하단 섹션*/}
         <div className="flex flex-col items-center gap-2">
           <div className="flex gap-4">
-            <Link href="/" className="underline text-xs">
+            <Link href="/" className="text-xs underline">
               공지사항
             </Link>
-            <Link href="/" className="underline text-xs">
+            <Link href="/" className="text-xs underline">
               FAQ
             </Link>
-            <Link href="/" className="underline text-xs">
+            <Link href="/" className="text-xs underline">
               1:1 문의
             </Link>
           </div>
           <div className="flex gap-4">
-            <Link href="/" className="underline text-xs">
+            <Link href="/" className="text-xs underline">
               이용약관
             </Link>
-            <Link href="/" className="underline text-xs">
+            <Link href="/" className="text-xs underline">
               개인정보처리방침
             </Link>
-            <Link href="/" className="underline text-xs">
+            <Link href="/" className="text-xs underline">
               책임한계와 법적고지
             </Link>
           </div>
         </div>
-        <div className="text-xs text-center">
+        <div className="text-center text-xs">
           Copyright ©Tomato.DLE. All Rights Reserved.
         </div>
         <div className="mt-2">
@@ -60,14 +57,12 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* PC 섹션 */}
-      <div className="hidden md:flex flex-col h-[536px] px-[84px] py-16 justify-start items-start gap-2.5">
-        <div className="flex justify-between items-start w-full h-[408px] gap-[72px]">
-          {/* 좌측 섹션 */}
-          <div className="flex justify-start items-start gap-[88px]">
-            <div className="flex flex-col justify-start items-start gap-6">
+      <div className="hidden h-[536px] flex-col items-start justify-start gap-2.5 px-[84px] py-16 md:flex">
+        <div className="flex h-[408px] w-full items-start justify-between gap-[72px]">
+          <div className="flex items-start justify-start gap-[88px]">
+            <div className="flex flex-col items-start justify-start gap-6">
               <div>TOMATO.DLE</div>
-              <div className="h-[216px] flex flex-col justify-start items-start gap-6">
+              <div className="flex h-[216px] flex-col items-start justify-start gap-6">
                 <Link href="/intro" className="font-semibold">
                   토마토들 소개
                 </Link>
@@ -80,14 +75,11 @@ export default function Footer() {
                 <Link href="/activity" className="font-semibold">
                   대외활동
                 </Link>
-                <Link href="/talk" className="font-semibold">
-                  교육•강연
-                </Link>
               </div>
             </div>
-            <div className="flex flex-col justify-start items-start gap-6">
+            <div className="flex flex-col items-start justify-start gap-6">
               <div>공고등록/문의</div>
-              <div className="h-[120px] flex flex-col justify-start items-start gap-6">
+              <div className="flex h-[120px] flex-col items-start justify-start gap-6">
                 <Link href="/cs" className="font-semibold">
                   사업소개
                 </Link>
@@ -99,9 +91,9 @@ export default function Footer() {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-col justify-start items-start gap-6">
+            <div className="flex flex-col items-start justify-start gap-6">
               <div>고객문의</div>
-              <div className="h-[120px] flex flex-col justify-start items-start gap-6">
+              <div className="flex h-[120px] flex-col items-start justify-start gap-6">
                 <Link href="/" className="font-semibold">
                   공지사항
                 </Link>
@@ -115,8 +107,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 우측 섹션 (로고와 인스타그램) */}
-          <div className="flex flex-col justify-start items-end gap-8">
+          <div className="flex flex-col items-end justify-start gap-8">
             <div>
               <Image
                 src="/assets/common/PC_logo_text.svg"
@@ -138,15 +129,14 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 하단 법적 정보 섹션 */}
-        <div className="flex flex-col justify-start items-start gap-6 h-[72px] w-full">
-          <div className="flex justify-start items-center gap-10">
+        <div className="flex h-[72px] w-full flex-col items-start justify-start gap-6">
+          <div className="flex items-center justify-start gap-10">
             <div>Copyright ©Tomato.DLE. All Rights Reserved.</div>
             <div>사업자등록번호 000-00000-00000</div>
             <div>주소: 구로구 가마산로 242 3층 306,7호</div>
             <div>대표: 고경표</div>
           </div>
-          <div className="flex justify-start items-center gap-10">
+          <div className="flex items-center justify-start gap-10">
             <Link href="/" className="underline">
               이용약관
             </Link>

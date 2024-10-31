@@ -3,65 +3,101 @@ import fs from 'fs';
 import path from 'path';
 import { supabase } from '@/lib/supabaseClient';
 
-// 토마토TIP 크롤링 데이터 타입 정의
-interface TomatoTipDataType {
+type ReceptionPeriod = {
+  start_date: string;
+  end_date: string;
+};
+
+type ActivityContestItem = {
   title: string;
-  link: string;
-  content: string;
-  author: string | null;
-  created_at: string | null;
-}
+  company: string;
+  view_count: number;
+  thumbnail_url: string;
+  reception_period: ReceptionPeriod;
+  award_info: string;
+  dominant_color: string;
+  description: string;
+  main_category: '공모전' | '대외활동';
+  homepage_url: string;
+  registration_date: string;
+  field?: string;
+  activity?: string;
+  host?: string;
+  duration?: string;
+  region?: string;
+  department?: string;
+  prize_amount?: string;
+  prize_benefit?: string;
+  target?: string;
+  organizer?: string;
+};
 
 export async function POST() {
   try {
-    // JSON 파일 경로 설정
-    const postFilePath = path.join(
+    const filePath = path.join(
       process.cwd(),
       'src',
       'scripts',
-      'tomatoTip_data.json'
+      'activity_contest.json'
+    );
+    const postData: ActivityContestItem[] = JSON.parse(
+      fs.readFileSync(filePath, 'utf-8')
     );
 
-    // JSON 파일에서 데이터 읽어오기
-    const postData: TomatoTipDataType[] = JSON.parse(
-      fs.readFileSync(postFilePath, 'utf-8')
-    );
-
-    // tomato_tips 테이블의 기존 데이터 삭제
-    // (현재 수동으로 크롤링코드를 실행시키므로 일단 OLD데이터 삭제처리 )
-    const { error: deletePostError } = await supabase
-      .from('tomato_tips')
+    const { error: deleteError } = await supabase
+      .from('activities_contests')
       .delete()
-      .gte('id', 1); // 'id'가 1 이상인 모든 데이터를 삭제
+      .gte('id', 1);
 
-    if (deletePostError) {
-      console.error('Failed to delete old post data:', deletePostError);
-      return NextResponse.json(
-        { error: deletePostError.message },
-        { status: 500 }
-      );
+    if (deleteError) {
+      console.error('Failed to delete old data:', deleteError);
+      return NextResponse.json({ error: deleteError.message }, { status: 500 });
     }
 
-    // 삭제 성공 메시지
-    console.log('tomato_tips 테이블의 모든 데이터가 삭제되었습니다.');
+    console.log('activities_contests 테이블의 모든 데이터가 삭제되었습니다.');
 
-    // tomato_tips 테이블에 새로운 데이터 삽입
-    const { error: postError } = await supabase
-      .from('tomato_tips')
-      .insert(postData);
+    const formattedData = postData.map((item) => ({
+      title: item.title,
+      company: item.company,
+      view_count: item.view_count,
+      thumbnail_url: item.thumbnail_url,
+      start_date: item.reception_period.start_date,
+      end_date: item.reception_period.end_date,
+      award_info: item.award_info,
+      dominant_color: item.dominant_color,
+      description: item.description,
+      main_category: item.main_category,
+      homepage_url: item.homepage_url,
+      registration_date: item.registration_date,
+      field: item.field,
+      activity: item.activity,
+      host: item.host,
+      duration: item.duration,
+      region: item.region,
+      department: item.department,
+      prize_amount: item.prize_amount,
+      prize_benefit: item.prize_benefit,
+      target: item.target,
+      organizer: item.organizer,
+    }));
 
-    if (postError) {
-      console.error('Failed to insert new post data:', postError);
-      return NextResponse.json({ error: postError.message }, { status: 500 });
+    const { error: insertError } = await supabase
+      .from('activities_contests')
+      .insert(formattedData);
+
+    if (insertError) {
+      console.error('Failed to insert new data:', insertError);
+      return NextResponse.json({ error: insertError.message }, { status: 500 });
     }
 
     return NextResponse.json({
-      message: 'tomato_tips 테이블에 데이터가 정상적으로 삽입되었습니다',
+      message:
+        'activities_contests 테이블에 데이터가 정상적으로 삽입되었습니다',
     });
   } catch (err) {
-    console.error('tomato_tips 테이블 데이터 업로드 실패:', err);
+    console.error('activities_contests 테이블 데이터 업로드 실패:', err);
     return NextResponse.json(
-      { error: 'Failed to tomato_tips data', details: (err as Error).message },
+      { error: 'Failed to upload data', details: (err as Error).message },
       { status: 500 }
     );
   }

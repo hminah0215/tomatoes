@@ -3,7 +3,7 @@ import Image from 'next/image';
 type PaginationControlProps = {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void; // page는 number 타입, 반환 타입은 void
+  onPageChange: (page: number) => void;
 };
 
 function PaginationControl({
@@ -11,7 +11,7 @@ function PaginationControl({
   totalPages,
   onPageChange,
 }: PaginationControlProps) {
-  const pagesToShow = 5; // 한번에 5개의 페이지를 표시
+  const pagesToShow = 5;
   const startPage =
     Math.floor((currentPage - 1) / pagesToShow) * pagesToShow + 1;
   const endPage = Math.min(startPage + pagesToShow - 1, totalPages);
@@ -22,15 +22,15 @@ function PaginationControl({
   const handleLast = () => onPageChange(totalPages);
 
   return (
-    <div className="flex justify-center my-14">
-      <div className="mr-6 md:mr-12 flex gap-3 md:gap-4">
+    <div className="my-14 flex justify-center">
+      <div className="mr-6 flex gap-3 md:mr-12 md:gap-4">
         <button onClick={handleFirst}>
           <Image
             src="/assets/pagination/Pagination_first.svg"
             alt="처음"
             width={24}
             height={24}
-            className="sm:w-[24px] sm:h-[24px] md:w-[32px] md:h-[32px]"
+            className="sm:h-[24px] sm:w-[24px] md:h-[32px] md:w-[32px]"
           />
         </button>
         <button onClick={handlePrevious}>
@@ -39,7 +39,7 @@ function PaginationControl({
             alt="이전"
             width={24}
             height={24}
-            className="sm:w-[24px] sm:h-[24px] md:w-[32px] md:h-[32px]"
+            className="sm:h-[24px] sm:w-[24px] md:h-[32px] md:w-[32px]"
           />
         </button>
       </div>
@@ -51,7 +51,7 @@ function PaginationControl({
             <button
               key={page}
               onClick={() => onPageChange(page)}
-              className={`text-base md:text-lg font-medium ${page === currentPage ? 'text-sub-gray-500' : 'text-sub-gray-200'}`}
+              className={`text-base font-medium md:text-lg ${page === currentPage ? 'text-sub-gray-500' : 'text-sub-gray-200'}`}
             >
               {page}
             </button>
@@ -59,14 +59,14 @@ function PaginationControl({
         })}
       </div>
 
-      <div className="ml-6 md:ml-12 flex gap-3 md:gap-4">
+      <div className="ml-6 flex gap-3 md:ml-12 md:gap-4">
         <button onClick={handleNext} className="">
           <Image
             src="/assets/pagination/Pagination_next.svg"
             alt="다음"
             width={24}
             height={24}
-            className="sm:w-[24px] sm:h-[24px] md:w-[32px] md:h-[32px]"
+            className="sm:h-[24px] sm:w-[24px] md:h-[32px] md:w-[32px]"
           />
         </button>
         <button onClick={handleLast} className="">
@@ -75,7 +75,7 @@ function PaginationControl({
             alt="끝"
             width={24}
             height={24}
-            className="sm:w-[24px] sm:h-[24px] md:w-[32px] md:h-[32px]"
+            className="sm:h-[24px] sm:w-[24px] md:h-[32px] md:w-[32px]"
           />
         </button>
       </div>

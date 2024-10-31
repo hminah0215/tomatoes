@@ -1,9 +1,14 @@
-import TomatoTips from '@/app/magazine/components/TomatoTips';
+import TomatoTips from '@/containers/magazine/TomatoTips';
 
 export default function Page() {
   return (
-    <div>
-      <TomatoTips showPagination={true} />
-    </div>
+    <>
+      <div className="relative mb-[28px] ml-[28px] md:my-0 md:ml-0 md:px-[88px]">
+        <div className="font-['Recipekorea'] text-[20px] font-medium leading-[30px] text-sub-gray-500 md:text-[32px] md:leading-[48px]">
+          토마토 Tip
+        </div>
+      </div>
+      <TomatoTips />
+    </>
   );
 }

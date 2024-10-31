@@ -1,95 +1,9 @@
-import ContestBanner from '@/components/ui/homePage/ContestBanner';
-import MainSlider from '@/components/ui/homePage/MainSlider';
-import PaginationForHome from '@/components/ui/pagination/PaginationForHome';
-import Image from 'next/image';
-import ContestCardSlider from '@/components/ui/homePage/ContestCardSlider';
-import ActivityCardSlider from '@/components/ui/homePage/ActivityCardSlider';
-import TomatoTips from './magazine/components/TomatoTips';
-import { AiOutlineRight } from 'react-icons/ai';
-import Link from 'next/link';
+import Home from '@/containers/home/Home';
 
-export default function Home() {
-  const dummyActivities: Activity[] = Array.from({ length: 80 }, (_, i) => ({
-    imageUrl: '/assets/test_image.png',
-    title: `활동 타이틀 ${i + 1}`,
-    organization: `주최 기관 ${i + 1}`,
-    dDay: `${Math.floor(Math.random() * 30)}`, // 0 ~ 29일 랜덤 마감일
-    receptionPeriod: `10월 ${Math.floor(Math.random() * 10) + 1}일(월) ~ 10월 ${Math.floor(Math.random() * 20) + 10}일(금)`,
-    category: i % 3 === 0 ? '대외활동' : i % 3 === 1 ? '공모전' : '교육・강연',
-    viewCount: Math.floor(Math.random() * 5000) + 1000, // 1000 ~ 6000 랜덤 조회수
-  }));
-
+export default function Page() {
   return (
     <>
-      {/* 메인 공고 컴포넌트 */}
-      <MainSlider />
-      <ContestBanner />
-
-      {/* BEST PICK */}
-      <section>
-        <p className="mt-20 ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px] text-point-red-500">BEST PICK</p>
-        <PaginationForHome contents={dummyActivities} />
-      </section>
-
-      {/* 토마토들 추천 활동 */}
-      <section className="flex items-center ml-8">
-        <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">
-          토마토들 <span className="text-point-red-500">추천 활동</span>
-        </p>
-        <Image
-          src={`/assets/homePage/PC_recommendationMark_t.svg`}
-          alt="banner"
-          width={80}
-          height={82}
-          className="ml-2"
-        />   
-      </section>
-      <PaginationForHome contents={dummyActivities} />
-
-      {/* 공모전 */}
-      <section className="mt-10">
-        <div className="flex flex-row justify-between">
-          <p className="ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">공모전</p>
-          <Link
-            href={'/contest'}
-            className="flex flex-row items-center gap-1 mr-10"
-          >
-            더보기
-            <AiOutlineRight />
-          </Link>
-        </div>
-        <ContestCardSlider />
-      </section>
-
-      {/* 대외활동 */}
-      <section className="mt-10">
-        <div className="flex flex-row justify-between">
-          <p className="ml-8 text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">대외활동</p>
-          <Link 
-          href={'/activity'}
-            className="flex flex-row items-center gap-1 mr-10"
-          >
-            더보기
-            <AiOutlineRight />
-          </Link>
-        </div>
-        <ActivityCardSlider />
-      </section>
-
-      {/* 매거진 */}
-      <section className="mt-10 ml-8">
-        <div className="flex flex-row justify-between">
-          <p className="text-[28px] md:text-[32px] font-normal font-recipe leading-[48px]">매거진</p>
-          <Link 
-            href={'/magazine'}
-            className="flex flex-row items-center gap-1 mr-10"
-          >
-            더보기
-            <AiOutlineRight />
-          </Link>
-        </div>
-        <TomatoTips pageSize={3} showPagination={false} />
-      </section>
+      <Home />
     </>
   );
 }
