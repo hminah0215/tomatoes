@@ -5,18 +5,41 @@ export const fetchSearchResults = async (
   category: string,
   sortOption: string
 ) => {
-  let request;
+  // 관련도 점수 계산 함수
+  const calculateRelevanceScore = (item: any, query: string) => {
+    const title = item.title || '';
+    const content = item.content || item.description || '';
 
-  // 카테고리 필터 추가
-  // 카테고리에 따라 RPC 선택
-  if (category === '매거진') {
-    request = supabase.rpc('search_tomato_tips', { query });
-  } else if (category === '공모전') {
-    request = supabase.rpc('search_contests', { query });
-  } else if (category === '대외활동') {
-    request = supabase.rpc('search_activities', { query });
-  } else {
-    // 전체인 경우 모든 카테고리에서 검색 결과를 가져오기
+    if (title.includes(query) && content.includes(query)) {
+      return 3; // 제목과 본문 모두 포함
+    } else if (title.includes(query)) {
+      return 2; // 제목에만 포함
+    } else if (content.includes(query)) {
+      return 1; // 본문에만 포함
+    }
+    return 0; // 포함되지 않음
+  };
+
+  // 데이터 정렬 함수
+  const sortData = (data: any[], option: string) => {
+    if (option === '최신순') {
+      return data.sort(
+        (a, b) =>
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      );
+    } else if (option === '조회순') {
+      return data.sort((a, b) => (b.view_count || 0) - (a.view_count || 0));
+    } else if (option === '관련도순') {
+      return data.sort(
+        (a, b) =>
+          calculateRelevanceScore(b, query) - calculateRelevanceScore(a, query)
+      );
+    }
+    return data;
+  };
+
+  // 전체 카테고리일 때 처리 함수
+  const fetchAllCategories = async () => {
     const { data: magazineData, error: magazineError } = await supabase.rpc(
       'search_tomato_tips',
       { query }
@@ -30,40 +53,38 @@ export const fetchSearchResults = async (
       { query }
     );
 
-    const combinedData = [...(magazineData || []), ...(contestData || []), ...(activityData || [])];
+    const combinedData = [
+      ...(magazineData || []),
+      ...(contestData || []),
+      ...(activityData || []),
+    ];
     const combinedError = magazineError || contestError || activityError;
 
-    // 에러가 발생한 경우 로그를 출력하고 리턴
     if (combinedError) {
       console.error('Error fetching search results:', combinedError);
     }
 
-    // 정렬 옵션 적용
-    if (sortOption === '최신순') {
-      combinedData.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-    } else if (sortOption === '조회순') {
-      combinedData.sort((a, b) => (b.view_count || 0) - (a.view_count || 0));
-    }
+    return { data: sortData(combinedData, sortOption), error: combinedError };
+  };
 
-    return { data: combinedData, error: combinedError };
-  }
-  }
-
-  // 정렬 옵션 추가
-  if (sortOption === '최신순') {
-    request = request.order('created_at', { ascending: false });
-  } else if (sortOption === '조회순') {
-    request = request.order('view_count', { ascending: false });
+  // 카테고리별 RPC 선택 및 정렬 옵션 적용
+  let data, error;
+  if (category === '매거진') {
+    ({ data, error } = await supabase.rpc('search_tomato_tips', { query }));
+  } else if (category === '공모전') {
+    ({ data, error } = await supabase.rpc('search_contests', { query }));
+  } else if (category === '대외활동') {
+    ({ data, error } = await supabase.rpc('search_activities', { query }));
+  } else {
+    // 전체 카테고리의 경우 각 RPC 결과를 병합하여 반환
+    return fetchAllCategories();
   }
 
-  const { data, error } = await request;
   if (error) {
     console.error('Error fetching search results:', error);
+    return { data: [], error };
   }
-  return { data, error };
-};
 
-// } else if (sortOption === '조회순') {
-//   request = request.order('view_count', { ascending: false });
-// } else if (sortOption === '관련도순') {
-//   request = request.order('relevance', { ascending: false });
+  // 단일 카테고리의 경우 정렬 옵션 적용
+  return { data: sortData(data, sortOption), error };
+};
