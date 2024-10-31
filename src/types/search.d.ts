@@ -20,6 +20,9 @@ type SearchResult = {
   end_date?: string;
   award_info?: string;
   dominate_color?: string;
+  d_day?: number;
+  start_date?: string;
+  end_date?: string;
 };
 
 type SearchResultsProps = {
