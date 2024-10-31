@@ -1,5 +1,6 @@
 import ActivityContestItem from '@/components/ui/grid/ActivityContestItem';
 import Pagination from '@/components/ui/pagination/Pagination';
+import NoFilterResult from '@/components/common/noFilterResult';
 import { Suspense } from 'react';
 
 interface ContestProps {
@@ -7,6 +8,10 @@ interface ContestProps {
 }
 
 export default function Contest({ activitiesContests }: ContestProps) {
+  if (activitiesContests.length === 0) {
+    return <NoFilterResult />;
+  }
+
   return (
     <>
       <Suspense fallback={<div>로딩 중...</div>}>
