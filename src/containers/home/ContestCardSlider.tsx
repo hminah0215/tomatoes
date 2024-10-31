@@ -11,20 +11,28 @@ function Card({ item }: ContestActivityListProps) {
   return (
     <div id={`${item.id}`} className="overflow-hidden bg-white">
       <div className="relative h-48 w-full shadow-md">
-        <Image 
-          src={item.thumbnail_url} 
-          alt={item.title} 
-          fill objectFit="cover" 
-          className="rounded-xl" 
+        <Image
+          src={item.thumbnail_url}
+          alt={item.title}
+          fill
+          objectFit="cover"
+          className="rounded-xl"
         />
       </div>
-      <div className="p-3 flex flex-col h-[calc(100%-12rem)]">
-        <h3 className="mb-4 text-base font-bold flex-grow">{item.title}</h3>
-        <div className="flex items-center mt-auto">
-          {item.d_day < 0 
-            ? <Dday type="completed" /> 
-            : <Dday type="active" day={item.d_day} color={item.d_day <= 7 ? 'red' : item.d_day <= 31 ? 'yellow' : 'green'} />
-          }
+      <div className="flex h-[calc(100%-12rem)] flex-col p-3">
+        <h3 className="mb-4 flex-grow text-base font-bold">{item.title}</h3>
+        <div className="mt-auto flex items-center">
+          {item.d_day < 0 ? (
+            <Dday type="completed" />
+          ) : (
+            <Dday
+              type="active"
+              day={item.d_day}
+              color={
+                item.d_day <= 7 ? 'red' : item.d_day <= 31 ? 'yellow' : 'green'
+              }
+            />
+          )}
           <span className="ml-2 text-sm text-gray-600">{`${item.start_date} ~ ${item.end_date}`}</span>
         </div>
       </div>
@@ -39,7 +47,7 @@ function ContestCardSlider() {
     const fetchData = async () => {
       const { data, error } = await fetchContestCardSlider();
       if (error) {
-        console.error("데이터를 가져오는 중 오류 발생:", error.message);
+        console.error('데이터를 가져오는 중 오류 발생:', error.message);
       } else {
         setActivities(data || []);
       }
@@ -92,16 +100,13 @@ function ContestCardSlider() {
 
   return (
     <section className="my-5 flex flex-col items-center gap-4">
-      <div 
-        className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-      >
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {currentItems.map((card) => (
           <Link
             key={card.id}
-            href={`/${card.main_category === "activity" ? "activity" : "contest"}/${card.id}`}>
-            <Card
-              item={card}
-            />
+            href={`/${card.main_category === '대외활동' ? 'activity' : 'contest'}/${card.id}`}
+          >
+            <Card item={card} />
           </Link>
         ))}
       </div>
