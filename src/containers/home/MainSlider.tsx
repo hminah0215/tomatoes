@@ -76,7 +76,7 @@ export default function MainSlider() {
             className="relative flex min-w-full items-center justify-center overflow-hidden"
           >
             <div className={`z-10 ml-20 pl-10 ${textColor}`}>
-              <h1 className="mb-4 break-words text-2xl font-bold md:text-3xl max-w-[80%]">
+              <h1 className="mb-4 break-words text-lg font-bold md:text-3xl max-w-[80%]">
                 {content.title}
               </h1>
               <div className="mb-6">

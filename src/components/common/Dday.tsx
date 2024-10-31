@@ -8,7 +8,7 @@ interface DdayProps {
 
 const baseTagStyle =
   'w-[75px] h-[33px] md:w-[95px] md:h-[33px] p-1 rounded-[999px] justify-center items-center gap-1.5 inline-flex';
-const baseTextStyle = 'text-xs sm:text-xs md:text-xs lg:text-base font-medium leading-[20px]';
+const baseTextStyle = 'text-xs sm:text-xs md:text-xs lg:text-sm font-medium leading-[20px]';
 
 const tagStyles = {
   active: {
@@ -39,7 +39,7 @@ export default function Dday({ type, day, color }: DdayProps) {
           alt="Icon"
           width={20}
           height={21}
-          className={`min-h-[17px] min-w-[16px]`}
+          className={`min-h-[10px] min-w-[9px]`}
         />
         <p className={textStyles.active[color]}>D-{day}</p>
       </div>

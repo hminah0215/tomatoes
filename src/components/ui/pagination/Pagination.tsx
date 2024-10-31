@@ -66,7 +66,7 @@ export default function Pagination<T>({
   };
 
   return (
-    <section className="mx-7 flex flex-col gap-4 md:mx-[88px] md:gap-6">
+    <section className="flex flex-col gap-4">
       <GridView<T>
         items={currentItems}
         GridItem={GridItem}

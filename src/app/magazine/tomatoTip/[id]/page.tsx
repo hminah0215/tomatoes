@@ -63,7 +63,9 @@ const TomatoTipDetailPage = async ({ params }: { params: { id: string } }) => {
         <div className="relative mx-auto mb-16 mt-8 h-[2px] max-w-[319px] bg-sub-gray-100 md:mb-[80px] md:mt-[104px] md:max-w-[1264px]"></div>
 
         {/* 지금 꼭 봐야하는 매거진 */}
-        <CurrentHighlights />
+        <div className="px-[28px] md:px-[88px]">
+          <CurrentHighlights />
+        </div>
       </div>
     </>
   );

@@ -23,7 +23,7 @@ export default function SearchBar({ placeholder, onSearch }: SearchBarProps) {
 
   return (
     <form onSubmit={onKeywordSearchHandler}>
-      <div className="flex h-10 w-[264px] items-center justify-center gap-[11px] rounded-[100px] border-2 border-point-red-500 px-2 py-1.5">
+      <div className="flex ml-6 h-10 w-[264px] items-center justify-center gap-[11px] rounded-[100px] border-2 border-point-red-500 px-2 py-1.5">
         <div className="flex items-center justify-center">
           <Image
             src="/assets/common/PC_search_t.svg"

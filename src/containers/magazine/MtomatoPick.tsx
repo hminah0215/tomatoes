@@ -29,8 +29,8 @@ const MtomatoPick = () => {
   }, []);
 
   return (
-    <section className="mt-8">
-      <div className="mb-[72px] flex flex-col items-center md:mb-[120px] md:mt-[40px] md:items-start">
+    <section>
+      <div className="mt-[28px] mb-[72px] flex flex-col items-center md:mt-[40px] md:mb-[120px] md:items-start">
         {tomatoPicks.length > 0 && (
           <Pagination
             contents={tomatoPicks}

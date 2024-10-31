@@ -30,7 +30,7 @@ const TomatoTips = () => {
 
   return (
     <>
-      <div className="mb-[72px] flex flex-col items-center md:mb-[120px] md:mt-[40px] md:items-start">
+      <div className="mb-[72px] px-[28px] flex flex-col items-center md:mb-[120px] md:mt-[40px] md:px-[88px] md:items-start">
         {tips.length > 0 && (
           <>
             {/* {console.log('Tips Contents:', tips)} Tips 로그 */}
