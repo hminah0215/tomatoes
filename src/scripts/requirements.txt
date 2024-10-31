@@ -1,0 +1,3 @@
+# Python 크롤러가 실행되기 위해 필요한 라이브러리
+requests
+beautifulsoup4

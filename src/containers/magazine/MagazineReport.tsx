@@ -35,7 +35,7 @@ const MagazineReport = () => {
 
       {/* 알럿 창 */}
       {isAlertOpen && (
-        <div className="fixed z-50 mx-[32px] mb-[330px] mt-[360px] flex items-center justify-center md:mb-[326px] md:ml-[565px] md:mr-[564px] md:mt-[326px]">
+        <div className="fixed left-1/2 top-1/2 z-50 flex items-center justify-center">
           <MReportCoustomAlert
             message={
               <>

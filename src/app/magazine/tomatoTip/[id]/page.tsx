@@ -6,9 +6,9 @@ import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 
 const TomatoTipDetailPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params; // URL의 id 파라미터를 가져옴
-  // console.log('Fetched ID:', id); // ID가 잘 가져와지는지 확인
+
   const numericId = parseInt(id, 10); // 문자열을 숫자로 변환
-  // console.log('Numeric ID:', numericId); // 변환된 ID 확인
+
   const { data: fetchedTip, error } = await fetchTomatoTipById(numericId);
 
   if (error || !fetchedTip) {
@@ -56,10 +56,9 @@ const TomatoTipDetailPage = async ({ params }: { params: { id: string } }) => {
           />
         </div>
 
-        {/* 콘텐츠 영역 */}
+        {/* 상세페이지 콘텐츠 영역 */}
         <TomatoTipDetail tipData={fetchedTip} />
 
-        {/* 하단 고정 회색줄 */}
         <div className="relative mx-auto mb-16 mt-8 h-[2px] max-w-[319px] bg-sub-gray-100 md:mb-[80px] md:mt-[104px] md:max-w-[1264px]"></div>
 
         {/* 지금 꼭 봐야하는 매거진 */}
