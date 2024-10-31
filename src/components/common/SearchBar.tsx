@@ -3,7 +3,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import Image from 'next/image';
-import { SearchBarProps } from '@/types/search';
 
 export default function SearchBar({ placeholder, onSearch }: SearchBarProps) {
   const [keyword, setKeyword] = useState('');
