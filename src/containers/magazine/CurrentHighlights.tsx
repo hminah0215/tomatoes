@@ -30,7 +30,7 @@ const CurrentHighlights = () => {
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="gap-4 mb-[69px] mt-[28px] flex items-center md:mb-[120px] md:mt-[40px] md:items-start">
-        {tips.length > 0 && ( // tips가 비어 있지 않을 때만 GridSlideView 렌더링
+        {tips.length > 0 && ( 
           <GridSlideView<TomatoTipDataType>
             items={tips}
             GridItem={TomatoTipItem}
