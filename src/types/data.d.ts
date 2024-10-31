@@ -4,7 +4,7 @@ type ActivityContestDetailsProps = {
   dDay: string;
   receptionPeriod: string;
   category: '대외활동' | '공모전';
-  viewCount: string; 
+  viewCount: string;
   imageUrl: string;
   detailUrl: string;
 };
@@ -15,19 +15,19 @@ type ActivityContestListProps = {
 
 type ActivityContestDataType = {
   id: number;
-  title: string; 
-  company: string; 
-  view_count: number; 
-  thumbnail_url: string; 
-  start_date: string; 
-  end_date: string; 
+  title: string;
+  company: string;
+  view_count: number;
+  thumbnail_url: string;
+  start_date: string;
+  end_date: string;
   award_info: string;
-  dominant_color: string; 
-  description: string; 
-  main_category: 'activity' | 'contest'; 
-  homepage_url: string; 
+  dominant_color: string;
+  description: string;
+  main_category: '대외활동' | '공모전';
+  homepage_url: string;
   registration_date: string;
-  d_day: number; 
+  d_day: number;
 
   field?: string | null;
   activity?: string | null;
@@ -44,7 +44,7 @@ type ActivityContestDataType = {
 type MainSliderDataProps = {
   id: number;
   title: string;
-  main_category: 'activity' | 'contest';
+  main_category: '대외활동' | '공모전';
   start_date: string;
   end_date: string;
   thumbnail_url: string;
@@ -63,7 +63,7 @@ type ContestActivityDataProps = {
   start_date: string;
   end_date: string;
   view_count: number;
-  main_category: 'activity' | 'contest';
+  main_category: '공모전' | '대외활동';
   thumbnail_url: string;
   homepage_url: string;
 };
