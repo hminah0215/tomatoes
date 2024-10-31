@@ -34,8 +34,8 @@ const TomatoTipItem = ({ item }: TomatoTipItemProps) => {
   ];
 
   return (
-    <Link href={`/magazine/tomatoTip/${id}`} className="">
-      <div className="relative mb-[12px] h-[230px] overflow-hidden rounded-[20px] bg-main-beige md:mb-[16px] md:h-[290px]">
+    <Link href={`/magazine/tomatoTip/${id}`}>
+      <div className="relative mb-3 h-[230px] overflow-hidden rounded-[20px] bg-main-beige md:mb-4 md:h-[290px]">
         <Image
           className="absolute hidden h-full w-full object-cover md:block"
           src={thumbnailImages[0]}
@@ -44,17 +44,17 @@ const TomatoTipItem = ({ item }: TomatoTipItemProps) => {
           height={290}
         />
         <Image
-          className="absolute block h-full w-full object-cover md:hidden"
+          className="absolute block h-full w-full rounded-2xl object-cover md:hidden"
           src={thumbnailImages[1]}
           alt={title}
           width={319}
           height={230}
         />
       </div>
-      <div className="flex h-[40px] flex-col items-start justify-between gap-2 md:h-[74px]">
-        <div className="inline-flex items-center justify-start gap-3">
+      <div className="flex h-10 flex-col items-start justify-between gap-2 md:h-[74px]">
+        <div className="inline-flex items-center gap-3">
           <Tag type={tagLabel} label={tagLabel.toUpperCase()} />
-          <div className="md:text- line-clamp-2 text-ellipsis text-[16px] font-semibold leading-5 text-sub-gray-500">
+          <div className="line-clamp-2 text-sm font-semibold text-sub-gray-500 md:text-base">
             {title}
           </div>
         </div>
