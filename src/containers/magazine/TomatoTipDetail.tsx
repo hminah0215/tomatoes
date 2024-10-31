@@ -8,9 +8,6 @@ const TomatoTipDetail = ({ tipData }: TomatoTipDetailProps) => {
   return (
     <>
       {/* 콘텐츠 영역 */}
-      {/* 피그마 파일대로 하면 mx-auto가 아니라  md:ml-[302px] md:mr-[306px] 이렇게 인데....
-      그렇게 하면 화면을 서서히 줄일때 md보다 화면이 클때는 302px,306px을 잡아먹어서 
-      콘텐츠 공간이 너무 좁게 잡힘... 피그마를 무시해야하나 어째야하나  */}
       <div className="relative mx-auto flex max-w-screen-md flex-col justify-center px-7 md:px-0">
         {/* 콘텐츠 섹션 */}
         <div className="mt-[26.85px] w-full rounded-lg md:mt-[56px]">
