@@ -29,8 +29,12 @@ const MtomatoPick = () => {
   }, []);
 
   return (
-    <section>
-      <div className="mt-[28px] mb-[72px] flex flex-col items-center md:mt-[40px] md:mb-[120px] md:items-start">
+    <>
+      <div className="font-['Recipekorea'] text-[20px] font-medium text-sub-gray-500 md:text-[32px]">
+        토마토 Pick
+      </div>
+
+      <div className="mb-[72px] mt-[28px] flex flex-col items-center md:mb-[120px] md:mt-[40px] md:items-start">
         {tomatoPicks.length > 0 && (
           <Pagination
             contents={tomatoPicks}
@@ -42,7 +46,7 @@ const MtomatoPick = () => {
           />
         )}
       </div>
-    </section>
+    </>
   );
 };
 

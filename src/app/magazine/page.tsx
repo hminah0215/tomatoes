@@ -31,9 +31,6 @@ const MagazinePage = () => {
           </div>
           <CurrentHighlights />
 
-          <div className="font-['Recipekorea'] text-[20px] font-medium text-sub-gray-500 md:text-[32px]">
-            토마토 Pick
-          </div>
           <MtomatoPick />
         </div>
       </div>
