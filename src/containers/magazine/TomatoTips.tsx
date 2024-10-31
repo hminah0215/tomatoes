@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { TomatoTipDataType } from '@/types/tomatoTips';
 import { fetchAllTomatoTips } from '@/lib/fetchTomatoTip';
 import Pagination from '@/components/ui/pagination/Pagination';
@@ -33,14 +33,17 @@ const TomatoTips = () => {
       <div className="mb-[72px] px-[28px] flex flex-col items-center md:mb-[120px] md:mt-[40px] md:px-[88px] md:items-start">
         {tips.length > 0 && (
           <>
-            <Pagination
-              contents={tips}
-              GridItem={TomatoTipItem} 
-              webItemPerPage={15}
-              mobileItemPerPage={12}
-              columnStyle="web3mobile1"
-              gapStyle="gapStyle3"
-            />
+            {/* {console.log('Tips Contents:', tips)} Tips 로그 */}
+            <Suspense fallback={<div>로딩 중...</div>}>
+              <Pagination
+                contents={tips}
+                GridItem={TomatoTipItem} // TomatoTipItem을 그리드 아이템으로 전달
+                webItemPerPage={15}
+                mobileItemPerPage={12}
+                columnStyle="web3mobile1"
+                gapStyle="gapStyle3"
+              />
+            </Suspense>
           </>
         )}
       </div>

@@ -1,14 +1,23 @@
 import TabMenuItem from './TabMenuItem';
+import { usePathname } from 'next/navigation'; // pathname을 사용하기 위한 import 추가
 
 interface TabMenuProps {
   tabs: { name: string; path: string | null }[];
   activeTab: string;
   onTabClick: (tabName: string) => void;
+  isMagazine: boolean;
   containerClass?: string;
   tabClass?: string;
 }
 
-export default function TabMenu({ tabs, activeTab, onTabClick }: TabMenuProps) {
+export default function TabMenu({
+  tabs,
+  activeTab,
+  onTabClick,
+  isMagazine,
+}: TabMenuProps) {
+  const pathname = usePathname(); // usePathname hook 사용
+
   return (
     <section className="flex justify-between overflow-x-auto overflow-y-hidden border-b-[1px] md:mx-[88px]">
       <nav>
@@ -18,8 +27,11 @@ export default function TabMenu({ tabs, activeTab, onTabClick }: TabMenuProps) {
               key={index}
               tab={tab.name}
               path={tab.path}
-              isActive={activeTab === tab.name}
+              isActive={
+                isMagazine ? pathname === tab.path : activeTab === tab.name
+              }
               onClick={() => onTabClick(tab.name)}
+              isMagazine={isMagazine}
             />
           ))}
         </ul>

@@ -1,34 +1,33 @@
-import ActivityContestItem from '@/components/ui/grid/ActivityContestItem';
-import Pagination from '@/components/ui/pagination/Pagination';
-import { Suspense } from 'react';
+import { fetchActivityContestAbstractWith } from '@/lib/fetchActivityAbstractWith';
+import Activity from '@/containers/activity/Activity';
 
-export default function Page() {
-  const dummyActivities: ActivityContestDetailsProps[] = Array.from(
-    { length: 100 },
-    (_, i) => ({
-      imageUrl: '/assets/test_image.png',
-      title: `활동 타이틀 ${i + 1}`,
-      organization: `주최 기관 ${i + 1}`,
-      dDay: `${Math.floor(Math.random() * 30)}`, // 0 ~ 29일 랜덤 마감일
-      receptionPeriod: `10월 ${Math.floor(Math.random() * 10) + 1}일(월) ~ 10월 ${Math.floor(Math.random() * 20) + 10}일(금)`,
-      category: i % 2 === 0 ? '대외활동' : '공모전', // '교육・강연' 제거, 대외활동과 공모전만 사용
-      viewCount: `${Math.floor(Math.random() * 5000) + 1000}`, // 1000 ~ 6000 랜덤 조회수 (string으로 변환)
-      detailUrl: `/activities/${i + 1}`, // detailUrl 추가
-    })
-  );
+interface PageProps {
+  searchParams: {
+    tab?: string;
+    filters?: string;
+    sort?: string;
+  };
+}
 
-  return (
-    <>
-      <Suspense fallback={<div>로딩 중...</div>}>
-        <Pagination
-          contents={dummyActivities} // 데이터를 Pagination에 전달
-          GridItem={ActivityContestItem} // 그리드 아이템 컴포넌트 전달
-          webItemPerPage={16}
-          mobileItemPerPage={10}
-          columnStyle="web4mobile2"
-          gapStyle="gapStyle2" // 그리드 gap 스타일 설정
-        />
-      </Suspense>
-    </>
-  );
+export default async function Page({ searchParams }: PageProps) {
+  // URL 파라미터에서 필터와 정렬 옵션 추출
+  const filters = searchParams.filters?.split(',').filter(Boolean) || [];
+  const sort = searchParams.sort || '관련도순';
+
+  console.log(filters, sort);
+
+  // 필터와 정렬 옵션을 API 호출에 전달
+  const { data: activitiesContests, error } =
+    await fetchActivityContestAbstractWith({
+      filters,
+      sort,
+      mainCategory: '대외활동',
+    });
+
+  if (error) {
+    console.error('Error fetching activities:', error);
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
+
+  return <Activity activitiesContests={activitiesContests || []} />;
 }

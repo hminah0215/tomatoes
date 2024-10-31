@@ -23,7 +23,7 @@ type ActivityContestDetailProps = {
   duration?: string;
 };
 
-export default function ActivityDetail({
+export default function ContestDetail({
   thumbnail_url,
   title,
   registration_date,
@@ -34,16 +34,16 @@ export default function ActivityDetail({
   homepage_url,
   d_day,
   description,
-  field,
-  duration,
+  department,
+  target,
 }: ActivityContestDetailProps) {
   const [activeTab, setActiveTab] = useState('상세내용');
 
   const details = [
-    { label: '참여 분야', value: field },
+    { label: '공모 분야', value: department },
     { label: '공모 기간', value: `${start_date} ~ ${end_date}` },
     { label: '주최 기관', value: company },
-    { label: '활동 기간', value: duration },
+    { label: '참여 대상', value: target },
     {
       label: '홈페이지',
       value: (
