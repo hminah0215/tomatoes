@@ -43,9 +43,9 @@ jobs:
       # JSON 데이터를 API 요청의 본문으로 전송
       - name: Upload JSON data to Vercel API
         env:
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }} # GitHub Secrets에서 Supabase 인증 키를 불러옴
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           curl -X POST "https://tomatoes-lemon.vercel.app/api/uploadMagazine" \
           -H "Content-Type: application/json" \
-          -H "Authorization: Bearer $SUPABASE_ANON_KEY" \ 
-          --data-binary @scripts/tomatoTip_data.json
+          -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+          --data-binary @src/scripts/tomatoTip_data.json
