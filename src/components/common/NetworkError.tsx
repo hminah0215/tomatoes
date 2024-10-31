@@ -13,14 +13,12 @@ export default function NetworkError() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <div className="relative mb-[30.51px]">
-        {/* 토마토 이미지 */}
         <Image
           src="/assets/common/PC_net_err_t.svg"
           alt="Tomato Icon"
           width={92}
           height={90.49}
         />
-        {/* 와이파이 이미지 */}
         <Image
           src="/assets/common/PC_net_err_wifi.svg"
           alt="Wifi Icon"

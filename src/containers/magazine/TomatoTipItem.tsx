@@ -4,15 +4,12 @@ import { TomatoTipDataType } from '@/types/tomatoTips';
 import Tag from '@/components/common/Tag';
 
 interface TomatoTipItemProps {
-  item: TomatoTipDataType; // 원래 tip 속성
+  item: TomatoTipDataType; 
 }
 
 const TomatoTipItem = ({ item }: TomatoTipItemProps) => {
-  // console.log('Rendering item:', item);
-
   const { id, title, author } = item;
 
-  // 인덱스 없이 이미지를 설정
   const imageIndex = id % 3;
   const thumbnailImages = [
     `/assets/magazine/PC_tips_thumbnail_${imageIndex + 1}.svg`,

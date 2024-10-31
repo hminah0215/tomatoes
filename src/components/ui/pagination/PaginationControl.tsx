@@ -3,7 +3,7 @@ import Image from 'next/image';
 type PaginationControlProps = {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void; // page는 number 타입, 반환 타입은 void
+  onPageChange: (page: number) => void;
 };
 
 function PaginationControl({
@@ -11,7 +11,7 @@ function PaginationControl({
   totalPages,
   onPageChange,
 }: PaginationControlProps) {
-  const pagesToShow = 5; // 한번에 5개의 페이지를 표시
+  const pagesToShow = 5;
   const startPage =
     Math.floor((currentPage - 1) / pagesToShow) * pagesToShow + 1;
   const endPage = Math.min(startPage + pagesToShow - 1, totalPages);

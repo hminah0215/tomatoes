@@ -12,10 +12,10 @@ type ActivityContestDetail = {
   homepage_url: string;
   d_day: number;
   description: string;
-  department?: string; // 공모전일 경우 추가되는 필드
-  target?: string; // 공모전일 경우 추가되는 필드
-  field?: string; // 대외활동일 경우 추가되는 필드
-  duration?: string; // 대외활동일 경우 추가되는 필드
+  department?: string; 
+  target?: string; 
+  field?: string;
+  duration?: string;
 };
 
 export const fetchActivityContestDetailWith = async (
@@ -45,7 +45,6 @@ export const fetchActivityContestDetailWith = async (
       return { data: null, error };
     }
 
-    // data를 unknown으로 먼저 변환 후 ActivityContestDetail로 캐스팅
     return { data: data as unknown as ActivityContestDetail, error: null };
   } catch (error) {
     console.error('Error fetching data:', error);

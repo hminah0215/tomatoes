@@ -3,9 +3,8 @@
 import { FaSearch } from 'react-icons/fa';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-// props 타입 정의
 interface MagazineSearchBarProps {
-  placeholder: string; // placeholder의 타입을 string으로 정의
+  placeholder: string; 
 }
 
 const MagazineSearchBar = ({ placeholder }: MagazineSearchBarProps) => {

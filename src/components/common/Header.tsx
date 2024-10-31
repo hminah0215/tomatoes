@@ -7,14 +7,12 @@ import SearchBar from './SearchBar';
 
 export default function Header() {
   const handleSearch = (keyword: string) => {
-    // `/search` 페이지로 검색어를 쿼리 파라미터로 전달
     window.location.href = `/search?query=${encodeURIComponent(keyword)}`;
   };
 
   return (
     <header className="flex w-full items-center justify-between px-7 py-4 shadow lg:px-[88px] lg:py-[22px]">
       <Link href="/" className="mr-8 shrink-0">
-        {/* 데스크탑 로고 */}
         <Image
           src="/assets/common/PC_logo_text (1).svg"
           width={160}
@@ -23,7 +21,6 @@ export default function Header() {
           className="hidden md:block"
         />
 
-        {/* 모바일 로고 */}
         <Image
           src="/assets/common/MO_logo_text.svg"
           width={76}

@@ -1,19 +1,13 @@
 'use client';
 
-// 매거진 제목 및 메뉴
-// 매거진 해더 모바일 반응형 아직 안돼요!!
-
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
-// 메뉴 이름 타입 정의
 type MenuName = '토마토Pick' | '토마토Tip' | '수상작갤러리' | '토마토리포트';
 
 const MagazineHeader = () => {
-  // 현재 선택된 메뉴를 상태로 관리
   const [selectedMenu, setSelectedMenu] = useState<MenuName>('토마토Pick');
 
-  // 메뉴 참조 정의
   const menuRefs: Record<
     MenuName,
     React.MutableRefObject<HTMLDivElement | null>
@@ -40,9 +34,9 @@ const MagazineHeader = () => {
       const offsetAdjustment =
         {
           토마토Pick: 0,
-          토마토Tip: 87, // 모바일 토마토Tip의 너비
-          수상작갤러리: 165, // 모바일 수상작 갤러리의 너비
-          토마토리포트: 263, // 모바일 토마토리포트의 너비
+          토마토Tip: 87, 
+          수상작갤러리: 165, 
+          토마토리포트: 263, 
         }[selectedMenu] || 0;
 
       setLinePosition({
@@ -54,15 +48,11 @@ const MagazineHeader = () => {
 
   return (
     <div className="relative mx-auto w-full md:px-[88px] md:pt-[75px]">
-      {/* 모바일 레이아웃 */}
       <div className="block w-full md:hidden">
-        {/* 상단 바 */}
-
         <div className="mb-[20px] ml-[28px] mt-[37px] h-[30px] font-['Recipekorea'] text-[24px] font-medium text-sub-gray-500">
           매거진
         </div>
 
-        {/* 메뉴 슬라이드 컨테이너 */}
         <div className="relative w-full">
           <div
             className="flex items-center gap-10 transition-transform duration-300"
@@ -107,32 +97,27 @@ const MagazineHeader = () => {
             </div>
           </div>
 
-          {/* 회색 줄 추가 */}
           <div className="mt-2 w-full border border-sub-gray-100"></div>
 
-          {/* 검은 줄 추가 */}
           <div
             className="absolute top-[35px] h-[2px] bg-black transition-all duration-300 ease-in-out"
             style={{
-              left: `${linePosition.left}px`, // offsetLeft 값을 사용
-              width: `${linePosition.width}px`, // offsetWidth 값을 사용
+              left: `${linePosition.left}px`, 
+              width: `${linePosition.width}px`, 
             }}
           ></div>
         </div>
       </div>
 
-      {/* PC 레이아웃 */}
       <div className="hidden md:block">
         <div className="h-[42px] font-['Recipekorea'] text-[24px] font-medium text-black md:text-[32px]">
           매거진
         </div>
 
         <div className="relative mt-[18px] w-full">
-          {/* 회색 선 */}
           <div className="absolute top-[54px] h-[2px] w-full bg-sub-gray-100"></div>
 
           <div className="relative z-10 flex items-start justify-start gap-[77px]">
-            {/* 토마토 Pick 메뉴 */}
             <Link href="/magazine">
               <div
                 className={`h-[53px] w-[114px] text-center text-[24px] ${selectedMenu === '토마토Pick' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '토마토Pick' ? 'sub-gray-dark' : 'sub-gray-200'}`}
@@ -142,7 +127,6 @@ const MagazineHeader = () => {
               </div>
             </Link>
 
-            {/* 토마토Tip 메뉴 */}
             <Link href="/magazine/tomatoTip">
               <div
                 className={`h-[53px] w-[104px] text-[24px] ${selectedMenu === '토마토Tip' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '토마토Tip' ? 'sub-gray-dark' : 'sub-gray-200'}`}
@@ -152,7 +136,6 @@ const MagazineHeader = () => {
               </div>
             </Link>
 
-            {/* 수상작 갤러리 메뉴 */}
             <Link href="/magazine/magazineGallary">
               <div
                 className={`h-[53px] w-[140px] text-[24px] ${selectedMenu === '수상작갤러리' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '수상작갤러리' ? 'sub-gray-dark' : 'sub-gray-200'}`}
@@ -162,7 +145,6 @@ const MagazineHeader = () => {
               </div>
             </Link>
 
-            {/* 토마토리포트 메뉴 */}
             <Link href="/magazine/magazineReport">
               <div
                 className={`h-[53px] w-[140px] text-[24px] ${selectedMenu === '토마토리포트' ? 'font-semibold leading-[39px]' : 'font-medium'} text-${selectedMenu === '토마토리포트' ? 'sub-gray-dark' : 'sub-gray-200'}`}
@@ -173,7 +155,6 @@ const MagazineHeader = () => {
             </Link>
           </div>
 
-          {/* 선택된 메뉴에 검정색 줄 추가 */}
           <div
             className={`absolute h-[2px] bg-black ${
               selectedMenu === '토마토Pick'

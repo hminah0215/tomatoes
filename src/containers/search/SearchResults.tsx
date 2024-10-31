@@ -1,4 +1,3 @@
-// components/SearchResults.tsx
 import NoResult from '@/components/common/noResult';
 import Image from 'next/image';
 import Link from 'next/link';

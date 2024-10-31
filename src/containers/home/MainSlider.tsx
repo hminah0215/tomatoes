@@ -5,16 +5,16 @@ import Image from 'next/image';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import BannerLink from './BannerLink';
 import { fetchMainSlider } from '@/lib/fetchMainSlider';
-// 색상의 밝기를 구분하는 함수
+
 function isDarkColor(color: string) {
   if (!color) return false;
 
   const r = parseInt(color.slice(1, 3), 16);
   const g = parseInt(color.slice(3, 5), 16);
   const b = parseInt(color.slice(5, 7), 16);
-  // 색상 밝기 계산
+
   const brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  // 밝기가 128보다 작으면 어두운 색으로 간주
+
   return brightness < 128;
 }
 
@@ -34,7 +34,6 @@ export default function MainSlider() {
     fetchData();
   }, []);
 
-  // 페이지 슬라이더
   const [currentIndex, setCurrentIndex] = useState(0);
   useEffect(() => {
     if (contents.length > 0) {
@@ -56,7 +55,7 @@ export default function MainSlider() {
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % contents.length);
   };
-  // 텍스트 색상 설정
+
   const textColor = isDarkColor(contents[currentIndex]?.dominant_color)
     ? "text-white"
     : "text-black";

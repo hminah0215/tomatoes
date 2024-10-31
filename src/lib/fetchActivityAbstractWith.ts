@@ -9,10 +9,9 @@ export async function fetchActivityContestAbstractWith({
     let query = supabase
       .from('activities_contests')
       .select('*')
-      .eq('main_category', mainCategory); // mainCategory를 변수로 적용
+      .eq('main_category', mainCategory);
 
     if (filters.length > 0) {
-      // 모든 컬럼에 대해 필터를 적용할 컬럼 목록
       const columns = [
         'field',
         'activity',
@@ -26,16 +25,13 @@ export async function fetchActivityContestAbstractWith({
         'organizer',
       ];
 
-      // 각 필터값별로 OR 조건 생성
       let orConditions = '';
 
       filters.forEach((filter, index) => {
-        // 각 컬럼에 대한 조건 생성
         const columnConditions = columns.map(
           (column) => `${column}.eq.${filter}`
         );
 
-        // 현재 필터의 조건들을 OR로 결합
         if (index === 0) {
           orConditions = columnConditions.join(',');
         } else {
@@ -43,7 +39,6 @@ export async function fetchActivityContestAbstractWith({
         }
       });
 
-      // OR 조건 적용
       query = query.or(orConditions);
     }
 

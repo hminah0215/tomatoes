@@ -58,7 +58,6 @@ export default function Dday({ type, day, color }: DdayProps) {
       </div>
     );
   } else {
-    // upcoming
     return (
       <div className={tagStyles['upcoming']}>
         <Image

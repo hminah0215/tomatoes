@@ -7,7 +7,7 @@ import NavItem from './NavItem';
 type navItemType = {
   name: string;
   route: string;
-  hasNewContent: boolean; // 새로운 콘텐츠 여부
+  hasNewContent: boolean;
 };
 
 export default function Navigation() {
@@ -36,7 +36,6 @@ export default function Navigation() {
     <nav className={containerClasses}>
       <ul className={listClasses}>
         {navItems.map((item) => {
-          // pathname이 item.route로 시작하는 경우 isActive를 true로 설정
           const isActive = new RegExp(`^${item.route}`).test(pathname);
           return <NavItem key={item.name} {...item} isActive={isActive} />;
         })}

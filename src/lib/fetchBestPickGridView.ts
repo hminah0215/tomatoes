@@ -11,7 +11,6 @@ export const fetchBestPickActivities = async () => {
   return { data, error };
 };
 
-// 전체 데이터를 가져오는 함수
 export const fetchBestPickAll = async (): Promise<{
   data: ContestActivityDataProps[] | null;
   error: PostgrestError | null;

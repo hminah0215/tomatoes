@@ -6,7 +6,7 @@ type searchKeywordProps = {
 };
 
 export default function NoResult({ searchKeyword }: searchKeywordProps) {
-  const keyword = searchKeyword;  // 사용자가 입력한 검색어
+  const keyword = searchKeyword;
 
   return (
     <div className="relative flex h-screen w-full flex-col items-center">

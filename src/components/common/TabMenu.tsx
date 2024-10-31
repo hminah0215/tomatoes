@@ -1,5 +1,5 @@
 import TabMenuItem from './TabMenuItem';
-import { usePathname } from 'next/navigation'; // pathname을 사용하기 위한 import 추가
+import { usePathname } from 'next/navigation';
 
 interface TabMenuProps {
   tabs: { name: string; path: string | null }[];
@@ -16,7 +16,7 @@ export default function TabMenu({
   onTabClick,
   isMagazine,
 }: TabMenuProps) {
-  const pathname = usePathname(); // usePathname hook 사용
+  const pathname = usePathname();
 
   return (
     <section className="flex justify-between overflow-x-auto overflow-y-hidden border-b-[1px] md:mx-[88px]">

@@ -9,7 +9,7 @@ import SearchContent from '@/containers/search/SearchContent';
 
 export default function SearchPage() {
   const [results, setResults] = useState([]);
-  const [query, setQuery] = useState(''); // Query 상태 관리
+  const [query, setQuery] = useState(''); 
   const [activeTab, setActiveTab] = useState('전체');
   const [activeSort, setActiveSort] = useState('관련도순');
 
@@ -29,7 +29,6 @@ export default function SearchPage() {
 
   return (
     <Suspense fallback={<div>로딩 중...</div>}>
-      {/* 쿼리 파라미터 가져오기 */}
       <SearchContent onContentChange={setQuery} />
       {results.length > 0 ? (
         <>

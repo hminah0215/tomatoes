@@ -1,5 +1,3 @@
-// app/api/uploadData/route.ts
-
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
@@ -58,7 +56,6 @@ export async function POST() {
 
     console.log('activities_contests 테이블의 모든 데이터가 삭제되었습니다.');
 
-    // 'reception_period'를 'start_date'와 'end_date'로 분리하여 저장
     const formattedData = postData.map((item) => ({
       title: item.title,
       company: item.company,

@@ -1,5 +1,3 @@
-// src/app/magazine/page.tsx
-
 import Image from 'next/image';
 import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 import MtomatoPick from '@/containers/magazine/MtomatoPick';
@@ -8,7 +6,6 @@ const MagazinePage = () => {
   return (
     <>
       <div className="bg-white">
-        {/* 배너 이미지 추가 */}
         <div className="px-[28px] mb-[42px] mt-[10px] h-full w-full md:px-[88px] md:mb-[106px] md:mt-[66px]">
           <Image
             src="/assets/magazine/PC_magazine_banner.svg"

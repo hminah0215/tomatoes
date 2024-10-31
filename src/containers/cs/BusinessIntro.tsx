@@ -5,20 +5,16 @@ export default function BusinessIntro() {
   return (
     <>
       <div>
-        {/* 상단 타이틀 */}
         <div className="mb-4 h-[48px] text-[32px] font-semibold text-sub-gray-500 md:mt-[88px] md:h-[72px] md:text-5xl md:font-bold">
           사업소개
         </div>
 
-        {/* 구분선 */}
         <div className="mb-[40px] mt-4 hidden h-[1px] w-[999px] bg-sub-gray-200 md:block" />
 
-        {/* 회사소개 배너 섹션 */}
         <div className="relative flex h-[161px] w-[319px] items-center justify-between rounded-[20px] bg-point-red-100 p-4 md:h-[295px] md:w-[999px] md:p-8">
-          {/* 텍스트 섹션 */}
           <div>
             <Image
-              src="/assets/common/MO_logo_text.svg" // '토마토들.' 이미지 경로
+              src="/assets/common/MO_logo_text.svg"
               alt="토마토들"
               width={112}
               height={25}
@@ -29,7 +25,6 @@ export default function BusinessIntro() {
               멋쟁이 토마토가 될 당신을 위해
             </div>
 
-            {/* 다운로드 버튼 */}
             <button className="flex h-8 w-[159px] items-center justify-center gap-2.5 rounded-[100px] border-2 border-point-red-500 bg-transparent focus:outline-none md:h-16 md:w-[318px]">
               <span className="text-[16px] font-semibold text-point-red-500 md:text-[32px]">
                 회사소개서 다운로드
@@ -37,10 +32,9 @@ export default function BusinessIntro() {
             </button>
           </div>
 
-          {/* 토마토 이미지 */}
           <div className="absolute right-[13px] top-[16px] md:right-[44px] md:top-9">
             <Image
-              src="/assets/cs/PC_business_t.svg" // 오른쪽에 있는 토마토 캐릭터들 이미지 경로
+              src="/assets/cs/PC_business_t.svg"
               alt="Tomato Character"
               width={123}
               height={82}
@@ -49,7 +43,6 @@ export default function BusinessIntro() {
           </div>
         </div>
 
-        {/* 본문 텍스트 */}
         <div className="container w-[1000px]">
           <section className="mb-[30px] mt-[48px] flex flex-col md:mb-[80px] md:mt-[72px] md:flex-row">
             <div className="w-full md:w-1/3">
@@ -106,7 +99,6 @@ export default function BusinessIntro() {
             </div>
           </section>
 
-          {/* 구분선 */}
           <div className="mb-[32px] mt-[30px] h-[1px] w-[320px] bg-sub-gray-200 md:mb-[80px] md:mt-[90px] md:w-[999px]" />
 
           <section className="mb-[80px] flex flex-col md:flex-row">
@@ -144,7 +136,6 @@ export default function BusinessIntro() {
             </div>
           </section>
 
-          {/* 광고/제휴 문의 버튼 */}
           <div className="mb-[80px] mt-[80px] flex md:mb-[92px] md:mt-[92px] md:justify-center">
             <button className="flex h-[72px] w-[313px] items-center justify-center gap-2 rounded-full bg-point-red-500 px-8 py-3 focus:outline-none">
               <span className="text-[24px] font-semibold text-white md:text-[32px]">

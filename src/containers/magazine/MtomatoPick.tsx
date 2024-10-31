@@ -1,4 +1,3 @@
-// app/magazine/MtomatoPick.tsx
 'use client';
 
 import { useEffect, useState } from 'react';

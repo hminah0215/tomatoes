@@ -39,6 +39,5 @@ export default async function Page({ params }: PageProps) {
 
   console.log(contestDetail);
 
-  // 개별 필드를 직접 전달
   return <ContestDetail {...contestDetail} />;
 }

@@ -12,7 +12,7 @@ export default function SearchContent({
   const query = searchParams.get('query') || '';
 
   useEffect(() => {
-    onContentChange(query); // 쿼리가 바뀔 때 상위 컴포넌트에 전달
+    onContentChange(query);
   }, [query, onContentChange]);
 
   return null;
