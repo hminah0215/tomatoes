@@ -1,5 +1,6 @@
 import { AiOutlineClose } from 'react-icons/ai';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type searchKeywordProps = {
   searchKeyword: string;
@@ -10,9 +11,12 @@ export default function NoResult({ searchKeyword }: searchKeywordProps) {
 
   return (
     <div className="relative flex h-screen w-full flex-col items-center">
-      <button className="absolute left-12 top-12">
+      <Link
+        className="absolute left-12 top-12 transform transition-transform duration-300 hover:rotate-90"
+        href={'/'}
+      >
         <AiOutlineClose className="h-11 w-11" />
-      </button>
+      </Link>
       <div className="absolute mt-28 flex w-full flex-col items-start justify-start px-12">
         <Image
           src="/assets/noResult/PC_header_t.svg"
