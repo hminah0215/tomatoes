@@ -8,7 +8,7 @@ import SearchHeader from '@/containers/search/SearchHeader';
 import SearchContent from '@/containers/search/SearchContent';
 
 export default function SearchPage() {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<SearchResult[]>([]);
   const [query, setQuery] = useState(''); // Query 상태 관리
   const [activeTab, setActiveTab] = useState('전체');
   const [activeSort, setActiveSort] = useState('관련도순');

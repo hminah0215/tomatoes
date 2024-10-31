@@ -1,25 +1,11 @@
 import { supabase } from '@/lib/supabaseClient';
+import { calculateRelevanceScore } from '@/utils/calculateRelevanceScore';
 
 export const fetchSearchResults = async (
   query: string,
   category: string,
   sortOption: string
 ) => {
-  // 관련도 점수 계산 함수
-  const calculateRelevanceScore = (item: any, query: string) => {
-    const title = item.title || '';
-    const content = item.content || item.description || '';
-
-    if (title.includes(query) && content.includes(query)) {
-      return 3; // 제목과 본문 모두 포함
-    } else if (title.includes(query)) {
-      return 2; // 제목에만 포함
-    } else if (content.includes(query)) {
-      return 1; // 본문에만 포함
-    }
-    return 0; // 포함되지 않음
-  };
-
   // 데이터 정렬 함수
   const sortData = (data: any[], option: string) => {
     if (option === '최신순') {
