@@ -29,7 +29,7 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
         </div>
         <div className="w-full items-center justify-between rounded-[20px] border border-sub-gray-100 px-[48px]">
           {results.map((result) => (
-            <Link key={result.id} href={result.link}>
+            <Link key={result.id} href={`/magazine/tomatoTip/${result.id}`}>
               <div className="flex items-center gap-6 border-b-[1px] py-[32px]">
                 <Image
                   src="/assets/test_image.png"
