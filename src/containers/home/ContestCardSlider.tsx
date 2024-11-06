@@ -14,13 +14,14 @@ function Card({ item }: ContestActivityListProps) {
         <Image 
           src={item.thumbnail_url} 
           alt={item.title} 
-          fill objectFit="cover" 
+          fill 
+          objectFit="cover" 
           className="rounded-xl" 
         />
       </div>
-      <div className="p-3 flex flex-col h-[calc(100%-12rem)]">
+      <div className="p-3 flex flex-col h-[calc(100%-12rem)] min-h-[130px]">
         <h3 className="mb-4 text-base font-bold flex-grow">{item.title}</h3>
-        <div className="flex items-center mt-auto">
+        <div className="flex items-center justify-between mt-auto">
           {item.d_day < 0 
             ? <Dday type="completed" /> 
             : <Dday type="active" day={item.d_day} color={item.d_day <= 7 ? 'red' : item.d_day <= 31 ? 'yellow' : 'green'} />
@@ -91,7 +92,7 @@ function ContestCardSlider() {
   };
 
   return (
-    <section className="my-5 flex flex-col items-center gap-4">
+    <section className="my-5 flex flex-col gap-4">
       <div 
         className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
