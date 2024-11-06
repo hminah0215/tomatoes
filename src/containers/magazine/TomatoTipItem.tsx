@@ -51,15 +51,15 @@ const TomatoTipItem = ({ item }: TomatoTipItemProps) => {
           height={230}
         />
       </div>
-      <div className="flex h-10 flex-col items-start justify-between gap-2 md:h-[74px]">
-        <div className="inline-flex items-center gap-3">
+      <div className="flex h-10 flex-col items-start justify-between gap-2 md:h-[80px]">
+        <div className="inline-flex items-center gap-3 md:h-[55px]">
           <Tag type={tagLabel} label={tagLabel.toUpperCase()} />
           <div className="line-clamp-2 text-sm font-semibold text-sub-gray-500 md:text-base">
             {title}
           </div>
         </div>
 
-        <div className="hidden h-[30px] w-[120px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium text-sub-gray-300 md:block md:text-base">
+        <div className="hidden h-[30px] w-full overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium text-sub-gray-300 md:block md:text-base">
           {author}
         </div>
       </div>
