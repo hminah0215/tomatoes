@@ -2,6 +2,8 @@ import Image from 'next/image';
 import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 import MtomatoPick from '@/containers/magazine/MtomatoPick';
 import { Suspense } from 'react';
+import Link from 'next/link';
+import { AiOutlineRight } from 'react-icons/ai';
 
 const MagazinePage = () => {
   return (
@@ -25,11 +27,19 @@ const MagazinePage = () => {
           />
         </div>
         <div className="mt-20 h-full w-full px-[28px] md:px-[88px]">
-          <div className="font-['Recipekorea'] text-[20px] font-medium text-sub-gray-500 md:text-[32px]">
-            지금 꼭 봐야하는 매거진
+          <div className="flex flex-row justify-between">
+            <p className="font-['Recipekorea'] text-[20px] font-medium text-sub-gray-500 md:text-[32px]">
+              지금 꼭 봐야하는 매거진
+            </p>
+            <Link
+              href={'/magazine/tomatoTip'}
+              className="flex flex-row items-center gap-1"
+            >
+              더보기
+              <AiOutlineRight />
+            </Link>
           </div>
           <CurrentHighlights />
-
           {/* Suspense로 MtomatoPick 감싸기 */}
           <Suspense fallback={<div>Loading...</div>}>
             <MtomatoPick />
