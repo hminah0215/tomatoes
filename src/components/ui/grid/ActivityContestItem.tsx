@@ -1,4 +1,5 @@
 'use client';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Dday from '@/components/common/Dday';
 import { formatViewCount } from '@/utils/format';
@@ -28,17 +29,12 @@ const ThumbnailImage = ({
 export default function ActivityContestItem({
   item,
 }: ActivityContestItemProps) {
-  const {
-    id,
-    title,
-    company,
-    d_day,
-    view_count,
-    main_category,
-    thumbnail_url,
-  } = item;
+  const { id, title, company, d_day, view_count, thumbnail_url } = item;
 
-  const detailUrl = useDetailUrl(id, main_category);
+  const pathname = usePathname();
+  const category = pathname.split('/')[1];
+
+  const detailUrl = useDetailUrl(id, category);
 
   return (
     <Link href={detailUrl} className="block w-full">
