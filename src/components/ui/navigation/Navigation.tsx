@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import NavItem from './NavItem';
+import { useScroll } from '@/hooks/useScroll';
 
 type navItemType = {
   name: string;
@@ -11,6 +12,7 @@ type navItemType = {
 
 export default function Navigation() {
   const pathname = usePathname();
+  const isVisible = useScroll({ threshold: 90 });
 
   const navItems: navItemType[] = [
     { name: '매거진', route: '/magazine' },
@@ -18,8 +20,12 @@ export default function Navigation() {
     { name: '대외활동', route: '/activity' },
   ];
 
-  const containerClasses =
-    'flex flex-1 items-center fixed md:static bottom-[30px] left-1/2 transform -translate-x-1/2 md:transform-none z-50';
+  const containerClasses = `
+    flex flex-1 items-center fixed md:static bottom-[30px] left-1/2 
+    transform -translate-x-1/2 md:transform-none z-50
+    transition-all duration-300 ease-in-out
+    ${!isVisible ? 'opacity-0 translate-y-full pointer-events-none md:opacity-100 md:translate-y-0 md:pointer-events-auto' : 'opacity-100'}
+  `;
 
   const listClasses =
     'flex gap-6 lg:gap-10 bg-white h-full px-8 md:px-0 py-4 md:py-0 whitespace-nowrap shadow md:shadow-none border md:border-none border-sub-gray-100 rounded-full md:rounded-none items-center';
