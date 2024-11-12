@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useState } from 'react';
 import { TomatoTipDataType } from '@/types/tomatoTips';
 import { fetchAllTomatoTips } from '@/lib/fetchTomatoTip';
-import Pagination from '@/components/ui/pagination/Pagination';
+import PaginationOld from '@/components/ui/pagination/PaginationOld';
 import TomatoTipItem from './TomatoTipItem';
 
 const TomatoTips = () => {
@@ -11,7 +11,7 @@ const TomatoTips = () => {
 
   useEffect(() => {
     const fetchTips = async () => {
-      const { data, error } = await fetchAllTomatoTips(); 
+      const { data, error } = await fetchAllTomatoTips();
 
       if (error) {
         console.error('Error fetching tips:', error);
@@ -32,7 +32,7 @@ const TomatoTips = () => {
         {tips.length > 0 && (
           <>
             <Suspense fallback={<div>로딩 중...</div>}>
-              <Pagination
+              <PaginationOld
                 contents={tips}
                 GridItem={TomatoTipItem}
                 webItemPerPage={15}
