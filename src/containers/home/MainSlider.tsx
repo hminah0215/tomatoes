@@ -75,7 +75,7 @@ export default function MainSlider() {
             className="relative flex min-w-full items-center justify-center overflow-hidden"
           >
             <div className={`z-10 ml-20 pl-10 ${textColor}`}>
-              <h1 className="mb-4 break-words text-lg font-bold md:text-3xl max-w-[80%]">
+              <h1 className="mb-4 line-clamp-3 break-words text-lg font-bold md:text-3xl max-w-[80%]">
                 {content.title}
               </h1>
               <div className="mb-6">
@@ -105,16 +105,16 @@ export default function MainSlider() {
 
       <button
         onClick={prevSlide}
-        className="absolute left-16 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
+        className="absolute left-12 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
       >
-        <AiOutlineLeft className="h-4 w-4" />
+        <AiOutlineLeft className="h-10 w-6" />
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-16 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
+        className="absolute right-12 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
       >
-        <AiOutlineRight className="h-4 w-4" />
+        <AiOutlineRight className="h-10 w-6" />
       </button>
 
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 transform rounded-full bg-gray-800 px-3 py-1 text-sm text-white opacity-60">
