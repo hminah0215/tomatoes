@@ -47,7 +47,13 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
                 </div>
                 <div className="flex h-[158px] flex-col items-start gap-3 pl-[14px]">
                   <div className="flex">
-                    <div>공모전</div>
+                    <div className="inline-flex h-[38px] items-center justify-center gap-2.5 rounded-[100px] bg-sub-gray-500 px-3 py-1 shadow">
+                      <div className="text-center text-xl font-medium leading-[30px] text-main-white">
+                        {result.main_category === '공모전' && '공모전'}
+                        {result.main_category === '대외활동' && '대외활동'}
+                        {result.link && '매거진'}
+                      </div>
+                    </div>
                     <div className="ml-[12px] text-[20px] font-medium text-sub-gray-400">
                       {result.company}
                     </div>
