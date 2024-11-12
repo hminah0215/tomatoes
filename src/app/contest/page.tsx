@@ -1,5 +1,6 @@
 import { fetchPaginatedData } from '@/lib/fetchPaginatedData';
 import Contest from '@/containers/contest/Contest';
+import { notFound } from 'next/navigation';
 
 interface PageProps {
   searchParams: {
@@ -38,9 +39,13 @@ export default async function Page({ searchParams }: PageProps) {
     return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
   }
 
+  if (!data || data.length === 0) {
+    notFound();
+  }
+
   return (
     <Contest
-      contests={data || []}
+      contests={data}
       pagination={{
         currentPage: page,
         totalPages,
