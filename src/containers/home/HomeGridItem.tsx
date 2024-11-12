@@ -39,15 +39,18 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
       </div>
 
       <div className="mt-2 md:mt-4">
-        <h2 className="h-10 mb-2 overflow-hidden text-sm font-semibold line-clamp-2 md:h-[60px] md:text-base md:font-semibold lg:text-lg">
+        <h2 className="h-10 mb-2 overflow-hidden text-sm font-semibold line-clamp-2 md:h-[50px] md:text-base md:font-semibold lg:text-lg">
           {title}
         </h2>
 
         <div className="flex items-center justify-between gap-1.5">
-          <Dday type="active" day={d_day} color={d_day <= 7 ? 'red' : d_day <= 31 ? 'yellow' : 'green'} />
-          <p className="md:text-md text-xs font-normal text-sub-gray-300 sm:text-sm md:font-medium md:text-sm lg:text-base xl:text-base">
-            <span className="inline sm:hidden">{`~ ${end_date}`}</span>
-            <span className="hidden sm:inline">{`${start_date} ~ ${end_date}`}</span>
+          {d_day < 0
+          ? <Dday type="completed" />
+          : <Dday type="active" day={d_day} color={d_day <= 7 ? 'red' : d_day <= 31 ? 'yellow' : 'green'} />
+          }
+          <p className="text-xs font-normal text-sub-gray-300 sm:text-sm md:font-medium md:text-sm lg:text-sm xl:text-base">
+            <span className="inline xl:hidden">{`~ ${end_date}`}</span>
+            <span className="hidden xl:inline">{`${start_date} ~ ${end_date}`}</span>
           </p>
         </div>
       </div>
