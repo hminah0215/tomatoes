@@ -39,7 +39,7 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
       </div>
 
       <div className="mt-2 md:mt-4">
-        <h2 className="h-10 mb-2 overflow-hidden text-sm font-semibold line-clamp-2 md:h-[50px] md:text-base md:font-semibold lg:text-lg">
+        <h2 className="h-10 mb-4 overflow-hidden text-sm font-semibold line-clamp-2 md:h-[50px] md:text-base md:font-semibold lg:text-lg">
           {title}
         </h2>
 

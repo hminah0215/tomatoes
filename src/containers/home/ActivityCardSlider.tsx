@@ -19,8 +19,8 @@ function Card({ item }: ContestActivityListProps) {
           className="rounded-xl" 
         />
       </div>
-      <div className="p-3 flex flex-col h-[calc(100%-12rem)] min-h-[120px]">
-        <h3 className="h-11 mb-4 line-clamp-2 text-base font-bold flex-grow">{item.title}</h3>
+      <div className="p-1 flex flex-col h-[calc(100%-12rem)] min-h-[100px]">
+        <h3 className="h-11 pt-1 mb-3 line-clamp-2 text-base font-bold flex-grow">{item.title}</h3>
         <div className="flex items-center justify-between mt-auto">
           {item.d_day < 0 
             ? <Dday type="completed" /> 
@@ -111,7 +111,7 @@ function ActivityCardSlider() {
         ))}
       </div>
 
-      <div className="mt-6 flex items-center justify-center gap-10">
+      <div className="mt-3 flex items-center justify-center gap-10">
         <button
           onClick={goToPrevPage}
           disabled={currentPage === 0}

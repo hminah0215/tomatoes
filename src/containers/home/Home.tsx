@@ -18,7 +18,7 @@ export default function Home() {
       <ContestBanner />
 
       <section className="px-[28px] md:px-[88px]">
-        <p className="mt-20 font-recipe text-[28px] font-normal leading-[48px] text-point-red-500 md:text-[32px]">
+        <p className="mt-10 font-recipe text-[26px] font-normal leading-[48px] text-point-red-500 md:text-[32px]">
           BEST PICK
         </p>
         <section className="my-5 flex flex-col">
@@ -26,8 +26,8 @@ export default function Home() {
         </section>
       </section>
 
-      <section className="px-[28px] md:px-[88px] mt-20 flex items-center">
-        <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
+      <section className="px-[28px] md:px-[88px] mt-10 flex items-center">
+        <p className="font-recipe text-[26px] font-normal leading-[48px] md:text-[32px]">
           토마토들 <span className="text-point-red-500">추천 활동</span>
         </p>
         <Image
@@ -42,9 +42,9 @@ export default function Home() {
         <RecoActivityGridView />
       </section>
 
-      <section className="px-[28px] md:px-[88px] mt-20">
+      <section className="px-[28px] md:px-[88px] mt-10">
         <div className="flex flex-row justify-between">
-          <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
+          <p className="font-recipe text-[26px] font-normal leading-[48px] md:text-[32px]">
             공모전
           </p>
           <Link
@@ -58,9 +58,9 @@ export default function Home() {
         <ContestCardSlider />
       </section>
 
-      <section className="px-[28px] md:px-[88px] mt-20">
+      <section className="px-[28px] md:px-[88px] mt-10">
         <div className="flex flex-row justify-between">
-          <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
+          <p className="font-recipe text-[26px] font-normal leading-[48px] md:text-[32px]">
             대외활동
           </p>
           <Link
@@ -74,9 +74,9 @@ export default function Home() {
         <ActivityCardSlider />
       </section>
 
-      <section className="px-[28px] md:px-[88px] mt-20">
+      <section className="px-[28px] md:px-[88px] mt-10">
         <div className="flex flex-row justify-between">
-          <p className="font-recipe text-[28px] font-normal leading-[48px] md:text-[32px]">
+          <p className="font-recipe text-[26px] font-normal leading-[48px] md:text-[32px]">
             매거진
           </p>
           <Link
