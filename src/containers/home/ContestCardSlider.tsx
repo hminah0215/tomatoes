@@ -20,7 +20,7 @@ function Card({ item }: ContestActivityListProps) {
         />
       </div>
       <div className="p-3 flex flex-col h-[calc(100%-12rem)] min-h-[130px]">
-        <h3 className="mb-4 text-base font-bold flex-grow">{item.title}</h3>
+        <h3 className="h-11 mb-4 line-clamp-2 text-base font-bold flex-grow">{item.title}</h3>
         <div className="flex items-center justify-between mt-auto">
           {item.d_day < 0 
             ? <Dday type="completed" /> 
