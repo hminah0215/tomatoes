@@ -1,3 +1,5 @@
+// 웹과 모바일에서 페이지 당 아이템 개수를 동일하게 유지하도록 했기 때문에 이 훅은 삭제 예정입니다
+
 import { useState, useEffect } from 'react';
 
 export default function useResponsiveItemsPerPage(
@@ -9,13 +11,13 @@ export default function useResponsiveItemsPerPage(
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth >= 768) {
-        setItemsPerPage(webItemsPerPage); 
+        setItemsPerPage(webItemsPerPage);
       } else {
         setItemsPerPage(mobileItemsPerPage);
       }
     }
 
-    handleResize(); 
+    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => {
