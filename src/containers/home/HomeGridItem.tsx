@@ -13,7 +13,7 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
       className="relative block"
     >
       <div className="block sm:hidden w-full justify-center">
-        <div className="absolute mt-5 rounded-full bg-sub-gray-500 p-2 text-xs font-normal text-white md:text-lg md:font-medium">
+        <div className="absolute mt-4 ml-[5%] rounded-full bg-sub-gray-500 p-2 text-xs font-normal text-white md:text-lg md:font-medium">
           {main_category}
         </div>
         <Image
