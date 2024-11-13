@@ -37,24 +37,34 @@ export default function ActivityContestItem({
   const detailUrl = useDetailUrl(id, category);
 
   return (
-    <Link href={detailUrl} className="block w-full">
+    <Link href={detailUrl} className="flex w-full flex-col">
       <ThumbnailImage url={thumbnail_url} title={title} isMobile={true} />
       <ThumbnailImage url={thumbnail_url} title={title} isMobile={false} />
 
-      <div className="mt-2 w-full md:mt-4">
-        <h2 className="line-clamp-2 min-h-[3em] text-base font-semibold md:min-h-[3.9em] md:text-xl">
+      <div className="mt-2 flex w-full flex-1 flex-col justify-between md:mt-4">
+        <h2 className="line-clamp-2 text-base font-semibold md:text-xl">
           {title}
         </h2>
 
-        <p className="mb-2 line-clamp-1 text-sm font-normal text-sub-gray-400 md:text-xl md:font-medium">
-          {company}
-        </p>
-
-        <div className="flex items-center gap-1.5">
-          <Dday type="active" day={d_day} color="red" />
-          <p className="text-xs font-normal text-sub-gray-300 sm:text-sm md:text-base md:font-medium">
-            조회 {formatViewCount(view_count)}회
+        <div>
+          <p className="mb-2 line-clamp-1 text-sm font-normal text-sub-gray-400 md:text-xl md:font-medium">
+            {company}
           </p>
+
+          <div className="flex items-center gap-1.5">
+            {d_day < 0 ? (
+              <Dday type="completed" />
+            ) : (
+              <Dday
+                type="active"
+                day={d_day}
+                color={d_day <= 7 ? 'red' : d_day <= 31 ? 'yellow' : 'green'}
+              />
+            )}
+            <p className="text-xs font-normal text-sub-gray-300 sm:text-sm md:text-base md:font-medium">
+              조회 {formatViewCount(view_count)}회
+            </p>
+          </div>
         </div>
       </div>
     </Link>
