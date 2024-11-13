@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import SearchDdayDisplay from './SearchDdayDisplay';
 import Tag from '@/components/common/Tag';
+import { getTagLabel } from '@/utils/getTagLabel';
 
 export default function SearchResults({ results, query }: SearchResultsProps) {
   // 검색 결과 클릭시 페이지 이동
@@ -28,55 +29,64 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
 
   return (
     <>
-      <div className="flex flex-col items-start justify-start px-[88px] py-[56px]">
+      <div className="flex flex-col items-start justify-start px-[28px] py-[20px] md:px-[88px] md:py-[56px]">
         <div className="mb-4 text-lg font-semibold text-gray-900">
           <span className="text-point-red-500">&apos;{`${query}`}&apos;</span>에
           대한 검색 결과 총 {results.length}건
         </div>
-        <div className="relative w-full items-center justify-between rounded-[20px] border border-sub-gray-100 px-[48px]">
-          {results.map((result, index) => (
-            <Link key={result.id} href={getResultHref(result)}>
-              <div className="flex items-center gap-6 border-b-[1px] py-[32px]">
-                <div className="flex h-[168px] w-[140px] overflow-hidden">
-                  <Image
-                    src={getThumbnailUrl(result, index)}
-                    alt="Search Image"
-                    width={140}
-                    height={168}
-                  />
-                </div>
-                <div className="flex h-[158px] flex-col items-start gap-3 pl-[14px]">
-                  <div className="flex">
-                    <div>공모전</div>
-                    <div className="ml-[12px] text-[20px] font-medium text-sub-gray-400">
-                      {result.company}
+        <div className="relative w-[318px] items-center justify-between rounded-[20px] border border-sub-gray-100 px-[20px] md:w-full md:px-[48px]">
+          {results.map((result, index) => {
+            const tagLabel = getTagLabel(result.views, result.created_at);
+            return (
+              <Link key={result.id} href={getResultHref(result)}>
+                <div className="flex items-center gap-6 border-b-[1px] py-[32px]">
+                  <div className="flex h-[100px] w-[88px] overflow-hidden md:h-[168px] md:w-[140px]">
+                    <Image
+                      src={getThumbnailUrl(result, index)}
+                      alt="Search Image"
+                      width={140}
+                      height={168}
+                    />
+                  </div>
+                  <div className="flex h-[158px] flex-col items-start gap-3 pl-[14px]">
+                    <div className="flex">
+                      <div className="inline-flex h-[22px] items-center justify-center gap-2.5 rounded-[100px] bg-sub-gray-500 px-3 py-1 shadow md:h-[38px]">
+                        <div className="text-center text-[10px] font-medium leading-[30px] text-main-white md:text-xl">
+                          {result.main_category === '공모전' && '공모전'}
+                          {result.main_category === '대외활동' && '대외활동'}
+                          {result.link && '매거진'}
+                        </div>
+                      </div>
+                      <div className="ml-[12px] text-[12px] font-medium text-sub-gray-400 md:text-[20px]">
+                        {result.company}
+                      </div>
+                    </div>
+                    <div className="flex h-[76px] text-[14px] font-semibold text-sub-gray-500 md:text-[32px]">
+                      {result.title}
+                    </div>
+                    <div className="text-[12px] font-medium text-sub-gray-300 md:text-xl">
+                      조회{' '}
+                      {(
+                        (result.main_category === '공모전' ||
+                        result.main_category === '대외활동'
+                          ? result.view_count
+                          : result.views) ?? 0
+                      ).toLocaleString()}
+                      회
                     </div>
                   </div>
-                  <div className="flex h-[76px] text-[32px] font-semibold text-sub-gray-500">
-                    {result.title}
-                  </div>
-                  <div className="text-xl font-medium text-sub-gray-300">
-                    조회{' '}
-                    {(
-                      (result.main_category === '공모전' ||
-                      result.main_category === '대외활동'
-                        ? result.view_count
-                        : result.views) ?? 0
-                    ).toLocaleString()}
-                    회
+                  <div className="absolute right-[48px] hidden md:block">
+                    {result.main_category === '공모전' ||
+                    result.main_category === '대외활동' ? (
+                      <SearchDdayDisplay d_day={result.d_day} />
+                    ) : (
+                      <Tag type={tagLabel} label={tagLabel.toUpperCase()} />
+                    )}
                   </div>
                 </div>
-                <div className="absolute right-[48px]">
-                  {result.main_category === '공모전' ||
-                  result.main_category === '대외활동' ? (
-                    <SearchDdayDisplay d_day={result.d_day} />
-                  ) : (
-                    <Tag type="hot" label="HOT" />
-                  )}
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </>

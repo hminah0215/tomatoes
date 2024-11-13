@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { TomatoTipDataType } from '@/types/tomatoTips';
 import Tag from '@/components/common/Tag';
+import { getTagLabel } from '@/utils/getTagLabel';
 
 interface TomatoTipItemProps {
   item: TomatoTipDataType;
@@ -9,22 +10,8 @@ interface TomatoTipItemProps {
 
 const TomatoTipItem = ({ item }: TomatoTipItemProps) => {
   // console.log('Rendering item:', item);
-
   const { id, title, author, views, created_at } = item;
-
-  // 조회수와 작성일에 따른 배지 설정
-  const createdDate = new Date(created_at || '');
-
-  // 작성일이 현재로부터 7일 이내인지 확인하여 isNew 값 설정
-  const isNew =
-    (Date.now() - createdDate.getTime()) / (1000 * 60 * 60 * 24) < 7;
-
-  // 조회수와 작성일을 기준으로 배지 타입 설정
-  const tagLabel: 'hot' | 'new' | 'best' = isNew
-    ? 'new' // 작성일이 7일 이내이면 무조건 'new' 배지 설정
-    : views && views >= 100 // 작성일이 7일 이상 지났을 때 조회수가 100 이상이면 'hot' 배지 설정
-      ? 'hot'
-      : 'best'; // 그 외의 경우 'best' 배지 설정
+  const tagLabel = getTagLabel(views, created_at);
 
   // 토마토 썸네일 이미지 설정
   const imageIndex = id % 3;

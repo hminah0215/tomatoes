@@ -20,6 +20,7 @@ export default function SearchHeader({
 
   return (
     <>
+      {/* PC */}
       <section className="hidden px-[88px] pt-[74px] md:block">
         <h1 className="pb-7 font-recipe text-[32px] font-medium">검색</h1>
 
@@ -41,7 +42,7 @@ export default function SearchHeader({
             {sortSearchOptions.map((option, index) => (
               <li
                 key={index}
-                className={`relative cursor-pointer text-sm font-medium md:text-xl ${
+                className={`relative cursor-pointer text-[26px] font-medium md:text-xl ${
                   activeSort === option
                     ? 'font-semibold text-point-red-500'
                     : 'text-sub-gray-200'
@@ -58,11 +59,12 @@ export default function SearchHeader({
         </div>
       </section>
 
-      <section className="md:hidden">
-        <h1 className="pb-7 font-recipe text-[32px] font-medium">검색</h1>
+      {/* 반응형 */}
+      <section className="px-[28px] pt-[37px] md:hidden">
+        <h1 className="pb-7 font-recipe text-[24px] font-medium">검색</h1>
 
         <section className="flex justify-between border-b-[1px] pl-[14px]">
-          <ul className="flex gap-20 whitespace-nowrap text-base">
+          <ul className="flex items-center justify-between gap-10 whitespace-nowrap text-[18px]">
             {tabs.map((tab, index) => (
               <TabItem
                 key={index}
@@ -79,7 +81,7 @@ export default function SearchHeader({
             {sortSearchOptions.map((option, index) => (
               <li
                 key={index}
-                className={`relative cursor-pointer text-sm font-medium md:text-xl ${
+                className={`relative cursor-pointer text-[14px] font-medium md:text-xl ${
                   activeSort === option
                     ? 'font-semibold text-point-red-500'
                     : 'text-sub-gray-200'
