@@ -7,7 +7,7 @@ interface DdayProps {
 }
 
 const baseTagStyle =
-  'w-[75px] h-[33px] md:w-[95px] md:h-[33px] p-1 rounded-[999px] justify-center items-center gap-1.5 inline-flex';
+  'w-[70px] h-[30px] md:w-[80px] md:h-[33px] p-1 rounded-[999px] justify-center items-center gap-1.5 inline-flex';
 const baseTextStyle = 'text-xs sm:text-xs md:text-xs lg:text-sm font-medium leading-[20px]';
 
 const tagStyles = {

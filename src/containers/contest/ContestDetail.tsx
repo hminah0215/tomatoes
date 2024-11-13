@@ -7,23 +7,6 @@ import ActivityContestDescription from '@/components/common/ActivityContestDescr
 import { formatDate } from '@/utils/format';
 import { useState } from 'react';
 
-type ActivityContestDetailProps = {
-  thumbnail_url: string;
-  title: string;
-  registration_date: string;
-  view_count: number;
-  start_date: string;
-  end_date: string;
-  company: string;
-  homepage_url: string;
-  d_day: number;
-  description: string;
-  department?: string;
-  target?: string;
-  field?: string;
-  duration?: string;
-};
-
 export default function ContestDetail({
   thumbnail_url,
   title,
@@ -37,7 +20,7 @@ export default function ContestDetail({
   description,
   department,
   target,
-}: ActivityContestDetailProps) {
+}: ActivityContestDetail) {
   const [activeTab, setActiveTab] = useState('상세내용');
   const [formatted_start_date, formatted_end_date] = [
     formatDate(start_date),

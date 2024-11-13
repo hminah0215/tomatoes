@@ -5,6 +5,7 @@ import Image from 'next/image';
 import BannerLink from './BannerLink';
 import { fetchMainSlider } from '@/lib/fetchMainSlider';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+import Link from 'next/link';
 
 function isDarkColor(color: string) {
   if (!color) return false;
@@ -58,13 +59,13 @@ export default function MoMainSlider() {
         <h2 className="text-base font-medium">
           {`[ ${contents[currentIndex]?.main_category} ]`}
         </h2>
-        <h1 className="mb-2 text-2xl font-bold leading-10 max-w-[70%]">
+        <h1 className="h-20 line-clamp-2 mb-1 text-2xl font-bold leading-10 max-w-[70%]">
           {contents[currentIndex]?.title}
         </h1>
-        <BannerLink url={'/contest'} />
+        <BannerLink url={`/contest/${contents[currentIndex]?.id}`} />
       </div>
 
-      <div className="relative mt-6 mb-10 w-full flex justify-center items-start space-x-4">
+      <div className="relative mt-6 mb-10 w-full flex justify-center items-start space-x-0">
         {contents.map((content, index) => {
           const position = (index - currentIndex + contents.length) % contents.length;
 
@@ -77,22 +78,27 @@ export default function MoMainSlider() {
           return (
             <div
               key={index}
-              className={`absolute transition-all duration-700 ease-out ${position === 0 ? 'z-10' : 'z-0'}`}
+              className={`absolute transition-all duration-700 ease-out ${position === 0 ? 'z-8' : 'z-0'}`}
               style={{
                 transform: transformStyle,
                 opacity: position === 0 ? 1 : 0.5,
               }}
             >
-              <div className="w-[200px] h-[180px] shadow-2xl rounded-3xl overflow-hidden">
-                <Image
-                  src={content.thumbnail_url}
-                  alt={`slide-${index}`}
-                  width={200}
-                  height={180}
-                  objectFit="cover"
-                  objectPosition="center"
-                  className="opacity-80"
-                />
+              <div 
+                className="w-[200px] h-[180px] shadow-2xl rounded-3xl overflow-hidden">
+                <Link
+                  href={`/contest/${contents[currentIndex]?.id}`}
+                >
+                  <Image
+                    src={content.thumbnail_url}
+                    alt={`slide-${index}`}
+                    width={200}
+                    height={180}
+                    objectFit="cover"
+                    objectPosition="center"
+                    className="opacity-80"
+                  />
+                </Link>
               </div>
             </div>
           );
@@ -105,15 +111,15 @@ export default function MoMainSlider() {
 
       <button
         onClick={prevSlide}
-        className="absolute left-10 bottom-1/4 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
+        className="absolute z-10 left-8 bottom-[20%] -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
       >
-        <AiOutlineLeft className="h-7 w-5" />
+        <AiOutlineLeft className="h-10 w-7" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-10 bottom-1/4 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
+        className="absolute z-10 right-8 bottom-[20%] -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
       >
-        <AiOutlineRight className="h-7 w-5" />
+        <AiOutlineRight className="h-10 w-7" />
       </button>
     </div>
   );

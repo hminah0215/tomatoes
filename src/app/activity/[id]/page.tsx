@@ -4,9 +4,8 @@ import { supabase } from '@/lib/supabaseClient';
 
 export async function generateStaticParams() {
   const { data: posts, error } = await supabase
-    .from('activities_contests')
-    .select('id')
-    .neq('id', null);
+    .from('tomato_activities')
+    .select('id');
 
   if (error) {
     console.error('Error fetching IDs:', error);
@@ -26,11 +25,10 @@ type PageProps = {
 
 export default async function Page({ params }: PageProps) {
   const id = Number(params.id);
-  const mainCategory = '대외활동';
 
   const { data: activityDetail, error } = await fetchActivityContestDetailWith(
     id,
-    mainCategory
+    'tomato_activities'
   );
 
   if (error || !activityDetail) {

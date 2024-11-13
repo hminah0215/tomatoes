@@ -16,9 +16,12 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
   const en_main_category = main_category === '공모전' ? 'contest' : 'activity';
 
   return (
-    <Link href={`${en_main_category}/${id}`} className="relative block">
-      <div className="block w-full justify-self-end sm:hidden">
-        <div className="absolute ml-4 mt-5 rounded-full bg-sub-gray-500 p-2 text-xs font-normal text-white md:text-lg md:font-medium">
+    <Link 
+      href={`${en_main_category}/${id}`} 
+      className="relative block"
+    >
+      <div className="block sm:hidden w-full justify-center">
+        <div className="absolute mt-4 ml-[5%] rounded-full bg-sub-gray-500 p-2 text-xs font-normal text-white md:text-lg md:font-medium">
           {main_category}
         </div>
         <Image
@@ -30,8 +33,8 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
         />
       </div>
 
-      <div className="hidden w-full justify-self-end sm:block">
-        <div className="absolute ml-5 mt-5 rounded-full bg-sub-gray-500 p-2 text-xs font-normal text-white md:text-base md:font-medium">
+      <div className="hidden sm:block w-full justify-center">
+        <div className="absolute mt-5 ml-5 rounded-full bg-sub-gray-500 p-2 text-xs font-normal text-white md:text-base md:font-medium">
           {main_category}
         </div>
         <Image
@@ -39,24 +42,23 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
           alt={title}
           width={300}
           height={360}
-          className="h-[360px] rounded-[20px] border border-sub-gray-100 object-cover"
+          className="rounded-[20px] border border-sub-gray-100 h-[360px] w-full object-cover"
         />
       </div>
 
       <div className="mt-2 md:mt-4">
-        <h2 className="line-clamp-0.5 mb-2 h-12 text-sm font-semibold md:h-[78px] md:text-base md:font-semibold lg:text-lg">
+        <h2 className="h-10 mb-4 overflow-hidden text-sm font-semibold line-clamp-2 md:h-[50px] md:text-base md:font-semibold lg:text-lg">
           {title}
         </h2>
 
-        <div className="flex items-center gap-1.5">
-          <Dday
-            type="active"
-            day={d_day}
-            color={d_day <= 7 ? 'red' : d_day <= 31 ? 'yellow' : 'green'}
-          />
-          <p className="md:text-md text-xs font-normal text-sub-gray-300 sm:text-sm md:text-sm md:font-medium lg:text-base xl:text-base">
-            <span className="inline sm:hidden">{`~ ${end_date}`}</span>
-            <span className="hidden sm:inline">{`${start_date} ~ ${end_date}`}</span>
+        <div className="flex items-center justify-between gap-1.5">
+          {d_day < 0
+          ? <Dday type="completed" />
+          : <Dday type="active" day={d_day} color={d_day <= 7 ? 'red' : d_day <= 31 ? 'yellow' : 'green'} />
+          }
+          <p className="text-xs font-normal text-sub-gray-300 sm:text-sm md:font-medium md:text-sm lg:text-sm xl:text-base">
+            <span className="inline xl:hidden">{`~ ${end_date}`}</span>
+            <span className="hidden xl:inline">{`${start_date} ~ ${end_date}`}</span>
           </p>
         </div>
       </div>

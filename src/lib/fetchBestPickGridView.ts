@@ -7,8 +7,30 @@ export const fetchBestPickActivities = async () => {
     .select('*')
     .order('view_count', { ascending: false })
     .limit(8);
+  
+  if (error) {
+    return { data: null, error };
+  }
+  // Date 형식 변경
+  const formattedData = data.map((item) => {
+    const formatToKoreanDate = (dateString: Date) => {
+      const date = new Date(dateString);
+      
+      return date.toLocaleDateString('ko-KR', {
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit',
+      }).replace(/\./g, '').trim().replace(/ /g, '.');
+    };
 
-  return { data, error };
+    return {
+      ...item,
+      start_date: formatToKoreanDate(item.start_date),
+      end_date: formatToKoreanDate(item.end_date),
+    };
+  });
+
+  return { data: formattedData, error: null };
 };
 
 export const fetchBestPickAll = async (): Promise<{

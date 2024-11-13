@@ -4,11 +4,16 @@ import NoFilterResult from '@/components/common/noFilterResult';
 import { Suspense } from 'react';
 
 interface ContestProps {
-  activitiesContests: ContestActivityData[];
+  contests: ActivityContestData[];
+  pagination: {
+    currentPage: number;
+    totalPages: number;
+    totalCount: number;
+  };
 }
 
-export default function Contest({ activitiesContests }: ContestProps) {
-  if (activitiesContests.length === 0) {
+export default function Contest({ contests, pagination }: ContestProps) {
+  if (contests.length === 0) {
     return <NoFilterResult />;
   }
 
@@ -17,12 +22,11 @@ export default function Contest({ activitiesContests }: ContestProps) {
       <Suspense fallback={<div>로딩 중...</div>}>
         <div className="px-7 md:px-[88px]">
           <Pagination
-            contents={activitiesContests}
+            items={contests}
             GridItem={ActivityContestItem}
-            webItemPerPage={16}
-            mobileItemPerPage={10}
             columnStyle="web4mobile2"
             gapStyle="gapStyle2"
+            pagination={pagination}
           />
         </div>
       </Suspense>
