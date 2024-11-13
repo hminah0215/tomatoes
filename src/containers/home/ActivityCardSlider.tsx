@@ -36,7 +36,6 @@ function Card({ item }: ContestActivityListProps) {
   );
 }
 
-
 function ActivityCardSlider() {
   const [activities, setActivities] = useState<ContestActivityDataProps[]>([]);
 
@@ -44,7 +43,7 @@ function ActivityCardSlider() {
     const fetchData = async () => {
       const { data, error } = await fetchActivityCardSlider();
       if (error) {
-        console.error("데이터를 가져오는 중 오류 발생:", error.message);
+        console.error('데이터를 가져오는 중 오류 발생:', error.message);
       } else {
         setActivities(data || []);
       }
@@ -103,10 +102,9 @@ function ActivityCardSlider() {
         {currentItems.map((card) => (
           <Link
             key={card.id}
-            href={`/${card.main_category === "activity" ? "activity" : "contest"}/${card.id}`}>
-            <Card
-              item={card}
-            />
+            href={`/${card.main_category === '대외활동' ? 'activity' : 'contest'}/${card.id}`}
+          >
+            <Card item={card} />
           </Link>
         ))}
       </div>

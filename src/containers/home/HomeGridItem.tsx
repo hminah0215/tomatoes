@@ -4,8 +4,16 @@ import Dday from '@/components/common/Dday';
 import Link from 'next/link';
 
 export default function HomeGridItem({ item }: ContestActivityListProps) {
-  const { id, title, d_day, start_date, end_date, main_category, thumbnail_url } = item;
-  const en_main_category = main_category === 'contest' ? 'contest' : 'activity';
+  const {
+    id,
+    title,
+    d_day,
+    start_date,
+    end_date,
+    main_category,
+    thumbnail_url,
+  } = item;
+  const en_main_category = main_category === '공모전' ? 'contest' : 'activity';
 
   return (
     <Link 
@@ -21,7 +29,7 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
           alt={title}
           width={152}
           height={200}
-          className="rounded-[20px] border border-sub-gray-100 h-[200px] w-full object-cover"
+          className="h-[200px] w-full rounded-[20px] border border-sub-gray-100 object-cover"
         />
       </div>
 

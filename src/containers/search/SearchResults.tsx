@@ -56,7 +56,14 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
                     {result.title}
                   </div>
                   <div className="text-xl font-medium text-sub-gray-300">
-                    조회 {(result.view_count ?? 0).toLocaleString()}회
+                    조회{' '}
+                    {(
+                      (result.main_category === '공모전' ||
+                      result.main_category === '대외활동'
+                        ? result.view_count
+                        : result.views) ?? 0
+                    ).toLocaleString()}
+                    회
                   </div>
                 </div>
                 <div className="absolute right-[48px]">
