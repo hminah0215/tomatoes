@@ -4,9 +4,8 @@ import { supabase } from '@/lib/supabaseClient';
 
 export async function generateStaticParams() {
   const { data: posts, error } = await supabase
-    .from('activities_contests')
-    .select('id')
-    .neq('id', null);
+    .from('tomato_contests')
+    .select('id');
 
   if (error) {
     console.error('Error fetching IDs:', error);
@@ -26,17 +25,15 @@ type PageProps = {
 
 export default async function Page({ params }: PageProps) {
   const id = Number(params.id);
-  const mainCategory = '공모전';
 
   const { data: contestDetail, error } = await fetchActivityContestDetailWith(
     id,
-    mainCategory
+    'tomato_contests'
   );
 
   if (error || !contestDetail) {
     return <div>데이터 로딩 중 에러 발생</div>;
   }
 
-  // 개별 필드를 직접 전달
   return <ContestDetail {...contestDetail} />;
 }

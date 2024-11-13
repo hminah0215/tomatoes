@@ -1,9 +1,6 @@
 import { useSearchParams } from 'next/navigation';
 
-export const useDetailUrl = (
-  id: number,
-  mainCategory: '공모전' | '대외활동'
-) => {
+export const useDetailUrl = (id: number, category: string) => {
   const searchParams = useSearchParams();
 
   const getQueryParams = () => {
@@ -18,8 +15,8 @@ export const useDetailUrl = (
     return params.toString();
   };
 
-  const baseUrl =
-    mainCategory === '공모전' ? `/contest/${id}` : `/activity/${id}`;
+  // 현재 route에 기반한 baseUrl 생성
+  const baseUrl = `/${category}/${id}`;
   const queryString = getQueryParams();
 
   return queryString ? `${baseUrl}?${queryString}` : baseUrl;

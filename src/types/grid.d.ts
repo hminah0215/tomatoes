@@ -6,15 +6,6 @@ type SlideColumnStyles = 'web3mobile3' | 'web6mobile6';
 
 type SlideGaptyles = 'slideGapStyle1' | 'slideGapStyle2';
 
-type PaginationProps<T> = {
-  contents: T[];
-  GridItem: React.ComponentType<GridItemProps<T>>;
-  webItemPerPage: number;
-  mobileItemPerPage: number;
-  columnStyle: GridColumns; 
-  gapStyle: GapStyles; 
-};
-
 type GridViewProps<T> = {
   items: T[];
   GridItem: React.ComponentType<{ item: T }>;

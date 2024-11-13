@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import Pagination from '@/components/ui/pagination/Pagination';
+import PaginationOld from '@/components/ui/pagination/PaginationOld';
 import HomeGridItem from '@/containers/home/HomeGridItem';
 import { fetchBestPickAll } from '@/lib/fetchBestPickGridView';
 import { useSearchParams } from 'next/navigation';
@@ -59,7 +59,7 @@ const MtomatoPick = () => {
 
       <div className="mb-[72px] mt-[28px] flex flex-col items-center md:mb-[120px] md:mt-[40px] md:items-start">
         {tomatoPicks.length > 0 && (
-          <Pagination
+          <PaginationOld
             contents={tomatoPicks}
             GridItem={HomeGridItem}
             webItemPerPage={8}

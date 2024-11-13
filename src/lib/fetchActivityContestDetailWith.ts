@@ -1,69 +1,48 @@
 import { supabase } from './supabaseClient';
 import { PostgrestError } from '@supabase/supabase-js';
 
-type ActivityContestDetail = {
-  thumbnail_url: string;
-  title: string;
-  registration_date: string;
-  view_count: number;
-  start_date: string;
-  end_date: string;
-  company: string;
-  homepage_url: string;
-  d_day: number;
-  description: string;
-  department?: string;
-  target?: string;
-  field?: string;
-  duration?: string;
-};
+type TableName = 'tomato_activities' | 'tomato_contests';
 
 /**
- * Fetches detailed information for a specific activity or contest item from Supabase.
+ * 특정 대외활동 또는 공모전의 상세 정보를 가져옵니다.
  *
  * @async
  * @function fetchActivityContestDetailWith
- * @param {number} id - The unique identifier of the activity or contest item.
- * @param {string} mainCategory - The main category, which determines additional fields to include.
- *                                - `'공모전'`: Includes `department` and `target` fields.
- *                                - `'대외활동'`: Includes `field` and `duration` fields.
+ * @param {number} id - 조회할 항목의 고유 식별자
+ * @param {TableName} tableName - 조회할 테이블 이름 ('tomato_activities' 또는 'tomato_contests')
  *
  * @returns {Promise<{data: ActivityContestDetail | null, error: PostgrestError | null}>}
- *          A promise that resolves to an object containing:
- *          - `data`: The detailed information of the specified item or `null` if an error occurred.
- *          - `error`: Supabase's `PostgrestError` object or `null` if no error occurred.
- *
- * @throws Will log an error if the data fetching fails.
+ *          Promise 객체는 다음을 포함합니다:
+ *          - `data`: 조회된 항목의 상세 정보 또는 에러 발생 시 `null`
+ *          - `error`: Supabase의 `PostgrestError` 객체 또는 에러가 없을 경우 `null`
  *
  * @example
- * // Fetch the details of an activity with ID 1 and main category '대외활동'
- * const { data, error } = await fetchActivityContestDetailWith(1, '대외활동');
+ * // 대외활동 상세 정보 조회
+ * const { data, error } = await fetchActivityContestDetailWith(1, 'tomato_activities');
  *
- * if (error) {
- *   console.error('Error fetching detail:', error);
- * } else {
- *   console.log('Activity Contest Detail:', data);
- * }
+ * // 공모전 상세 정보 조회
+ * const { data, error } = await fetchActivityContestDetailWith(1, 'tomato_contests');
  */
 export const fetchActivityContestDetailWith = async (
   id: number,
-  mainCategory: string
+  tableName: TableName
 ): Promise<{
   data: ActivityContestDetail | null;
   error: PostgrestError | null;
 }> => {
   try {
+    // 테이블에 따른 추가 필드 설정
     let selectFields =
       'thumbnail_url, title, registration_date, view_count, start_date, end_date, company, homepage_url, d_day, description';
 
-    if (mainCategory === '공모전') {
+    if (tableName === 'tomato_contests') {
       selectFields += ', department, target';
-    } else if (mainCategory === '대외활동') {
+    } else if (tableName === 'tomato_activities') {
       selectFields += ', field, duration';
     }
 
     const { data, error } = await supabase
-      .from('activities_contests')
+      .from(tableName)
       .select(selectFields)
       .eq('id', id)
       .single();
