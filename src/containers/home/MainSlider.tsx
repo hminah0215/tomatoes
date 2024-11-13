@@ -76,17 +76,16 @@ export default function MainSlider() {
             className="relative flex min-w-full items-center justify-center overflow-hidden"
           >
             <div className={`z-10 ml-20 pl-10 ${textColor}`}>
-              <h1 className="mb-4 max-w-[80%] break-words text-lg font-bold md:text-3xl">
+              <h1 className="mb-4 line-clamp-3 text-lg font-semibold md:text-3xl w-[130%]">
                 {content.title}
               </h1>
               <div className="mb-6">
-                <p className="text-base md:text-lg">
-                  기간 | {`${content.start_date} ~ ${content.end_date}`}
-                </p>
-                <p className="text-base md:text-lg">
+                <p className="text-base font-semibold hidden lg:inline md:text-lg">기간 | {`${content.start_date} ~ ${content.end_date}`}</p>
+                <p className="text-base font-semibold inline lg:hidden md:text-lg">기간 | {`~ ${content.end_date}`}</p>
+                <p className="text-base font-semibold md:text-lg">
                   분야 | {content.main_category}
                 </p>
-                <p className="text-base md:text-lg">
+                <p className="text-base font-bold md:text-lg">
                   대상 | 일반인, 대학생, 청소년
                 </p>
               </div>
@@ -110,16 +109,16 @@ export default function MainSlider() {
 
       <button
         onClick={prevSlide}
-        className="absolute left-16 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
+        className="absolute left-12 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
       >
-        <AiOutlineLeft className="h-4 w-4" />
+        <AiOutlineLeft className="h-10 w-6" />
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-16 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
+        className="absolute right-12 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-700 p-2 text-white opacity-60"
       >
-        <AiOutlineRight className="h-4 w-4" />
+        <AiOutlineRight className="h-10 w-6" />
       </button>
 
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 transform rounded-full bg-gray-800 px-3 py-1 text-sm text-white opacity-60">

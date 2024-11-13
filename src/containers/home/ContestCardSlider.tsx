@@ -11,29 +11,25 @@ function Card({ item }: ContestActivityListProps) {
   return (
     <div id={`${item.id}`} className="overflow-hidden bg-white">
       <div className="relative h-48 w-full shadow-md">
-        <Image
-          src={item.thumbnail_url}
-          alt={item.title}
-          fill
-          objectFit="cover"
-          className="rounded-xl"
+        <Image 
+          src={item.thumbnail_url} 
+          alt={item.title} 
+          fill 
+          objectFit="cover" 
+          className="rounded-xl" 
         />
       </div>
-      <div className="flex h-[calc(100%-12rem)] flex-col p-3">
-        <h3 className="mb-4 flex-grow text-base font-bold">{item.title}</h3>
-        <div className="mt-auto flex items-center">
-          {item.d_day < 0 ? (
-            <Dday type="completed" />
-          ) : (
-            <Dday
-              type="active"
-              day={item.d_day}
-              color={
-                item.d_day <= 7 ? 'red' : item.d_day <= 31 ? 'yellow' : 'green'
-              }
-            />
-          )}
-          <span className="ml-2 text-sm text-gray-600">{`${item.start_date} ~ ${item.end_date}`}</span>
+      <div className="p-1 flex flex-col h-[calc(100%-12rem)] min-h-[100px]">
+        <h3 className="h-11 pt-1 mb-3 line-clamp-2 text-base font-bold flex-grow">{item.title}</h3>
+        <div className="flex items-center justify-between mt-auto">
+          {item.d_day < 0 
+            ? <Dday type="completed" /> 
+            : <Dday type="active" day={item.d_day} color={item.d_day <= 7 ? 'red' : item.d_day <= 31 ? 'yellow' : 'green'} />
+          }
+          <p className="text-xs font-normal text-sub-gray-300 sm:text-sm md:font-medium md:text-sm lg:text-sm xl:text-base">
+            <span className="inline xl:hidden">{`~ ${item.end_date}`}</span>
+            <span className="hidden xl:inline">{`${item.start_date} ~ ${item.end_date}`}</span>
+          </p>
         </div>
       </div>
     </div>
@@ -99,8 +95,10 @@ function ContestCardSlider() {
   };
 
   return (
-    <section className="my-5 flex flex-col items-center gap-4">
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <section className="my-5 flex flex-col gap-4">
+      <div 
+        className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
         {currentItems.map((card) => (
           <Link
             key={card.id}
@@ -111,7 +109,7 @@ function ContestCardSlider() {
         ))}
       </div>
 
-      <div className="mt-6 flex items-center justify-center gap-10">
+      <div className="mt-3 flex items-center justify-center gap-10">
         <button
           onClick={goToPrevPage}
           disabled={currentPage === 0}
