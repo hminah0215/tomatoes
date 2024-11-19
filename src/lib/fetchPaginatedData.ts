@@ -1,6 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { supabase } from './supabaseClient';
 import { TomatoTipDataType } from '@/types/tomatoTips';
+import { fetchBestPickAll } from '@/lib/fetchBestPickGridView';
 
 const TABLE_MAPPING = {
   activity: 'tomato_activities',
@@ -193,6 +194,47 @@ export async function fetchPaginatedTomatoTips({
     console.error('토마토팁 데이터 fetch 중 에러 발생:', error);
     return {
       data: null,
+      totalCount: 0,
+      totalPages: 0,
+      currentPage: page,
+      error: error as Error,
+    };
+  }
+}
+
+// 토마토 PICK 페이지네이션 데이터
+export async function fetchPaginatedBestPicks({
+  page = 1,
+  itemsPerPage = 8,
+}: {
+  page?: number;
+  itemsPerPage?: number;
+}) {
+  try {
+    const { data, error, count } = await fetchBestPickAll(); // 기존 데이터 가져오는 함수 호출
+
+    if (error) throw error;
+
+    const totalCount = count || 0;
+    const totalPages = Math.ceil(totalCount / itemsPerPage);
+
+    // 페이지네이션 적용
+    const paginatedData = data.slice(
+      (page - 1) * itemsPerPage,
+      page * itemsPerPage
+    );
+
+    return {
+      data: paginatedData,
+      totalCount,
+      totalPages,
+      currentPage: page,
+      error: null,
+    };
+  } catch (error) {
+    console.error('토마토 Pick 데이터 가져오기 실패:', error);
+    return {
+      data: [],
       totalCount: 0,
       totalPages: 0,
       currentPage: page,
