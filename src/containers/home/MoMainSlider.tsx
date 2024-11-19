@@ -59,7 +59,7 @@ export default function MoMainSlider() {
         <h2 className="text-base font-medium">
           {`[ ${contents[currentIndex]?.main_category} ]`}
         </h2>
-        <h1 className="h-20 line-clamp-2 mb-1 text-2xl font-bold leading-10 max-w-[70%]">
+        <h1 className="h-20 line-clamp-2 mb-1.5 text-2xl font-bold leading-10 w-[70%]">
           {contents[currentIndex]?.title}
         </h1>
         <BannerLink url={`/contest/${contents[currentIndex]?.id}`} />
