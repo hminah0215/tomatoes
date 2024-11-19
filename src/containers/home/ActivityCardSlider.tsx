@@ -8,25 +8,42 @@ import { fetchActivityCardSlider } from '@/lib/fetchActivityCardSlider';
 import Link from 'next/link';
 
 function Card({ item }: ContestActivityListProps) {
+  const today_date = new Date(); // 오늘 날짜
+  const [yearE, monthE, dayE] = item.end_date.split('.').map((part) => parseInt(part, 10));
+  const formattedEndDate = new Date(`20${yearE}-${monthE}-${dayE}`); // 마감 날짜
+  const [yearS, monthS, dayS] = item.start_date.split('.').map((part) => parseInt(part, 10));
+  const formattedStartDate = new Date(`20${yearS}-${monthS}-${dayS}`); // 시작 날짜
+
   return (
     <div id={`${item.id}`} className="overflow-hidden bg-white">
       <div className="relative h-48 w-full shadow-md">
-        <Image 
-          src={item.thumbnail_url} 
-          alt={item.title} 
-          fill 
-          objectFit="cover" 
-          className="rounded-xl" 
+        <Image
+          src={item.thumbnail_url}
+          alt={item.title}
+          fill
+          objectFit="cover"
+          className="rounded-xl"
         />
       </div>
-      <div className="p-1 flex flex-col h-[calc(100%-12rem)] min-h-[100px]">
-        <h3 className="h-11 pt-1 mb-3 line-clamp-2 text-base font-bold flex-grow">{item.title}</h3>
-        <div className="flex items-center justify-between mt-auto">
-          {item.d_day < 0 
-            ? <Dday type="completed" /> 
-            : <Dday type="active" day={item.d_day} color={item.d_day <= 7 ? 'red' : item.d_day <= 31 ? 'yellow' : 'green'} />
-          }
-          <p className="text-xs font-normal text-sub-gray-300 sm:text-sm md:font-medium md:text-sm lg:text-sm xl:text-base">
+      <div className="flex h-[calc(100%-12rem)] min-h-[100px] flex-col p-1">
+        <h3 className="mb-3 line-clamp-2 h-11 flex-grow pt-1 text-base font-bold">
+          {item.title}
+        </h3>
+        <div className="mt-auto flex items-center justify-between">
+          {formattedStartDate > today_date ? (
+            <Dday type="upcoming" />
+          ) : formattedEndDate < today_date ? (
+            <Dday type="completed" />
+          ) : (
+            <Dday
+              type="active"
+              day={item.d_day}
+              color={
+                item.d_day <= 7 ? 'red' : item.d_day <= 31 ? 'yellow' : 'green'
+              }
+            />
+          )}
+          <p className="text-xs font-normal text-sub-gray-300 sm:text-sm md:text-sm md:font-medium lg:text-sm xl:text-base">
             <span className="inline xl:hidden">{`~ ${item.end_date}`}</span>
             <span className="hidden xl:inline">{`${item.start_date} ~ ${item.end_date}`}</span>
           </p>
@@ -96,14 +113,9 @@ function ActivityCardSlider() {
 
   return (
     <section className="my-5 flex flex-col items-center gap-4">
-      <div 
-        className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-      >
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {currentItems.map((card) => (
-          <Link
-            key={card.id}
-            href={`/activity/${card.id}`}
-          >
+          <Link key={card.id} href={`/activity/${card.id}`}>
             <Card item={card} />
           </Link>
         ))}
