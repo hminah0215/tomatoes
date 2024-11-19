@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import HomeGridItem from '@/containers/home/HomeGridItem';
 import Pagination from '@/components/ui/pagination/Pagination';
+import HomeGridSkeleton from '@/components/skeleton/HomeGridItemSkeleton';
 
 interface MtomatoPickProps {
   tomatoPicks: ContestActivityDataProps[];
@@ -17,6 +18,14 @@ const MtomatoPick = ({ tomatoPicks, pagination }: MtomatoPickProps) => {
   // 제목 위치를 참조할 ref
   const titleRef = useRef<HTMLDivElement>(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [loading, setLoading] = useState(true); // loading 상태 추가
+
+  // 데이터가 로드되었을 때 loading 상태 변경
+  useEffect(() => {
+    if (tomatoPicks.length > 0) {
+      setLoading(false); // 데이터가 있으면 loading 상태를 false로 변경
+    }
+  }, [tomatoPicks]);
 
   // 페이지 변경 시 제목 위치로 스크롤 이동
   useEffect(() => {
@@ -39,13 +48,26 @@ const MtomatoPick = ({ tomatoPicks, pagination }: MtomatoPickProps) => {
       </div>
 
       <div className="mb-[72px] mt-[28px] flex flex-col items-center md:mb-[120px] md:mt-[40px] md:items-start">
-        <Pagination
-          items={tomatoPicks}
-          GridItem={HomeGridItem}
-          columnStyle="web4mobile2"
-          gapStyle="gapStyle1"
-          pagination={pagination}
-        />
+        {/* 로딩 중일 때 스켈레톤 표시 */}
+        {loading ? (
+          <div className="grid w-full grid-cols-2 grid-rows-4 gap-6 md:grid-cols-4 md:grid-rows-2">
+            {/* 8개의 스켈레톤을 표시 */}
+            {Array.from({ length: 8 }).map((_, index) => (
+              <div key={index} className="w-full">
+                <HomeGridSkeleton />
+              </div>
+            ))}
+          </div>
+        ) : (
+          // 로딩이 끝나면 실제 데이터 표시
+          <Pagination
+            items={tomatoPicks}
+            GridItem={HomeGridItem}
+            columnStyle="web4mobile2"
+            gapStyle="gapStyle1"
+            pagination={pagination}
+          />
+        )}
       </div>
     </div>
   );
