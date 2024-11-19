@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function HomeGridItem({ item }: ContestActivityListProps) {
   const {
-    id,
+    category_id,
     title,
     d_day,
     start_date,
@@ -17,7 +17,7 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
 
   return (
     <Link 
-      href={`${en_main_category}/${id}`} 
+      href={`${en_main_category}/${category_id}`} 
       className="relative block"
     >
       <div className="block sm:hidden w-full justify-center">

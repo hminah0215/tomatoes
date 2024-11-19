@@ -102,7 +102,7 @@ function ActivityCardSlider() {
         {currentItems.map((card) => (
           <Link
             key={card.id}
-            href={`/${card.main_category === '대외활동' ? 'activity' : 'contest'}/${card.id}`}
+            href={`/activity/${card.id}`}
           >
             <Card item={card} />
           </Link>
