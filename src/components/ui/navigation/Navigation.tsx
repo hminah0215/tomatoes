@@ -12,7 +12,7 @@ type navItemType = {
 
 export default function Navigation() {
   const pathname = usePathname();
-  const isVisible = useScroll({ threshold: 90 });
+  const isVisible = useScroll();
 
   const navItems: navItemType[] = [
     { name: '매거진', route: '/magazine' },

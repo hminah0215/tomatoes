@@ -1,6 +1,7 @@
 import { fetchPaginatedData } from '@/lib/fetchPaginatedData';
 import Contest from '@/containers/contest/Contest';
 import { notFound } from 'next/navigation';
+import NetworkError from '@/components/common/NetworkError';
 
 interface PageProps {
   searchParams: {
@@ -36,7 +37,7 @@ export default async function Page({ searchParams }: PageProps) {
 
   if (error) {
     console.error('Error fetching activities:', error);
-    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+    return <NetworkError />;
   }
 
   if (!data || data.length === 0) {

@@ -1,4 +1,4 @@
-export default function ActivityContestSkeleton() {
+export default function ActivityContestItemSkeleton() {
   return (
     <div className="w-full">
       {/* Mobile Thumbnail */}

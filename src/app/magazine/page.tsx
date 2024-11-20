@@ -1,11 +1,42 @@
 import Image from 'next/image';
 import CurrentHighlights from '@/containers/magazine/CurrentHighlights';
 import MtomatoPick from '@/containers/magazine/MtomatoPick';
-import { Suspense } from 'react';
 import Link from 'next/link';
 import { AiOutlineRight } from 'react-icons/ai';
+import { fetchPaginatedBestPicks } from '@/lib/fetchPaginatedData';
+import NotFound from '@/app/not-found';
 
-const MagazinePage = () => {
+const MagazinePage = async ({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) => {
+  const currentPage = Number(searchParams.page) || 1; // 쿼리 파라미터로 페이지 번호 받기
+  const itemsPerPage = 8; // 페이지당 항목 수
+
+  // 데이터 패칭: MtomatoPick 데이터를 가져옴
+  const {
+    data,
+    totalCount,
+    totalPages,
+    currentPage: page,
+    error,
+  } = await fetchPaginatedBestPicks({
+    page: currentPage,
+    itemsPerPage,
+  });
+
+  // 데이터 가져오기 실패 시 처리
+  if (error) {
+    console.error('토마토 Pick 데이터 가져오기 실패:', error);
+    return <div>토마토 Pick 데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
+
+  // 데이터가 없으면 404 처리
+  if (!data || data.length === 0) {
+    NotFound();
+  }
+
   return (
     <>
       <div className="bg-white">
@@ -40,10 +71,16 @@ const MagazinePage = () => {
             </Link>
           </div>
           <CurrentHighlights />
-          {/* Suspense로 MtomatoPick 감싸기 */}
-          <Suspense fallback={<div>Loading...</div>}>
-            <MtomatoPick />
-          </Suspense>
+
+          {/* MtomatoPick에 데이터와 페이지네이션 정보 전달 */}
+          <MtomatoPick
+            tomatoPicks={data}
+            pagination={{
+              currentPage: page,
+              totalPages,
+              totalCount,
+            }}
+          />
         </div>
       </div>
     </>

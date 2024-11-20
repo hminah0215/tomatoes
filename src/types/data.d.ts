@@ -118,6 +118,8 @@ type ActivityContestData = {
   title: string;
   company: string;
   d_day: number;
+  start_date: string;
+  end_date: string;
   view_count: number;
   thumbnail_url: string;
 };
