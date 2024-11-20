@@ -37,7 +37,7 @@ export default function SearchBar({ placeholder, onSearch }: SearchBarProps) {
             value={keyword}
             onChange={onKeywordChangeHandler}
             placeholder={placeholder}
-            className="w-full bg-transparent pr-2 text-sm text-sub-gray-400 outline-none"
+            className="w-full bg-transparent pr-2 text-sm text-sub-gray-400 outline-none placeholder:text-[12px] sm:placeholder:text-xs"
             autoFocus
           />
           <button type="submit">

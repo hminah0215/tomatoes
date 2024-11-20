@@ -34,7 +34,7 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
           <span className="text-point-red-500">&apos;{`${query}`}&apos;</span>에
           대한 검색 결과 총 {results.length}건
         </div>
-        <div className="relative w-[318px] items-center justify-between rounded-[20px] border border-sub-gray-100 px-[20px] md:w-full md:px-[48px]">
+        <div className="relative w-full items-center justify-between rounded-[20px] border border-sub-gray-100 px-[20px] md:px-[48px]">
           {results.map((result, index) => {
             const tagLabel = getTagLabel(result.views, result.created_at);
             return (
@@ -80,7 +80,9 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
                     result.main_category === '대외활동' ? (
                       <SearchDdayDisplay d_day={result.d_day} />
                     ) : (
-                      <Tag type={tagLabel} label={tagLabel.toUpperCase()} />
+                      <div className="">
+                        <Tag type={tagLabel} label={tagLabel.toUpperCase()} />
+                      </div>
                     )}
                   </div>
                 </div>

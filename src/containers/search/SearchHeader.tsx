@@ -42,7 +42,7 @@ export default function SearchHeader({
             {sortSearchOptions.map((option, index) => (
               <li
                 key={index}
-                className={`relative cursor-pointer text-[26px] font-medium md:text-xl ${
+                className={`relative cursor-pointer text-[16px] font-medium md:text-xl ${
                   activeSort === option
                     ? 'font-semibold text-point-red-500'
                     : 'text-sub-gray-200'
@@ -64,7 +64,7 @@ export default function SearchHeader({
         <h1 className="pb-7 font-recipe text-[24px] font-medium">검색</h1>
 
         <section className="flex justify-between border-b-[1px] pl-[14px]">
-          <ul className="flex items-center justify-between gap-10 whitespace-nowrap text-[18px]">
+          <ul className="flex items-center justify-between gap-10 whitespace-nowrap !text-[16px]">
             {tabs.map((tab, index) => (
               <TabItem
                 key={index}
@@ -81,7 +81,7 @@ export default function SearchHeader({
             {sortSearchOptions.map((option, index) => (
               <li
                 key={index}
-                className={`relative cursor-pointer text-[14px] font-medium md:text-xl ${
+                className={`relative cursor-pointer text-[14px] font-medium ${
                   activeSort === option
                     ? 'font-semibold text-point-red-500'
                     : 'text-sub-gray-200'
