@@ -40,7 +40,7 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
             return (
               <Link key={result.id} href={getResultHref(result)}>
                 <div className="flex items-center gap-6 border-b-[1px] py-[32px]">
-                  <div className="flex h-[100px] w-[88px] overflow-hidden md:h-[168px] md:w-[140px]">
+                  <div className="flex h-[100px] w-[88px] md:h-[168px] md:w-[140px]">
                     <Image
                       src={getThumbnailUrl(result, index)}
                       alt="Search Image"
@@ -61,7 +61,7 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
                         {result.company}
                       </div>
                     </div>
-                    <div className="flex h-[76px] text-[14px] font-semibold text-sub-gray-500 md:text-[32px]">
+                    <div className="flex h-[76px] flex-shrink-0 overflow-hidden text-[14px] font-semibold text-sub-gray-500 md:text-[24px] lg:text-[32px]">
                       {result.title}
                     </div>
                     <div className="text-[12px] font-medium text-sub-gray-300 md:text-xl">

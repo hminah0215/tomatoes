@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function IntroPage() {
   return (
-    <>
+    <div className="flex flex-col items-center justify-center">
       <Image
         src="/assets/intro/PC_banner (1).svg"
         alt="Tomato Banner"
@@ -10,7 +10,7 @@ export default function IntroPage() {
         height={294}
         className="md:h-[586px] md:w-[1440px]"
       />
-      <div className="mx-auto my-[120px] grid w-full max-w-[1264px] grid-cols-1 gap-4 rounded-md md:grid-cols-3">
+      <div className="mx-auto my-[120px] grid w-full max-w-[1264px] grid-cols-1 items-center justify-items-center gap-4 rounded-md md:grid-cols-3">
         <Image
           src="/assets/intro/PC_grid_t (1).svg"
           alt="Tomato Grid"
@@ -82,18 +82,19 @@ export default function IntroPage() {
       </div>
       <div>
         <div className="flex flex-col items-center justify-center bg-main-white">
-          <p className="mt-[120px] text-[48px] font-bold">
+          <p className="mt-[120px] text-[24px] font-bold md:text-[48px]">
             <span className="inline-block">
               <Image
                 src="/assets/common/MO_logo_text.svg"
                 alt="Tomato letter"
-                width={186}
-                height={42}
+                width={90}
+                height={21}
+                className="md:h-[42px] md:w-[186px]"
               />
             </span>
             에서 무엇을 얻을 수 있나요?
           </p>
-          <p className="mb-[68px] mt-[24px] text-center text-[24px] font-normal text-sub-gray-400">
+          <p className="mb-[30px] mt-[12px] text-center text-[12px] font-normal text-sub-gray-400 md:mb-[68px] md:mt-[24px] md:text-[24px]">
             토마토들에서는 대외활동 운영 경험이 많은 멘토들이 엄선한 활동을 추천
             받을 수 있고
             <br /> 각 활동을 우수하게 마친 선배들이 작성한 꿀팁을 통해 알차게
@@ -104,9 +105,9 @@ export default function IntroPage() {
             alt="Triple Tomato"
             width={319}
             height={126}
-            className="mb-[60px] md:h-[258px] md:w-[735px]"
+            className="mb-[30px] md:mb-[60px] md:h-[258px] md:w-[735px]"
           />
-          <div className="relative mb-[140px] h-[68px] w-[937px] rounded-lg bg-main-beige px-[24px] py-[16px] text-center text-[24px] font-semibold text-[#4E4E4E]">
+          <div className="mb-[70px] h-full w-full rounded-lg bg-main-beige px-[24px] py-[16px] text-center text-[12px] font-semibold text-[#4E4E4E] md:mb-[140px] md:text-[24px]">
             <p>
               언젠가 멋쟁이 토마토가 될 여러분이 대학생활을 알차게 보낼 수
               있도록{' '}
@@ -114,8 +115,9 @@ export default function IntroPage() {
                 <Image
                   src="/assets/common/MO_logo_text.svg"
                   alt="Tomato letter"
-                  width={87}
-                  height={20}
+                  width={43}
+                  height={10}
+                  className="md:h-[20px] md:w-[87px]"
                 />
               </span>
               이 함께합니다!
@@ -148,6 +150,6 @@ export default function IntroPage() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
