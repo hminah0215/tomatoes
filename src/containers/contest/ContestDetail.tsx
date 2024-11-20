@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Dday from '@/components/common/Dday';
 import ActivityContestDetailTab from '@/components/common/ActivityContestDetailTab';
 import ActivityContestDescription from '@/components/common/ActivityContestDescription';
-import { formatDate } from '@/utils/format';
+import { formatDate, dateToFormatDate } from '@/utils/format';
 import { useState } from 'react';
 
 export default function ContestDetail({
@@ -22,7 +22,9 @@ export default function ContestDetail({
   target,
 }: ActivityContestDetail) {
   const [activeTab, setActiveTab] = useState('상세내용');
-  const [formatted_start_date, formatted_end_date] = [
+  const today_date = new Date();
+  const [formatted_today_date, formatted_start_date, formatted_end_date] = [
+    dateToFormatDate(today_date),
     formatDate(start_date),
     formatDate(end_date),
   ];
@@ -83,7 +85,17 @@ export default function ContestDetail({
         <ThumbnailImage url={thumbnail_url} title={title} isMobile={false} />
 
         <div className="flex-1">
-          <Dday type="active" day={d_day} color="red" />
+          {formatted_start_date > formatted_today_date ? (
+            <Dday type="upcoming" />
+          ) : formatted_end_date < formatted_today_date ? (
+            <Dday type="completed" />
+          ) : (
+            <Dday
+              type="active"
+              day={d_day}
+              color={d_day <= 7 ? 'red' : d_day <= 31 ? 'yellow' : 'green'}
+            />
+          )}
           <h2 className="mb-2 mt-3 break-all text-2xl font-bold leading-normal text-sub-gray-500 md:text-5xl">
             {title}
           </h2>

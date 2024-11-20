@@ -90,7 +90,7 @@ export default function MainSlider() {
                 </p>
               </div>
               <BannerLink
-                url={`/${content.main_category === '대외활동' ? 'activity' : 'contest'}/${content.id}`}
+                url={`/${content.main_category === '대외활동' ? 'activity' : 'contest'}/${content.category_id}`}
               />
             </div>
 
