@@ -7,7 +7,7 @@ export const fetchBestPickActivities = async () => {
     .select('*')
     .order('view_count', { ascending: false })
     .limit(8);
-  
+
   if (error) {
     return { data: null, error };
   }
@@ -15,12 +15,16 @@ export const fetchBestPickActivities = async () => {
   const formattedData = data.map((item) => {
     const formatToKoreanDate = (dateString: Date) => {
       const date = new Date(dateString);
-      
-      return date.toLocaleDateString('ko-KR', {
-        year: '2-digit',
-        month: '2-digit',
-        day: '2-digit',
-      }).replace(/\./g, '').trim().replace(/ /g, '.');
+
+      return date
+        .toLocaleDateString('ko-KR', {
+          year: '2-digit',
+          month: '2-digit',
+          day: '2-digit',
+        })
+        .replace(/\./g, '')
+        .trim()
+        .replace(/ /g, '.');
     };
 
     return {
@@ -34,17 +38,18 @@ export const fetchBestPickActivities = async () => {
 };
 
 export const fetchBestPickAll = async (): Promise<{
-  data: ContestActivityDataProps[] | null;
+  data: ContestActivityDataProps[];
   error: PostgrestError | null;
+  count: number;
 }> => {
-  const { data, error } = await supabase
+  const { data, error, count } = await supabase
     .from('activities_contests')
-    .select('*')
+    .select('*', { count: 'exact' }) // count: 'exact' 옵션 추가
     .order('view_count', { ascending: false });
 
   if (error) {
     console.error('fetchBestPickAll 데이터 가져오기 실패:', error);
   }
 
-  return { data, error };
+  return { data: data || [], error, count: count || 0 }; // count를 포함하여 반환
 };
