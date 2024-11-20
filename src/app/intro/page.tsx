@@ -8,9 +8,9 @@ export default function IntroPage() {
         alt="Tomato Banner"
         width={375}
         height={294}
-        className="md:h-[586px] md:w-[1440px]"
+        className="mt-[20px] md:h-[586px] md:w-[1440px]"
       />
-      <div className="mx-auto my-[120px] grid w-full max-w-[1264px] grid-cols-1 items-center justify-items-center gap-4 rounded-md md:grid-cols-3">
+      <div className="mx-auto my-[20px] grid w-full max-w-[1264px] grid-cols-1 items-center justify-items-center gap-4 rounded-md md:my-[120px] md:grid-cols-3">
         <Image
           src="/assets/intro/PC_grid_t (1).svg"
           alt="Tomato Grid"
@@ -56,7 +56,7 @@ export default function IntroPage() {
           멋쟁이 토마토 동요를 보면
           <br /> 꿈을 꾸는 우리는 모두 토마토입니다.
         </p>
-        <div className="mx-auto mb-[120px] mt-[67px] grid w-full max-w-[1264px] grid-cols-1 gap-4 rounded-md md:grid-cols-3">
+        <div className="mx-auto md:mb-[120px] md:mt-[67px] grid w-full max-w-[1264px] grid-cols-1 gap-4 rounded-md md:grid-cols-3">
           <Image
             src="/assets/intro/PC_grid_t (4).svg"
             alt="Tomato Grid"
