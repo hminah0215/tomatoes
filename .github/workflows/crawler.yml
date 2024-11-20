@@ -6,7 +6,7 @@ on:
       - main # main 브랜치에 푸시될 때 실행
   workflow_dispatch: # 수동 실행을 위한 옵션
   schedule:
-    - cron: '0 0 */4 * *' # 4일에 한번 실행
+    - cron: '0 0 */7 * *' # 7일에 한번 실행으로 변경
 
 jobs:
   run-crawler:

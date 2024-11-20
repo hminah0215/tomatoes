@@ -5,9 +5,11 @@ import TomatoTipItem from '@/containers/magazine/TomatoTipItem';
 import { useEffect, useState } from 'react';
 import { fetchThreeTomatoTips } from '@/lib/fetchTomatoTip';
 import GridSlideView from '@/components/ui/grid/GridSlideView';
+import TomatoTipSkeleton from '@/components/skeleton/TomatoTipSkeleton';
 
 const CurrentHighlights = () => {
   const [tips, setTips] = useState<TomatoTipDataType[]>([]);
+  const [loading, setLoading] = useState(true); // 로딩 상태 관리
 
   useEffect(() => {
     const fetchTips = async () => {
@@ -20,6 +22,7 @@ const CurrentHighlights = () => {
 
       if (data) {
         setTips(data);
+        setLoading(false); // 데이터 로딩 후 로딩 상태 종료
       }
     };
 
@@ -28,8 +31,21 @@ const CurrentHighlights = () => {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="gap-4 mb-[69px] mt-[28px] flex items-center md:mb-[120px] md:mt-[40px] md:items-start">
-        {tips.length > 0 && ( 
+      <div className="mb-[69px] mt-[28px] flex w-full items-center gap-4 md:mb-[120px] md:mt-[40px] md:items-start">
+        {loading ? (
+          <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="w-full">
+              <TomatoTipSkeleton />
+            </div>
+            {/* 추가 스켈레톤은 모바일에서는 숨기고 md 이상에서만 표시 */}
+            <div className="hidden w-full md:block">
+              <TomatoTipSkeleton />
+            </div>
+            <div className="hidden w-full md:block">
+              <TomatoTipSkeleton />
+            </div>
+          </div>
+        ) : (
           <GridSlideView<TomatoTipDataType>
             items={tips}
             GridItem={TomatoTipItem}

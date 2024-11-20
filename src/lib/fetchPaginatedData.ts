@@ -1,5 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { supabase } from './supabaseClient';
+import { TomatoTipDataType } from '@/types/tomatoTips';
+import { fetchBestPickAll } from '@/lib/fetchBestPickGridView';
 
 const TABLE_MAPPING = {
   activity: 'tomato_activities',
@@ -148,6 +150,91 @@ export async function fetchPaginatedData<T extends keyof CategoryType>({
     console.error('데이터 fetch 중 에러 발생:', error);
     return {
       data: null,
+      totalCount: 0,
+      totalPages: 0,
+      currentPage: page,
+      error: error as Error,
+    };
+  }
+}
+
+// 토마토 TIP 페이지네이션 데이터
+export async function fetchPaginatedTomatoTips({
+  page = 1,
+  itemsPerPage = 12,
+}: {
+  page?: number;
+  itemsPerPage?: number;
+}): Promise<PaginationResult<TomatoTipDataType>> {
+  try {
+    const tableName = 'tomato_tips'; // 토마토팁 데이터 테이블
+
+    let query = supabase.from(tableName).select('*', { count: 'exact' });
+
+    // 최신순으로 정렬 (created_at 기준으로 내림차순)
+    query = query.order('created_at', { ascending: false });
+
+    query = applyPagination(query, page, itemsPerPage); // 페이지네이션만 적용
+
+    const { data, count, error } = await query;
+
+    if (error) throw error;
+
+    const totalCount = count || 0;
+    const totalPages = Math.ceil(totalCount / itemsPerPage);
+
+    return {
+      data: data as TomatoTipDataType[],
+      totalCount,
+      totalPages,
+      currentPage: page,
+      error: null,
+    };
+  } catch (error) {
+    console.error('토마토팁 데이터 fetch 중 에러 발생:', error);
+    return {
+      data: null,
+      totalCount: 0,
+      totalPages: 0,
+      currentPage: page,
+      error: error as Error,
+    };
+  }
+}
+
+// 토마토 PICK 페이지네이션 데이터
+export async function fetchPaginatedBestPicks({
+  page = 1,
+  itemsPerPage = 8,
+}: {
+  page?: number;
+  itemsPerPage?: number;
+}) {
+  try {
+    const { data, error, count } = await fetchBestPickAll(); // 기존 데이터 가져오는 함수 호출
+
+    if (error) throw error;
+
+    const totalCount = count || 0;
+    const totalPages = Math.ceil(totalCount / itemsPerPage);
+
+    // 페이지네이션 적용
+    const paginatedData = data.slice(
+      (page - 1) * itemsPerPage,
+      page * itemsPerPage
+    );
+
+    return {
+      data: paginatedData,
+      totalCount,
+      totalPages,
+      currentPage: page,
+      error: null,
+    };
+  } catch (error) {
+    console.error('토마토 Pick 데이터 가져오기 실패:', error);
+    return {
+      data: [],
       totalCount: 0,
       totalPages: 0,
       currentPage: page,
