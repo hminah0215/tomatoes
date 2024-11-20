@@ -6,7 +6,7 @@ interface TabItemProps {
 
 export default function TabItem({ tab, isActive, onClick }: TabItemProps) {
   const baseClasses =
-    'cursor-pointer relative pb-2 px-[2px] text-[26px] leading-normal font-semibold after:content-[""] after:absolute after:left-0 after:bottom-[-2px] after:rounded-full after:transition-all after:duration-300';
+    'cursor-pointer relative pb-2 px-[2px] text-[16px] md:text-[26px] leading-normal font-semibold after:content-[""] after:absolute after:left-0 after:bottom-[-2px] after:rounded-full after:transition-all after:duration-300';
 
   const activeClasses = isActive
     ? 'text-sub-gray-500 after:w-full after:bg-sub-gray-500 after:h-[4px]'

@@ -34,13 +34,13 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
           <span className="text-point-red-500">&apos;{`${query}`}&apos;</span>에
           대한 검색 결과 총 {results.length}건
         </div>
-        <div className="relative w-[318px] items-center justify-between rounded-[20px] border border-sub-gray-100 px-[20px] md:w-full md:px-[48px]">
+        <div className="relative w-full items-center justify-between rounded-[20px] border border-sub-gray-100 px-[20px] md:px-[48px]">
           {results.map((result, index) => {
             const tagLabel = getTagLabel(result.views, result.created_at);
             return (
               <Link key={result.id} href={getResultHref(result)}>
                 <div className="flex items-center gap-6 border-b-[1px] py-[32px]">
-                  <div className="flex h-[100px] w-[88px] overflow-hidden md:h-[168px] md:w-[140px]">
+                  <div className="flex h-[100px] w-[88px] md:h-[168px] md:w-[140px]">
                     <Image
                       src={getThumbnailUrl(result, index)}
                       alt="Search Image"
@@ -61,7 +61,7 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
                         {result.company}
                       </div>
                     </div>
-                    <div className="flex h-[76px] text-[14px] font-semibold text-sub-gray-500 md:text-[32px]">
+                    <div className="flex h-[76px] flex-shrink-0 overflow-hidden text-[14px] font-semibold text-sub-gray-500 md:text-[24px] lg:text-[32px]">
                       {result.title}
                     </div>
                     <div className="text-[12px] font-medium text-sub-gray-300 md:text-xl">
@@ -80,7 +80,9 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
                     result.main_category === '대외활동' ? (
                       <SearchDdayDisplay d_day={result.d_day} />
                     ) : (
-                      <Tag type={tagLabel} label={tagLabel.toUpperCase()} />
+                      <div className="">
+                        <Tag type={tagLabel} label={tagLabel.toUpperCase()} />
+                      </div>
                     )}
                   </div>
                 </div>
