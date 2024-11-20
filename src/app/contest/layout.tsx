@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import CategoryHeader from '@/components/common/CategoryHeader';
+import ActivityContestLoading from './loading';
 
 export default function ContestLayout({
   children,
@@ -8,10 +9,8 @@ export default function ContestLayout({
 }) {
   return (
     <>
-      <Suspense fallback={<div>로딩 중...</div>}>
-        <CategoryHeader />
-      </Suspense>
-      {children}
+      <CategoryHeader />
+      <Suspense fallback={<ActivityContestLoading />}>{children}</Suspense>
     </>
   );
 }
