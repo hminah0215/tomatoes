@@ -49,9 +49,8 @@ export const fetchBestPickAll = async (): Promise<{
 
   if (error) {
     console.error('fetchBestPickAll 데이터 가져오기 실패:', error);
-    return { data: null, error };
+    return { data: data || [], error, count: count || 0 };
   }
-
   // Date 형식 변경
   const formattedData = data.map((item) => {
     const formatToKoreanDate = (dateString: Date) => {
@@ -71,5 +70,5 @@ export const fetchBestPickAll = async (): Promise<{
     };
   });
 
-  return { data: formattedData, error: null, count: count || 0 };
+  return { data: formattedData, error, count: count || 0 };
 };
