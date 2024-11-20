@@ -1,29 +1,41 @@
 import { useState, useEffect } from 'react';
 
 interface UseScrollOptions {
-  threshold?: number;
+  initialVisibility?: boolean;
 }
 
-export function useScroll({ threshold = 20 }: UseScrollOptions = {}) {
-  const [isVisible, setIsVisible] = useState(true);
+export function useScroll({ initialVisibility = true }: UseScrollOptions = {}) {
+  const [isVisible, setIsVisible] = useState(initialVisibility);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const currentScroll = window.scrollY;
-      const scrollPercent = (currentScroll / scrollHeight) * 100;
+    let ticking = false;
 
-      setIsVisible(scrollPercent < threshold);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+
+          if (currentScrollY > lastScrollY) {
+            setIsVisible(false);
+          } else {
+            setIsVisible(true);
+          }
+
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [threshold]);
+  }, [lastScrollY]);
 
   return isVisible;
 }

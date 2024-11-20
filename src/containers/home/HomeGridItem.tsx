@@ -40,8 +40,8 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
         />
       </div>
 
-      <div className="hidden sm:block w-full justify-center">
-        <div className="absolute mt-5 ml-5 rounded-full bg-sub-gray-500 p-2 text-xs font-normal text-white md:text-base md:font-medium">
+      <div className="hidden w-full justify-center sm:block">
+        <div className="absolute ml-5 mt-5 rounded-full bg-sub-gray-500 p-2 text-xs font-normal text-white md:text-base md:font-medium">
           {main_category}
         </div>
         <Image
@@ -49,12 +49,12 @@ export default function HomeGridItem({ item }: ContestActivityListProps) {
           alt={title}
           width={300}
           height={360}
-          className="rounded-[20px] border border-sub-gray-100 h-[360px] w-full object-cover"
+          className="h-[360px] w-full rounded-[20px] border border-sub-gray-100 object-cover"
         />
       </div>
 
       <div className="mt-2 md:mt-4">
-        <h2 className="h-10 mb-4 overflow-hidden text-sm font-semibold line-clamp-2 md:h-[50px] md:text-base md:font-semibold lg:text-lg">
+        <h2 className="mb-4 line-clamp-2 h-10 overflow-hidden text-sm font-semibold md:h-[50px] md:text-base md:font-semibold lg:text-lg">
           {title}
         </h2>
 
