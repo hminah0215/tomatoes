@@ -30,7 +30,16 @@ const ThumbnailImage = ({
 export default function ActivityContestItem({
   item,
 }: ActivityContestItemProps) {
-  const { id, title, company, d_day, start_date, end_date, view_count, thumbnail_url } = item;
+  const {
+    id,
+    title,
+    company,
+    d_day,
+    start_date,
+    end_date,
+    view_count,
+    thumbnail_url,
+  } = item;
 
   const pathname = usePathname();
   const category = pathname.split('/')[1];
@@ -57,7 +66,7 @@ export default function ActivityContestItem({
           {company}
         </p>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center justify-between gap-1.5">
           {formatted_start_date > formatted_today_date ? (
             <Dday type="upcoming" />
           ) : formatted_end_date < formatted_today_date ? (
@@ -72,21 +81,6 @@ export default function ActivityContestItem({
           <p className="text-xs font-normal text-sub-gray-300 sm:text-sm md:text-base md:font-medium">
             조회 {formatViewCount(view_count)}회
           </p>
-
-          <div className="flex items-center gap-1.5">
-            {d_day < 0 ? (
-              <Dday type="completed" />
-            ) : (
-              <Dday
-                type="active"
-                day={d_day}
-                color={d_day <= 7 ? 'red' : d_day <= 31 ? 'yellow' : 'green'}
-              />
-            )}
-            <p className="text-xs font-normal text-sub-gray-300 sm:text-sm md:text-base md:font-medium">
-              조회 {formatViewCount(view_count)}회
-            </p>
-          </div>
         </div>
       </div>
     </Link>
