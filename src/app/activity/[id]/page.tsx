@@ -1,6 +1,7 @@
 import ActivityDetail from '@/containers/activity/ActivityDetail';
 import { fetchActivityContestDetailWith } from '@/lib/fetchActivityContestDetailWith';
 import { supabase } from '@/lib/supabaseClient';
+import NetworkError from '@/components/common/NetworkError';
 
 export async function generateStaticParams() {
   const { data: posts, error } = await supabase
@@ -32,7 +33,7 @@ export default async function Page({ params }: PageProps) {
   );
 
   if (error || !activityDetail) {
-    return <div>데이터 로딩 중 에러 발생</div>;
+    return <NetworkError />;
   }
 
   return <ActivityDetail {...activityDetail} />;
