@@ -24,6 +24,11 @@
 
 | <img src="https://github.com/user-attachments/assets/d4b2cab0-471c-4b62-97ff-8f199b22bd1f" width="150" /> | <img src="https://github.com/user-attachments/assets/c84ae4c0-7093-41b3-9ae4-ea8446a4a27d" width="150" /> | <img src="https://github.com/user-attachments/assets/b3a6d633-e12e-43e5-a22b-81ff3ba26584" width="150" /> | <img src="https://github.com/user-attachments/assets/62463e6d-445c-4b9a-827b-104b689d99c1" width="150" /> |
 
+|                                                  강동훈                                                   |                                                  박기태                                                   |                                                  정지수                                                   |                                                  현민아                                                   |
+| :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
+
+| <img src="https://github.com/user-attachments/assets/d4b2cab0-471c-4b62-97ff-8f199b22bd1f" width="150" /> | <img src="https://github.com/user-attachments/assets/c84ae4c0-7093-41b3-9ae4-ea8446a4a27d" width="150" /> | <img src="https://github.com/user-attachments/assets/b3a6d633-e12e-43e5-a22b-81ff3ba26584" width="150" /> | <img src="https://github.com/user-attachments/assets/62463e6d-445c-4b9a-827b-104b689d99c1" width="150" /> |
+
 ## 4. 역할 분담
 
 ### 🦸🏻‍♂️ [starcradle101](https://github.com/starcradle101)
