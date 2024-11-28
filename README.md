@@ -19,10 +19,9 @@
 
 ## 3. 팀 소개
 
-
-|                             [강동훈](https://github.com/starcradle101)                             |                                 [박기태](https://github.com/kitae0831)                                 |                                   [정지수](https://github.com/StopSoo)                                   |                                [현민아](https://github.com/hminah0215)                                |
+|                                [강동훈](https://github.com/starcradle101)                                 |                                  [박기태](https://github.com/kitae0831)                                   |                                   [정지수](https://github.com/StopSoo)                                    |                                  [현민아](https://github.com/hminah0215)                                  |
 | :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
-| <img src="https://github.com/user-attachments/assets/d4b2cab0-471c-4b62-97ff-8f199b22bd1f" width="150" /> | <img src="https://github.com/user-attachments/assets/c84ae4c0-7093-41b3-9ae4-ea8446a4a27d" width="150" /> | <img src="https://github.com/user-attachments/assets/b3a6d633-e12e-43e5-a22b-81ff3ba26584" width="150" /> | <img src="https://github.com/user-attachments/assets/62463e6d-445c-4b9a-827b-104b689d99c1" width="150" /> |
+| <img src="https://github.com/user-attachments/assets/fe6d625a-7709-4736-8cd3-18419581cba3" width="150" /> | <img src="https://github.com/user-attachments/assets/c84ae4c0-7093-41b3-9ae4-ea8446a4a27d" width="150" /> | <img src="https://github.com/user-attachments/assets/b3a6d633-e12e-43e5-a22b-81ff3ba26584" width="150" /> | <img src="https://github.com/user-attachments/assets/62463e6d-445c-4b9a-827b-104b689d99c1" width="150" /> |
 
 ## 4. 역할 분담
 
@@ -74,6 +73,7 @@
 #### 데이터 크롤링 및 자동화 (Data Crawling & Automation)
 
 - 기능
+
   - 매거진에서 사용되는 데이터를 자동으로 크롤링 및 업로드하여 최신 데이터를 유지.
   - `토마토 TIP`, `토마토 PICK`과 같은 탭에서 활용되는 데이터를 기반으로 사용자에게 다양한 콘텐츠 제공.
 
