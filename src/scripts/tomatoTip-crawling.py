@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import json
 import os
 import re  # 정규식을 사용하기 위한 모듈
+from datetime import date
+
 
 # 크롤링할 기본 URL
 base_url = "https://community.linkareer.com/honeytips?word=&field=&page={}"
@@ -41,6 +43,10 @@ for page in range(1, total_pages + 1):
                 link = link_element['href'] if link_element else ''
                 full_link = f"https://community.linkareer.com{link}" if link.startswith('/') else link
 
+                # link 뒷 부분 page 파라미터 제거
+                clean_link = re.sub(r'\?page=\d+', '', full_link)
+
+
                 # 게시물 제목(h2) 추출
                 title_element = post.select_one('h2')
                 title = title_element.text if title_element else 'No title'
@@ -52,6 +58,16 @@ for page in range(1, total_pages + 1):
                 # 작성일 정보 추출
                 created_at_element = post.select_one('td.rc-table-cell[title] div')  # 작성일
                 created_at = created_at_element.text.strip() if created_at_element else 'Unknown'
+
+                # 작성일 형식 처리
+                if re.match(r'^\d{2}:\d{2}$', created_at):  # "00:54" 같은 형식인지 확인
+                    current_date = date.today().strftime('%Y-%m-%d')  # 현재 날짜 가져오기
+                    created_at = f"{current_date} {created_at}:00"  # 날짜 + 시간 + 초 추가
+                elif re.match(r'^\d{4}-\d{2}-\d{2}$', created_at):  # 날짜만 있는 경우
+                    created_at = f"{created_at} 00:00:00"  # 기본 시간 추가
+                elif created_at == 'Unknown':
+                    created_at = None  # 알 수 없는 경우
+
 
                 # 상세 페이지로 이동하여 게시글 HTML 내용 가져오기
                 detail_response = requests.get(full_link)
@@ -77,7 +93,7 @@ for page in range(1, total_pages + 1):
 
                 tomatoTip_data.append({
                     'title': title,
-                    'link': full_link,
+                    'link': clean_link,  # page 파라미터가 제거된 링크
                     'content': cleaned_content,  # 인라인 스타일이 제거된 콘텐츠
                     'author': author,
                     'created_at': created_at,
